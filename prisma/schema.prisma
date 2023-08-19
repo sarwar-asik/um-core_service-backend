@@ -14,3 +14,25 @@ datasource db {
 //   id String @id @default(uuid())
 //   name String
 // }
+
+model AcademicSeemestar {
+  id         String   @id @default(uuid())
+  year       String
+  title      String
+  code       String
+  startMonth String
+  endMonth   String
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  @@map("academic-semestart")
+}
+
+model AcademicFacult {
+  id        String   @id @default(uuid())
+  title     String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("academic-facullty")
+}
