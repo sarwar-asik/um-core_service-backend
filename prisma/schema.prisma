@@ -16,23 +16,80 @@ datasource db {
 // }
 
 model AcademicSeemestar {
-  id         String   @id @default(uuid())
+  id         String    @id @default(uuid())
   year       String
   title      String
   code       String
   startMonth String
   endMonth   String
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @updatedAt
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
+  student    Student[]
 
   @@map("academic-semestart")
 }
 
-model AcademicFacult {
-  id        String   @id @default(uuid())
-  title     String
+model AcademicFaculty {
+  id                 String               @id @default(uuid())
+  title              String
+  createdAt          DateTime             @default(now())
+  updatedAt          DateTime             @updatedAt
+  academicDepartment AcademicDepartment[]
+  students            Student[]
+
+  @@map("academic-facullty")
+}
+
+model AcademicDepartment {
+  id               String          @id @default(uuid())
+  title            String
+  createdAt        DateTime        @default(now())
+  updatedAt        DateTime        @updatedAt
+  academicFacultId String
+  academicFaculty  AcademicFaculty @relation(fields: [academicFacultId], references: [id])
+  students          Student[]
+
+  @@map("academic-department")
+}
+
+model Student {
+  id                   String             @id @default(uuid())
+  studentID            String
+  firstName            String
+  lastName             String
+  middleName           String
+  profileImage         String
+  email                String
+  contactNo            Int
+  gendar               String
+  bloodGroup           String
+  createdAt            DateTime           @default(now())
+  updatedAt            DateTime           @updatedAt
+  academicSemestarId   String
+  academicSemestar     AcademicSeemestar  @relation(fields: [academicSemestarId], references: [id])
+  academicDepartmentId String
+  academicDepartment   AcademicDepartment @relation(fields: [academicDepartmentId], references: [id])
+  academicFacultyId    String
+  academicFaculty      AcademicFaculty    @relation(fields: [academicFacultyId], references: [id])
+
+  @@map("students")
+}
+
+model Faculty {
+  id           String @id @default(uuid())
+  facultyID    String
+  firstName    String
+  lastName     String
+  middleName   String
+  profileImage String
+  email        String
+  contactNo    Int
+  gendar       String
+  bloodGroup   String
+  designation  String
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  @@map("academic-facullty")
+  @@map("faculties")
 }
