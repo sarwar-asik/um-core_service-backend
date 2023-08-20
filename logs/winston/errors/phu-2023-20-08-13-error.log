@@ -1,0 +1,36 @@
+Sun Aug 20 2023 13:0:32 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ 
+Invalid `prisma.academicSemester.findMany()` invocation in
+C:\WEB\NEXT_LEVEL_2\6_SQL\university-management-core-service-starter\src\app\modules\academicSemester\academicSemester.services.ts:60:48
+
+  57 
+  58 
+  59 ;
+→ 60   const result = await prisma.academicSemester.findMany({
+         where: {},
+         skip: 0,
+         take: 10,
+         orderBy: {
+           title: "title"
+                  ~~~~~~~
+         }
+       })
+
+Invalid value for argument `title`. Expected SortOrder.
+Sun Aug 20 2023 13:0:44 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ 
+Invalid `prisma.academicSemester.findMany()` invocation in
+C:\WEB\NEXT_LEVEL_2\6_SQL\university-management-core-service-starter\src\app\modules\academicSemester\academicSemester.services.ts:60:48
+
+  57 
+  58 
+  59 ;
+→ 60   const result = await prisma.academicSemester.findMany({
+         where: {},
+         skip: 0,
+         take: 10,
+         orderBy: {
+           title: "title"
+                  ~~~~~~~
+         }
+       })
+
+Invalid value for argument `title`. Expected SortOrder.

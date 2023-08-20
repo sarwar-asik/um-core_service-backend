@@ -22,8 +22,9 @@ const insertDB  = catchAsync(async(req:Request,res:Response)=>{
 
 const getAllDb = catchAsync(async(req:Request,res:Response)=>{
     // console.log(req.query,'from getAll db controller');
-    const filters = pick(req?.query,['searchTerm,code,year'])
-    const options = pick(req?.query,['limit','page','sortBy','sortOrder'])
+    const filters = pick(req.query,['searchTerm','code','startMonth', 'endMonth'])
+    // academicSemesterFilterableFields (use it in filters )
+    const options = pick(req.query,['limit','page','sortBy','sortOrder'])
 
     console.log('filters:::',filters,'options::::',options);
 
