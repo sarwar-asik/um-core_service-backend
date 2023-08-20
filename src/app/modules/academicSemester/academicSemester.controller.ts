@@ -13,7 +13,7 @@ const insertDB  = async(req:Request,res:Response)=>{
         sendResponse<AcademicSemester>(res,{
             statusCode:httpStatus.CREATED,
             success:true,
-            message:"Successfully created data",
+            message:"Successfully created Academic Semesters",
             data:result
         })
         

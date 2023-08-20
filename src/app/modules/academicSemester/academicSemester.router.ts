@@ -1,8 +1,7 @@
-import express from "express"
-import { AcademicSemesterController } from "./academicSemester.controller"
-const router = express.Router()
+import express from 'express';
+import { AcademicSemesterController } from './academicSemester.controller';
+const router = express.Router();
 
+router.post('/', AcademicSemesterController.insertDB);
 
-router.post('/',AcademicSemesterController.insertDB)
-
-export const academicRouter = router
+export const academicRouter = router;
