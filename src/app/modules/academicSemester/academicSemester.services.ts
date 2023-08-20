@@ -1,10 +1,11 @@
-import { AcademicSemester, Prisma, PrismaClient } from '@prisma/client';
+import { AcademicSemester, Prisma } from '@prisma/client';
 import { paginationHelpers } from '../../../helpers/paginationHelper';
 import { IGenericResponse } from '../../../interfaces/common';
 import { IPaginationOptions } from '../../../interfaces/pagination';
 import { IAcademicSemesterFilterRequest } from './academicSemester.Interface';
+import prisma from '../../../shared/prisma';
 
-const prisma = new PrismaClient();
+
 
 const insertDB = async (data: AcademicSemester): Promise<AcademicSemester> => {
   const result = await prisma.academicSemester.create({
