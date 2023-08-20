@@ -2,10 +2,8 @@ import { AcademicSemester, Prisma } from '@prisma/client';
 import { paginationHelpers } from '../../../helpers/paginationHelper';
 import { IGenericResponse } from '../../../interfaces/common';
 import { IPaginationOptions } from '../../../interfaces/pagination';
-import { IAcademicSemesterFilterRequest } from './academicSemester.Interface';
 import prisma from '../../../shared/prisma';
-
-
+import { IAcademicSemesterFilterRequest } from './academicSemester.Interface';
 
 const insertDB = async (data: AcademicSemester): Promise<AcademicSemester> => {
   const result = await prisma.academicSemester.create({
@@ -27,7 +25,10 @@ const getAllDb = async (
 
   console.log(filters, 'ffffff');
   const { searchTerm, ...filtersData } = filters;
-  console.log("🚀 ~ file: academicSemester.services.ts:29 ~ filtersData:", filtersData)
+  console.log(
+    '🚀 ~ file: academicSemester.services.ts:29 ~ filtersData:',
+    filtersData
+  );
 
   const andConditions = [];
 
@@ -42,22 +43,21 @@ const getAllDb = async (
     });
   }
 
-  if(Object.keys(filtersData).length >0){
+  if (Object.keys(filtersData).length > 0) {
     andConditions.push({
-        AND:Object.keys(filtersData).map(key=>({
-            [key]:{
-                equals:(filtersData as any)[key]
-            }
-        }))
-    })
+      AND: Object.keys(filtersData).map(key => ({
+        [key]: {
+          equals: (filtersData as any)[key],
+        },
+      })),
+    });
   }
 
-// for andCondition for where 
+  // for andCondition for where
 
-const whereCondition:Prisma.AcademicSemesterWhereInput  =andConditions.length >0 ?{AND:andConditions} :{}
+  const whereCondition: Prisma.AcademicSemesterWhereInput =
+    andConditions.length > 0 ? { AND: andConditions } : {};
 
-
-;
   const result = await prisma.academicSemester.findMany({
     // where: {
     //   OR: [
@@ -75,21 +75,20 @@ const whereCondition:Prisma.AcademicSemesterWhereInput  =andConditions.length >0
     //     },
     //   ],
     // },
-    where:whereCondition,
+    where: whereCondition,
     skip,
     take: limit,
     // orderBy:{
     //     createdAt:'desc'
     // }
-    orderBy: options.sortBy && options.sortOrder?{
-        [options.sortBy]:options.sortOrder
-    }
-    :
-    {
-        createdAt:'desc'
-    }
-
-
+    orderBy:
+      options.sortBy && options.sortOrder
+        ? {
+            [options.sortBy]: options.sortOrder,
+          }
+        : {
+            createdAt: 'desc',
+          },
   });
   const total = await prisma.academicSemester.count();
   return {
@@ -102,4 +101,13 @@ const whereCondition:Prisma.AcademicSemesterWhereInput  =andConditions.length >0
   };
 };
 
-export const AcademicSemesterServices = { insertDB, getAllDb };
+const getSingleData = async (id: string): Promise<AcademicSemester | null> => {
+  const result = await prisma.academicSemester.findUnique({
+    where: {
+      id,
+    },
+  })
+
+  return result;
+};
+export const AcademicSemesterServices = { insertDB, getAllDb, getSingleData };

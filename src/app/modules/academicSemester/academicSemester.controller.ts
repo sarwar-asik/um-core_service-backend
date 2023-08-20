@@ -38,4 +38,19 @@ const getAllDb = catchAsync(async(req:Request,res:Response)=>{
         data:result?.data,
     })
 })
-export const AcademicSemesterController ={insertDB,getAllDb}
+
+
+const getSingleDataById  = catchAsync(async(req:Request,res:Response)=>{
+   const id = req.params.id;
+
+    const result = await AcademicSemesterServices.getSingleData(id)
+    
+    sendResponse<AcademicSemester>(res,{
+        statusCode:httpStatus.OK,
+        success:true,
+        message:`Successfully get ${id}`,
+        data:result
+    })
+  
+})
+export const AcademicSemesterController ={insertDB,getAllDb,getSingleDataById}

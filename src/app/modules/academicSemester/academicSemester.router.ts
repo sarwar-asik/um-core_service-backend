@@ -11,5 +11,6 @@ router.post(
 );
 
 router.get('/', AcademicSemesterController.getAllDb);
+router.get('/:id', AcademicSemesterController.getSingleDataById);
 
 export const academicRouter = router;
