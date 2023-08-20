@@ -5,6 +5,7 @@ import sendResponse from "../../../shared/sendResponse";
 import { AcademicSemester } from "@prisma/client";
 import httpStatus from "http-status";
 import catchAsync from "../../../shared/catchAsync";
+import pick from "../../../shared/pick";
 
 const insertDB  = catchAsync(async(req:Request,res:Response)=>{
     const data = req.body
@@ -20,7 +21,13 @@ const insertDB  = catchAsync(async(req:Request,res:Response)=>{
 })
 
 const getAllDb = catchAsync(async(req:Request,res:Response)=>{
-    const result = await AcademicSemesterServices.getAllDb()
+    // console.log(req.query,'from getAll db controller');
+    const filters = pick(req?.query,['searchTerm,code,year'])
+    const options = pick(req?.query,['limit','page','sortBy','sortOrder'])
+
+    console.log('filters:::',filters,'options::::',options);
+
+    const result = await AcademicSemesterServices.getAllDb(filters,options)
 
     sendResponse<AcademicSemester[]>(res,{
         statusCode:httpStatus.OK,
