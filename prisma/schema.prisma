@@ -46,8 +46,8 @@ model AcademicDepartment {
   title            String
   createdAt        DateTime        @default(now())
   updatedAt        DateTime        @updatedAt
-  academicFacultId String
-  academicFaculty  AcademicFaculty @relation(fields: [academicFacultId], references: [id])
+  academicFacultyId String
+  academicFaculty  AcademicFaculty @relation(fields: [academicFacultyId], references: [id])
   students         Student[]
   faculties        Faculty[]
 
