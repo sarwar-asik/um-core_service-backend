@@ -114,3 +114,13 @@ Sun Aug 27 2023 0:32:25 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ [
     "message": "academicSemestarId is Required (zod)"
   }
 ]
+Sun Aug 27 2023 0:33:8 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ 
+Invalid `prisma.student.create()` invocation:
+
+
+Foreign key constraint failed on the field: `students_academicSemestarId_fkey (index)`
+Sun Aug 27 2023 0:34:6 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ 
+Invalid `prisma.student.create()` invocation:
+
+
+Foreign key constraint failed on the field: `students_academicDepartmentId_fkey (index)`
