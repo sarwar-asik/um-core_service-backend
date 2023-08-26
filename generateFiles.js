@@ -3,6 +3,7 @@
 const fs = require('fs').promises;
 const path = require('path');
 
+
 const capitalize = (str) => str.charAt(0).toUpperCase() + str.slice(1);
 
 const files = [
