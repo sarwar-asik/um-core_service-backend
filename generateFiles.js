@@ -9,59 +9,59 @@ const files = [
   {
     name: 'controller.ts',
     getCode: (folderName) => 
-`/* eslint-disable @typescript-eslint/no-unused-vars */
-import { ${capitalize(folderName)}Service } from './${folderName}.service';
-import { I${capitalize(folderName)} } from './${folderName}.interface';
-
-
+`
 export const ${capitalize(folderName)}Controller = {};
 `,
   },
   {
-    name: 'interface.ts',
+    name: 'service.ts',
     getCode: (folderName) => 
-`/* eslint-disable @typescript-eslint/no-unused-vars */
-import { Model, Types } from 'mongoose';
+`
+import {  Prisma,${capitalize(folderName)} } from '@prisma/client';
 
-export type I${capitalize(folderName)} = {
+const insertDB = async (data: ${capitalize(folderName)}): Promise<${capitalize(folderName)}> => {
+  const result = await prisma.${folderName}.create({
+    data,
+  });
 
-}
+  return result;
+};
 
-export type I${capitalize(folderName)}Model = Model<I${capitalize(folderName)}, Record<string, unknown>>;`
-  },
-  {
-    name: 'model.ts',
-    getCode: (folderName) => 
-`import { Schema, model } from 'mongoose';
-import { I${capitalize(folderName)}, I${capitalize(folderName)}Model } from './${folderName}.interface';
-
-const ${capitalize(folderName)}Schema = new Schema<I${capitalize(folderName)}, I${capitalize(folderName)}Model>(
-  {
-
-  }
-);
-
-export const ${capitalize(folderName)} = model<I${capitalize(folderName)}, I${capitalize(folderName)}Model>('${capitalize(folderName)}', ${capitalize(folderName)}Schema);
+export const ${capitalize(folderName)}Service = {insertDB};
 `
   },
   {
-    name: 'service.ts',
+    name: 'validation.ts',
     getCode: (folderName) => 
-`/* eslint-disable @typescript-eslint/no-unused-vars */
-import { I${capitalize(folderName)} } from './${folderName}.interface';
-import { ${capitalize(folderName)} } from './${folderName}.model';
+`
+import { z } from 'zod';
+const create${capitalize(folderName)} = z.object({
+  body: z.object({
+    year: z.number({
+      required_error: 'year is Required (zod)',
+    }),
+    title: z.string({
+      required_error: 'title is Required (zod)',
+    })
+  }),
+});
 
-export const ${capitalize(folderName)}Service = {};
+export const ${capitalize(folderName)}Validation = { create${capitalize(folderName)} };
+
+
 `
   },
   {
     name: 'route.ts',
     getCode: (folderName) => 
-`/* eslint-disable @typescript-eslint/no-unused-vars */
+`/* eslint-disable no-unused-vars */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Router } from 'express';
 import { ${capitalize(folderName)}Controller } from './${folderName}.controller';
-
+import {${capitalize(folderName)}Validation } from './${folderName}.validation';
 const router = Router();
+router.get('/')
+router.post('/')
 
 export const ${capitalize(folderName)}Routes = router;
 `
