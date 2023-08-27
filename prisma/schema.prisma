@@ -42,14 +42,14 @@ model AcademicFaculty {
 }
 
 model AcademicDepartment {
-  id               String          @id @default(uuid())
-  title            String
-  createdAt        DateTime        @default(now())
-  updatedAt        DateTime        @updatedAt
+  id                String          @id @default(uuid())
+  title             String
+  createdAt         DateTime        @default(now())
+  updatedAt         DateTime        @updatedAt
   academicFacultyId String
-  academicFaculty  AcademicFaculty @relation(fields: [academicFacultyId], references: [id])
-  students         Student[]
-  faculties        Faculty[]
+  academicFaculty   AcademicFaculty @relation(fields: [academicFacultyId], references: [id])
+  students          Student[]
+  faculties         Faculty[]
 
   @@map("academic-department")
 }
@@ -68,7 +68,7 @@ model Student {
   createdAt            DateTime           @default(now())
   updatedAt            DateTime           @updatedAt
   academicSemestarId   String
-  academicSemestar     AcademicSemester  @relation(fields: [academicSemestarId], references: [id])
+  academicSemestar     AcademicSemester   @relation(fields: [academicSemestarId], references: [id])
   academicDepartmentId String
   academicDepartment   AcademicDepartment @relation(fields: [academicDepartmentId], references: [id])
   academicFacultyId    String
@@ -99,4 +99,25 @@ model Faculty {
   academicFaculty      AcademicFaculty    @relation(fields: [academicFacultyId], references: [id])
 
   @@map("faculties")
+}
+
+model Building {
+  id        String   @id @default(uuid())
+  title     String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  Rrooms    Room[]
+
+  @@map("buidings")
+}
+
+model Room {
+  id         String @id @default(uuid())
+  roomNumber String
+  floor      String
+
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  buildingId String
+  building   Building @relation(fields: [buildingId], references: [id])
 }

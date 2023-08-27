@@ -3,24 +3,42 @@
 const fs = require('fs').promises;
 const path = require('path');
 
-
-const capitalize = (str) => str.charAt(0).toUpperCase() + str.slice(1);
+const capitalize = str => str.charAt(0).toUpperCase() + str.slice(1);
 
 const files = [
   {
     name: 'controller.ts',
-    getCode: (folderName) => 
-`
-export const ${capitalize(folderName)}Controller = {};
+    getCode: folderName =>
+      `
+import { Request, Response } from "express";
+import catchAsync from "../../../shared/catchAsync";
+import sendResponse from "../../../shared/sendResponse";
+import httpStatus from "http-status";
+
+const insertDB = catchAsync(async (req: Request, res: Response) => {
+  const data = req.body;
+  const result = await ${capitalize(folderName)}Service.insertDB(data)
+
+  sendResponse<${capitalize(folderName)}>(res, {
+    statusCode: httpStatus.CREATED,
+    success: true,
+    message: 'Successfully ${capitalize(folderName)}',
+    data: result,
+  });
+});
+
+export const ${capitalize(folderName)}Controller = {insertDB};
 `,
   },
   {
     name: 'service.ts',
-    getCode: (folderName) => 
-`
+    getCode: folderName =>
+      `
 import {  Prisma,${capitalize(folderName)} } from '@prisma/client';
 
-const insertDB = async (data: ${capitalize(folderName)}): Promise<${capitalize(folderName)}> => {
+const insertDB = async (data: ${capitalize(folderName)}): Promise<${capitalize(
+        folderName
+      )}> => {
   const result = await prisma.${folderName}.create({
     data,
   });
@@ -29,12 +47,12 @@ const insertDB = async (data: ${capitalize(folderName)}): Promise<${capitalize(f
 };
 
 export const ${capitalize(folderName)}Service = {insertDB};
-`
+`,
   },
   {
     name: 'validation.ts',
-    getCode: (folderName) => 
-`
+    getCode: folderName =>
+      `
 import { z } from 'zod';
 const create${capitalize(folderName)} = z.object({
   body: z.object({
@@ -47,25 +65,29 @@ const create${capitalize(folderName)} = z.object({
   }),
 });
 
-export const ${capitalize(folderName)}Validation = { create${capitalize(folderName)} };
+export const ${capitalize(folderName)}Validation = { create${capitalize(
+        folderName
+      )} };
 
 
-`
+`,
   },
   {
     name: 'route.ts',
-    getCode: (folderName) => 
-`/* eslint-disable no-unused-vars */
+    getCode: folderName =>
+      `/* eslint-disable no-unused-vars */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { Router } from 'express';
-import { ${capitalize(folderName)}Controller } from './${folderName}.controller';
+import { ${capitalize(
+        folderName
+      )}Controller } from './${folderName}.controller';
 import {${capitalize(folderName)}Validation } from './${folderName}.validation';
 const router = Router();
 router.get('/')
 router.post('/')
 
 export const ${capitalize(folderName)}Routes = router;
-`
+`,
   },
 ];
 
@@ -90,16 +112,19 @@ async function createFolderAndFiles(parentDirectory, folderName) {
 }
 
 async function getUserInput() {
-  return new Promise((resolve) => {
+  return new Promise(resolve => {
     const readline = require('readline').createInterface({
       input: process.stdin,
       output: process.stdout,
     });
 
-    readline.question('Enter the Module name (or "exit" to terminate): ', (folderName) => {
-      readline.close();
-      resolve(folderName);
-    });
+    readline.question(
+      'Enter the Module name (or "exit" to terminate): ',
+      folderName => {
+        readline.close();
+        resolve(folderName);
+      }
+    );
   });
 }
 
@@ -119,4 +144,3 @@ async function start() {
 }
 
 start();
-
