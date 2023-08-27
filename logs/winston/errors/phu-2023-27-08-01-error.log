@@ -1,0 +1,38 @@
+Sun Aug 27 2023 1:3:22 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ 
+Invalid `prisma.academicDepartment.create()` invocation:
+
+{
+  data: {
+    title: "academic-department1",
+    academicFacultyId: "84d88768-cb8a-443e-b148-b5c42758cc7b",
++   academicFaculty: {
++     create: AcademicFacultyCreateWithoutAcademicDepartmentInput | AcademicFacultyUncheckedCreateWithoutAcademicDepartmentInput,
++     connectOrCreate: AcademicFacultyCreateOrConnectWithoutAcademicDepartmentInput,
++     connect: AcademicFacultyWhereUniqueInput
++   }
+  },
+  include: {
+    academicFaculty: true
+  }
+}
+
+Argument `academicFaculty` is missing.
+Sun Aug 27 2023 1:3:28 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ 
+Invalid `prisma.academicDepartment.create()` invocation:
+
+{
+  data: {
+    title: "academic-department1",
+    academicFacultyId: "84d88768-cb8a-443e-b148-b5c42758cc7b",
++   academicFaculty: {
++     create: AcademicFacultyCreateWithoutAcademicDepartmentInput | AcademicFacultyUncheckedCreateWithoutAcademicDepartmentInput,
++     connectOrCreate: AcademicFacultyCreateOrConnectWithoutAcademicDepartmentInput,
++     connect: AcademicFacultyWhereUniqueInput
++   }
+  },
+  include: {
+    academicFaculty: true
+  }
+}
+
+Argument `academicFaculty` is missing.
