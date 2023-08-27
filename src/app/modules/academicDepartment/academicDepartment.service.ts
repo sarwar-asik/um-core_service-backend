@@ -62,6 +62,7 @@ const getAllFromDB = async (
       }),
     });
   }
+  
 
   const whereConditions: Prisma.AcademicDepartmentWhereInput =
     andConditions.length > 0 ? { AND: andConditions } : {};
@@ -82,13 +83,14 @@ const getAllFromDB = async (
   });
   const total = await prisma.academicDepartment.count({
     where: whereConditions,
-  });
+  })
+
 
   return {
     meta: {
       total,
       page,
-      limit,
+      limit
     },
     data: result,
   };

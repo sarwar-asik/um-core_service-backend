@@ -57,4 +57,17 @@ const getSingleDataById = catchAsync(async (req: Request, res: Response) => {
     data: result,
   });
 });
-export const StudentController = { insertDB, getAllDb, getSingleDataById };
+const updateIntoDb = catchAsync(async (req: Request, res: Response) => {
+  const id = req.params.id;
+const data = req?.body;
+
+  const result = await StudentsService.updateItoDb(id,data);
+
+  sendResponse<Student>(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: `Successfully updated ${id}`,
+    data: result,
+  });
+});
+export const StudentController = { insertDB, getAllDb, getSingleDataById,updateIntoDb };

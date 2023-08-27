@@ -13,4 +13,10 @@ router.post(
 );
 router.get('/', StudentController.getAllDb);
 
+router.put(
+  '/:id',
+  validateRequest(StudentsValidation.updateStudents),
+  StudentController.updateIntoDb
+);
+
 export const studentsRoutes = router;

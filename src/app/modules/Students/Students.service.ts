@@ -92,4 +92,19 @@ const getSingleData = async (id: string): Promise<Student | null> => {
   return result;
 };
 
-export const StudentsService = { insertDB, getAllDb, getSingleData };
+
+
+const updateItoDb = async(id:string,payload:Partial<Student>):Promise<Student>=>{
+
+  console.log(id,payload);
+  const result =await prisma.student.update({
+    where:{
+      id
+    },
+    data:payload
+  })
+
+  return result
+
+}
+export const StudentsService = { insertDB, getAllDb, getSingleData ,updateItoDb};
