@@ -18,5 +18,10 @@ router.put(
   validateRequest(StudentsValidation.updateStudents),
   StudentController.updateIntoDb
 );
+router.delete(
+  '/:id',
+
+  StudentController.deleteFromDb
+);
 
 export const studentsRoutes = router;

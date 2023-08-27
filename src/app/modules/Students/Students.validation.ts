@@ -1,4 +1,3 @@
-
 import { z } from 'zod';
 const createStudents = z.object({
   body: z.object({
@@ -38,51 +37,23 @@ const createStudents = z.object({
     academicFacultyId: z.string({
       required_error: 'academicFacultyId is Required (zod)',
     }),
-
   }),
 });
 const updateStudents = z.object({
   body: z.object({
-    studentID: z.string({
-      required_error: 'studentID is Required (zod)',
-    }).optional(),
-    firstName: z.string({
-      required_error: 'firstName is Required (zod)',
-    }).optional(),
-    lastName: z.string({
-      required_error: 'lastName is Required (zod)',
-    }).optional(),
-    middleName: z.string({
-      required_error: 'middleName is Required (zod)',
-    }).optional(),
-    profileImage: z.string({
-      required_error: 'profileImage is Required (zod)',
-    }).optional(),
-    email: z.string({
-      required_error: 'email is Required (zod)',
-    }).optional(),
-    contactNo: z.string({
-      required_error: 'contactNo is Required (zod)',
-    }).optional(),
-    gendar: z.string({
-      required_error: 'gendar is Required (zod)',
-    }).optional(),
-    bloodGroup: z.string({
-      required_error: 'bloodGroup is Required (zod)',
-    }).optional(),
-    academicSemestarId: z.string({
-      required_error: 'academicSemestarId is Required (zod)',
-    }).optional(),
-    academicDepartmentId: z.string({
-      required_error: 'academicDepartmentId is Required (zod)',
-    }).optional(),
-    academicFacultyId: z.string({
-      required_error: 'academicFacultyId is Required (zod)',
-    }).optional(),
-
+    studentID: z.string().optional(),
+    firstName: z.string().optional(),
+    lastName: z.string().optional(),
+    middleName: z.string().optional(),
+    profileImage: z.string().optional(),
+    email: z.string().optional(),
+    contactNo: z.string().optional(),
+    gendar: z.string().optional(),
+    bloodGroup: z.string().optional(),
+    academicSemestarId: z.string().optional(),
+    academicDepartmentId: z.string().optional(),
+    academicFacultyId: z.string().optional(),
   }),
 });
 
-export const StudentsValidation = { createStudents ,updateStudents};
-
-
+export const StudentsValidation = { createStudents, updateStudents };

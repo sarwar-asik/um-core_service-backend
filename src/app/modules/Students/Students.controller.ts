@@ -70,4 +70,17 @@ const data = req?.body;
     data: result,
   });
 });
-export const StudentController = { insertDB, getAllDb, getSingleDataById,updateIntoDb };
+const deleteFromDb = catchAsync(async (req: Request, res: Response) => {
+  const id = req.params.id;
+
+
+  const result = await StudentsService.deleteFromDb(id)
+
+  sendResponse<Student>(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: `Successfully deleted ${id}`,
+    data: result,
+  });
+});
+export const StudentController = { insertDB, getAllDb, getSingleDataById,updateIntoDb,deleteFromDb };
