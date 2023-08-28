@@ -4,6 +4,9 @@
 
 1.  http://localhost:5000/api/v1/academic-semester (post)
 
+
+
+in req.body >>>
                 {
                   "year": 2023,
                   "title": "Sample Course3",
@@ -11,6 +14,14 @@
                   "startMonth": "January",
                   "endMonth": "May"
                 }
+
+in headers (example) >>>
+    
+     
+        authorization  : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+  
+
+
 
 2. get all data with pagination and filters
 
@@ -30,10 +41,17 @@
 
 http://localhost:5000/api/v1/academic-faculty(POST)
 
+in req.body
 
       {
           "title":"academic-faculty3"
       }
+
+in headers (example) >>>
+    
+     
+        authorization  : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+  
 
 
 2. get all data with pagination and filters
@@ -55,12 +73,18 @@ http://localhost:5000/api/v1/academic-faculty(POST)
 
 http://localhost:5000/api/v1/academic-department(POST)
 
+in req.body
 
     {
     "title":"academic-department2",
     "academicFacultyId":"63bf22f8-40d0-425b-b8dc-f8d86e65d515"
       }
 
+in headers (example) >>>
+    
+     
+        authorization  : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+  
 
 2. get all data with pagination and filters
 
@@ -83,7 +107,7 @@ http://localhost:5000/api/v1/academic-department(POST)
 
 http://localhost:5000/api/v1/students/(POST)
 
-
+in req.body >>>
         {
       "studentID": "22222",
       "firstName": "John",
@@ -99,6 +123,11 @@ http://localhost:5000/api/v1/students/(POST)
       "academicFacultyId": "84d88768-cb8a-443e-b148-b5c42758cc7b"
     }
 
+in headers (example) >>>
+    
+     
+        authorization  : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+  
 
 2. get all data with pagination and filters
 
@@ -117,13 +146,22 @@ http://localhost:5000/api/v1/students/(POST)
 
 1. create data 
 
+
+
 http://localhost:5000/api/v1/buildings/(POST)
 
+
+in req.body
 
        {
     "title":"building1"
     }
 
+in headers (example) >>>
+    
+     
+        authorization  : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+  
 
 2. get all data with pagination and filters
 
@@ -140,10 +178,11 @@ http://localhost:5000/api/v1/buildings/(POST)
 **room**
 
 
-1. create data 
+1. create data  (jwt verified)
 
 http://localhost:5000/api/v1/rooms/(POST)
 
+ in req.body >>
 
      {
     "roomNumber":"03",
@@ -151,6 +190,11 @@ http://localhost:5000/api/v1/rooms/(POST)
     "buildingId":"cf4ccadf-ab8f-45ea-9f3d-cbd5eb864887"
     }
 
+in headers (example) >>>
+    
+     
+        authorization  : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+  
 
 2. get all data with pagination and filters
 
@@ -161,11 +205,14 @@ http://localhost:5000/api/v1/rooms/(POST)
 3. get single data by id ::
 
           http://localhost:5000/api/v1/rooms/19c54336-3fb4-4e83-962d-abcdd4d42cb2 (GET)
+          
 
 **courses**
 
 
-1. create data 
+1. create data (jwt verified)
+
+in req.body >>>
 
 http://localhost:5000/api/v1/courses/(POST)
 
@@ -176,6 +223,11 @@ http://localhost:5000/api/v1/courses/(POST)
     "credits":9
   }
 
+in headers (example) >>>
+    
+     
+        authorization  : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+  
 
 2. get all data with pagination and filters ;
 
