@@ -1,5 +1,30 @@
 #### api endpoints  :::::
 
+
+##### used backend technology :::
+
+
+            PostgresSQL (database),
+
+            Prisma,
+            TypeScript,
+            Express,
+            dotenv
+
+
+            Husky,
+            EsLint,
+            EsLint Prettier,
+            winston,
+            ts-node-dev,
+
+            zod(for validation),
+            JWT(for authentication) ,
+
+            http-status,
+            bcrypt(password hashing),
+            
+
 **academic-semester** 
 
 1.  http://localhost:5000/api/v1/academic-semester (post)
@@ -7,6 +32,7 @@
 
 
 in req.body >>>
+
                 {
                   "year": 2023,
                   "title": "Sample Course3",
