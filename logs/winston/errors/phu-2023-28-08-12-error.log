@@ -1,0 +1,184 @@
+Mon Aug 28 2023 12:11:28 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ You are not authorized
+Mon Aug 28 2023 12:14:8 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ jwt malformed
+Mon Aug 28 2023 12:14:38 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ jwt malformed
+Mon Aug 28 2023 12:15:37 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ jwt malformed
+Mon Aug 28 2023 12:19:45 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ invalid signature
+Mon Aug 28 2023 12:25:48 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ [
+  {
+    "code": "invalid_type",
+    "expected": "number",
+    "received": "undefined",
+    "path": [
+      "body",
+      "year"
+    ],
+    "message": "year is Required (zod)"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "undefined",
+    "path": [
+      "body",
+      "title"
+    ],
+    "message": "title is Required (zod)"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "undefined",
+    "path": [
+      "body",
+      "code"
+    ],
+    "message": "code is Required (zod)"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "undefined",
+    "path": [
+      "body",
+      "startMonth"
+    ],
+    "message": "startMonth is Required (zod)"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "undefined",
+    "path": [
+      "body",
+      "endMonth"
+    ],
+    "message": "endMonth is Required (zod)"
+  }
+]
+Mon Aug 28 2023 12:27:5 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ jwt malformed
+Mon Aug 28 2023 12:30:46 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ [
+  {
+    "code": "invalid_type",
+    "expected": "number",
+    "received": "undefined",
+    "path": [
+      "body",
+      "year"
+    ],
+    "message": "year is Required (zod)"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "undefined",
+    "path": [
+      "body",
+      "title"
+    ],
+    "message": "title is Required (zod)"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "undefined",
+    "path": [
+      "body",
+      "code"
+    ],
+    "message": "code is Required (zod)"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "undefined",
+    "path": [
+      "body",
+      "startMonth"
+    ],
+    "message": "startMonth is Required (zod)"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "undefined",
+    "path": [
+      "body",
+      "endMonth"
+    ],
+    "message": "endMonth is Required (zod)"
+  }
+]
+Mon Aug 28 2023 12:31:4 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ jwt malformed
+Mon Aug 28 2023 12:35:47 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ jwt malformed
+Mon Aug 28 2023 12:36:54 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ [
+  {
+    "code": "invalid_type",
+    "expected": "number",
+    "received": "undefined",
+    "path": [
+      "body",
+      "year"
+    ],
+    "message": "year is Required (zod)"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "undefined",
+    "path": [
+      "body",
+      "title"
+    ],
+    "message": "title is Required (zod)"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "undefined",
+    "path": [
+      "body",
+      "code"
+    ],
+    "message": "code is Required (zod)"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "undefined",
+    "path": [
+      "body",
+      "startMonth"
+    ],
+    "message": "startMonth is Required (zod)"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "undefined",
+    "path": [
+      "body",
+      "endMonth"
+    ],
+    "message": "endMonth is Required (zod)"
+  }
+]
+Mon Aug 28 2023 12:39:10 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ You are not authorized
+Mon Aug 28 2023 12:40:15 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ You are not authorized
+Mon Aug 28 2023 12:40:49 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ 
+Invalid `prisma.academicDepartment.create()` invocation:
+
+
+Foreign key constraint failed on the field: `academic-department_academicFacultyId_fkey (index)`
+Mon Aug 28 2023 12:42:25 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ [
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "undefined",
+    "path": [
+      "body",
+      "title"
+    ],
+    "message": "title is Required (zod)"
+  }
+]
+Mon Aug 28 2023 12:44:27 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ You are not authorized

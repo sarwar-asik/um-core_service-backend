@@ -11,9 +11,20 @@ const auth =
     try {
       //get authorization token
       const token = req.headers.authorization;
+      console.log("🚀 ~ file: auth.ts:14 ~ token:", token)
       if (!token) {
         throw new ApiError(httpStatus.UNAUTHORIZED, 'You are not authorized');
       }
+
+      // const accessToken = jwtHelpers.createToken(
+      //   {  role:'ADMIN', phoneNumber: '0171122334455' },
+    
+      //   config.jwt.secret as Secret,
+      //   "2d" as string
+      // );
+      // console.log("🚀 ~ file: auth.ts:24 ~ accessToken:", accessToken)
+
+      
       // verify token
       let verifiedUser = null;
 

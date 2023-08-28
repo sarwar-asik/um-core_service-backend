@@ -36,7 +36,7 @@ const getAllDb = async (
 
   if (searchTerm) {
     andConditions.push({
-      OR: ['firstName', 'email', 'contactNo', 'academicSemestarId'].map(
+      OR: ['title'].map(
         field => ({
           [field]: {
             contains: searchTerm,
@@ -75,6 +75,9 @@ const getAllDb = async (
         : {
             createdAt: 'desc',
           },
+          include:{
+            rooms:true
+          }
   });
   const total = await prisma.academicSemester.count();
   return {

@@ -5,11 +5,16 @@ import validateRequest from '../../middlewares/validateRequest';
 import { BuildingsController } from './buildings.controller';
 import { BuildingsValidation } from './buildings.validation';
 const router = Router();
-router.get('/');
+router.get('/',BuildingsController.getAllDb);
 router.post(
   '/',
   validateRequest(BuildingsValidation.createBuildings),
   BuildingsController.insertDB
 );
+
+router.get('/:id',BuildingsController.getSingleDataById)
+
+router.put('/id',BuildingsController.updateIntoDb)
+router.delete('/id',BuildingsController.updateIntoDb)
 
 export const buildingsRoutes = router;
