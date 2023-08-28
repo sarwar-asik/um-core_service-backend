@@ -16,7 +16,7 @@ router.post(
 
 router.get('/:id',RoomsController.getSingleDataById)
 
-router.put('/id',RoomsController.updateIntoDb)
-router.delete('/id',RoomsController.updateIntoDb)
+router.put('/:id',RoomsController.updateIntoDb)
+router.delete('/:id',RoomsController.updateIntoDb)
 
-export const RoomsRoutes = router;
+export const roomsRoutes = router;

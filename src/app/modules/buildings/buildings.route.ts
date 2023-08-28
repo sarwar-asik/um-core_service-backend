@@ -17,7 +17,7 @@ router.post(
 
 router.get('/:id',BuildingsController.getSingleDataById)
 
-router.put('/id',BuildingsController.updateIntoDb)
-router.delete('/id',BuildingsController.updateIntoDb)
+router.put('/:id',BuildingsController.updateIntoDb)
+router.delete('/:id',BuildingsController.updateIntoDb)
 
 export const buildingsRoutes = router;

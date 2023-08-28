@@ -8,6 +8,9 @@ const createRooms = z.object({
     floor: z.string({
       required_error: 'floor is Required (zod)',
     }),
+    buildingId: z.string({
+      required_error: 'buildingId is Required (zod)',
+    }),
   })
 })
 
@@ -19,6 +22,9 @@ const updateRooms = z.object({
     }).optional(),
     floor: z.string({
       required_error: 'floor is Required (zod)',
+    }).optional(),
+    buildingId: z.string({
+      required_error: 'buildingId is Required (zod)',
     }).optional(),
   })
 })

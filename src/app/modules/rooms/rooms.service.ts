@@ -7,6 +7,7 @@ import { paginationHelpers } from "../../../helpers/paginationHelper";
 
 
 const insertDB = async (data: Room): Promise<Room> => {
+  console.log(data,'ddd');
   const result = await prisma.room.create({
     data,
   });
