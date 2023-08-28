@@ -128,7 +128,7 @@ model Course {
   updatedAt            DateTime               @updatedAt
   title                String
   code                 String
-  crefits              Int                    @default(0)
+  credits              Int                    @default(0)
   Prerequisite CourseToPrerequisite[] @relation("CourseToPrerequisite")
   PrerequisiteFor CourseToPrerequisite[] @relation("PrerequisiteToCourse")
 
