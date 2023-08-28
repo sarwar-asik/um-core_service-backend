@@ -93,3 +93,19 @@ Invalid `prisma.course.create()` invocation:
 }
 
 Argument `credits`: Invalid value provided. Expected Int, provided String.
+Mon Aug 28 2023 15:36:39 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ 
+Invalid `prisma.courseToPrerequisite.create()` invocation:
+
+{
+  data: {
+    courseID: "cafe9117-eee4-49c4-8199-9ed615ccc46e",
+    prerequisiteId: undefined,
++   course: {
++     create: CourseCreateWithoutPrerequisiteInput | CourseUncheckedCreateWithoutPrerequisiteInput,
++     connectOrCreate: CourseCreateOrConnectWithoutPrerequisiteInput,
++     connect: CourseWhereUniqueInput
++   }
+  }
+}
+
+Argument `course` is missing.

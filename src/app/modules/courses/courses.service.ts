@@ -6,7 +6,7 @@ import { paginationHelpers } from "../../../helpers/paginationHelper";
 import {  Prisma ,Course} from "@prisma/client";
 
 
-const insertDB = async (data: Course): Promise<Course> => {
+const insertDB = async (data:any): Promise<Course> => {
   const {preRequisiteCourses,...courseData} = data
   const result = await prisma.course.create({
     data:courseData

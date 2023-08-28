@@ -1,3 +1,196 @@
+#### api endpoints  :::::
+
+**academic-semester** 
+
+1.  http://localhost:5000/api/v1/academic-semester (post)
+
+                {
+                  "year": 2023,
+                  "title": "Sample Course3",
+                  "code": "3",
+                  "startMonth": "January",
+                  "endMonth": "May"
+                }
+
+2. get all data with pagination and filters
+
+
+          http://localhost:5000/api/v1/academic-semester?page=1&limit=5&sortBy=asc&title=Course1 (GET)
+
+
+3. get single data by id ::
+
+           http://localhost:5000/api/v1/academic-semester/19c54336-3fb4-4e83-962d-abcdd4d42cb2 (GET)
+
+
+
+**academic-faculty**
+
+1. create data 
+
+http://localhost:5000/api/v1/academic-faculty(POST)
+
+
+      {
+          "title":"academic-faculty3"
+      }
+
+
+2. get all data with pagination and filters
+
+
+          http://localhost:5000/api/v1/academic-faculty?page=1&limit=5&sortBy=asc&title=Course1 (GET)
+
+
+3. get single data by id ::
+
+          http://localhost:5000/api/v1/academic-faculty/19c54336-3fb4-4e83-962d-abcdd4d42cb2 (GET)
+
+
+
+**academic-department**
+
+
+1. create data 
+
+http://localhost:5000/api/v1/academic-department(POST)
+
+
+    {
+    "title":"academic-department2",
+    "academicFacultyId":"63bf22f8-40d0-425b-b8dc-f8d86e65d515"
+      }
+
+
+2. get all data with pagination and filters
+
+
+          http://localhost:5000/api/v1/academic-department?page=1&limit=5&sortBy=asc&title=Course1 (GET)
+
+
+3. get single data by id ::
+
+        http://localhost:5000/api/v1/academic-department/19c54336-3fb4-4e83-962d-abcdd4d42cb2 (GET)
+
+
+
+
+
+**student**
+
+
+1. create data 
+
+http://localhost:5000/api/v1/students/(POST)
+
+
+        {
+      "studentID": "22222",
+      "firstName": "John",
+      "lastName": "Doe",
+      "middleName": "M",
+      "profileImage": "profile.jpg",
+      "email": "john.doe@example.com",
+      "contactNo": "1234567890",
+      "gendar": "Male",
+      "bloodGroup": "A+",
+      "academicSemestarId": "b5b9c7f8-a485-41f4-878f-503b0ec640ea",
+      "academicDepartmentId": "49eee978-4b24-4120-9a0b-e6ab74a2cc11",
+      "academicFacultyId": "84d88768-cb8a-443e-b148-b5c42758cc7b"
+    }
+
+
+2. get all data with pagination and filters
+
+
+          http://localhost:5000/api/v1/students?page=1&limit=5&sortBy=asc&title=Course1 (GET)
+
+
+3. get single data by id ::
+
+           http://localhost:5000/api/v1/students/19c54336-3fb4-4e83-962d-abcdd4d42cb2 (GET)
+
+
+
+**building**
+
+
+1. create data 
+
+http://localhost:5000/api/v1/buildings/(POST)
+
+
+       {
+    "title":"building1"
+    }
+
+
+2. get all data with pagination and filters
+
+
+        http://localhost:5000/api/v1/buildings?page=1&limit=5&sortBy=asc&title=Course1 (GET)
+
+
+3. get single data by id ::
+
+          http://localhost:5000/api/v1/buildings/19c54336-3fb4-4e83-962d-abcdd4d42cb2 (GET)
+
+
+
+**room**
+
+
+1. create data 
+
+http://localhost:5000/api/v1/rooms/(POST)
+
+
+     {
+    "roomNumber":"03",
+    "floor":"01",
+    "buildingId":"cf4ccadf-ab8f-45ea-9f3d-cbd5eb864887"
+    }
+
+
+2. get all data with pagination and filters
+
+
+          http://localhost:5000/api/v1/rooms?page=1&limit=5&sortBy=asc&title=Course1 (GET)
+
+
+3. get single data by id ::
+
+          http://localhost:5000/api/v1/rooms/19c54336-3fb4-4e83-962d-abcdd4d42cb2 (GET)
+
+**courses**
+
+
+1. create data 
+
+http://localhost:5000/api/v1/courses/(POST)
+
+
+    {
+    "title":"course4",
+    "code":"4444",
+    "credits":9
+  }
+
+
+2. get all data with pagination and filters ;
+
+
+         http://localhost:5000/api/v1/courses?page=1&limit=5&sortBy=asc&title=Course1 (GET)
+
+
+3. get single data by id ::
+
+          http://localhost:5000/api/v1/courses/19c54336-3fb4-4e83-962d-abcdd4d42cb2 (GET)
+
+
+
+
+
 # University Management Core Service
 This guide will walk you through the process of setting up the University Management Core Service Starter project. By following these steps, you will clone the project, install dependencies, and configure Prisma for database management. Let's get started!
 
