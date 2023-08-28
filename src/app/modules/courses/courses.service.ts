@@ -1,37 +1,88 @@
+import { Course, Prisma } from '@prisma/client';
+import { paginationHelpers } from '../../../helpers/paginationHelper';
+import { IGenericResponse } from '../../../interfaces/common';
+import { IPaginationOptions } from '../../../interfaces/pagination';
+import prisma from '../../../shared/prisma';
+import ApiError from '../../../errors/ApiError';
+import httpStatus from 'http-status';
+import { ICourseCreateData } from './course.interface';
 
-import prisma from "../../../shared/prisma";
-import { IPaginationOptions } from "../../../interfaces/pagination";
-import { IGenericResponse } from "../../../interfaces/common";
-import { paginationHelpers } from "../../../helpers/paginationHelper";
-import {  Prisma ,Course} from "@prisma/client";
+const insertDB = async (data: ICourseCreateData): Promise<any> => {
+  const { preRequisiteCourses, ...courseData } = data;
+
+  // ! without transaction ::::
+
+  // const result = await prisma.course.create({
+  //   data: courseData,
+  // });
+  // if (preRequisiteCourses && preRequisiteCourses.length > 0) {
+  //   for (let index = 0; index < preRequisiteCourses.length; index++) {
+  //     const createPrerequiesite = await prisma.courseToPrerequisite.create({
+  //       data: {
+  //         courseID: result.id,
+  //         prerequisiteId: preRequisiteCourses[index].courseId,
+  //       },
+  //     });
+  //     console.log(createPrerequiesite, 'pressssssss');
+  //   }
+  // }
+
+// ! with transaction ////
 
 
-const insertDB = async (data:any): Promise<Course> => {
-  const {preRequisiteCourses,...courseData} = data
-  const result = await prisma.course.create({
-    data:courseData
-  });
-  if(preRequisiteCourses && preRequisiteCourses.length>0){
-  for (let index =0 ; index < preRequisiteCourses.length; index++){
-    const createPrerequiesite = await prisma.courseToPrerequisite.create({
-      data:{
-        courseID:result.id,
-        prerequisiteId:preRequisiteCourses[index].courseId
 
+  const newCourse = await prisma.$transaction(async(transactionClient)=>{
+    const result = await transactionClient.course.create({
+      data:courseData
+    });
+    if(result){
+      throw new ApiError(httpStatus.NOT_FOUND,"Not found course",)
+    }
+    if (preRequisiteCourses && preRequisiteCourses.length > 0) {
+      for (let index = 0; index < preRequisiteCourses.length; index++) {
+        const createPrerequiesite = await transactionClient.courseToPrerequisite.create({
+          data: {
+            courseID: result?.id,
+            prerequisiteId: preRequisiteCourses[index].courseId,
+          },
+        });
+        console.log(createPrerequiesite, 'pressssssss');
+      }
+    }
+
+    return result
+  })
+
+  // for nested data with course >>>>
+
+  if(newCourse){
+    const responseData = await prisma.course.findUnique({
+      where:{
+        id:newCourse?.id
+      },
+      include:{
+        Prerequisite:{
+          include:{
+            prerequisite:true
+          }
+        },
+        PrerequisiteFor:{
+          include:{
+            course:true
+          }
+        }
       }
     })
-    console.log(createPrerequiesite,"pressssssss");
-  }
+    return responseData
   }
 
-  return result;
+  throw new ApiError(httpStatus.NOT_FOUND,"unable to create course",)
+
 };
 
 type ICourseFilterRequest = {
   searchTerm?: string;
 };
-
-
 
 const getAllDb = async (
   filters: ICourseFilterRequest,
@@ -49,14 +100,12 @@ const getAllDb = async (
 
   if (searchTerm) {
     andConditions.push({
-      OR: ["title","code","credits"].map(
-        field => ({
-          [field]: {
-            contains: searchTerm,
-            mode: 'insensitive',
-          },
-        })
-      ),
+      OR: ['title', 'code', 'credits'].map(field => ({
+        [field]: {
+          contains: searchTerm,
+          mode: 'insensitive',
+        },
+      })),
     });
   }
 
@@ -88,9 +137,9 @@ const getAllDb = async (
         : {
             createdAt: 'desc',
           },
-          // include:{
-          //   room:true
-          // }
+    // include:{
+    //   room:true
+    // }
   });
   const total = await prisma.academicSemester.count();
   return {
@@ -113,37 +162,38 @@ const getSingleData = async (id: string): Promise<Course | null> => {
   return result;
 };
 
-
-
-const updateItoDb = async(id:string,payload:Partial<Course>):Promise<Course>=>{
-
-  console.log(id,payload);
-  const result =await prisma.course.update({
-    where:{
-      id
+const updateItoDb = async (
+  id: string,
+  payload: Partial<Course>
+): Promise<Course> => {
+  console.log(id, payload);
+  const result = await prisma.course.update({
+    where: {
+      id,
     },
-    data:payload
-  })
+    data: payload,
+  });
 
-  return result
+  return result;
+};
 
-}
-
-const deleteFromDb = async(id:string):Promise<Course>=>{
-
-
-  const result =await prisma.course.delete({
-    where:{
-      id
+const deleteFromDb = async (id: string): Promise<Course> => {
+  const result = await prisma.course.delete({
+    where: {
+      id,
     },
     // include:{
     //   rooms:true
     // }
-  })
+  });
 
-  return result
+  return result;
+};
 
-}
-
-
-export const CoursesService = {insertDB,getAllDb,getSingleData,updateItoDb,deleteFromDb};
+export const CoursesService = {
+  insertDB,
+  getAllDb,
+  getSingleData,
+  updateItoDb,
+  deleteFromDb,
+};

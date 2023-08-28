@@ -109,3 +109,15 @@ Invalid `prisma.courseToPrerequisite.create()` invocation:
 }
 
 Argument `course` is missing.
+Mon Aug 28 2023 15:52:46 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ [
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "undefined",
+    "path": [
+      "body",
+      "title"
+    ],
+    "message": "title is Required (zod)"
+  }
+]
