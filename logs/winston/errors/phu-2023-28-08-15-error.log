@@ -1,0 +1,95 @@
+Mon Aug 28 2023 15:0:19 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ [
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "undefined",
+    "path": [
+      "body",
+      "title"
+    ],
+    "message": "title is Required (zod)"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "undefined",
+    "path": [
+      "body",
+      "code"
+    ],
+    "message": "code is Required (zod)"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "undefined",
+    "path": [
+      "body",
+      "credits"
+    ],
+    "message": "credits is Required (zod)"
+  }
+]
+Mon Aug 28 2023 15:1:6 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ 
+Invalid `prisma.course.create()` invocation:
+
+{
+  data: {
+    title: "course1",
+    code: "1111",
+    credits: "8"
+             ~~~
+  }
+}
+
+Argument `credits`: Invalid value provided. Expected Int, provided String.
+Mon Aug 28 2023 15:1:57 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ [
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "number",
+    "path": [
+      "body",
+      "credits"
+    ],
+    "message": "Expected string, received number"
+  }
+]
+Mon Aug 28 2023 15:2:24 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ Unexpected token } in JSON at position 53
+Mon Aug 28 2023 15:2:29 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ [
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "undefined",
+    "path": [
+      "body",
+      "credits"
+    ],
+    "message": "credits is Required (zod)"
+  }
+]
+Mon Aug 28 2023 15:2:34 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ [
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "number",
+    "path": [
+      "body",
+      "credits"
+    ],
+    "message": "Expected string, received number"
+  }
+]
+Mon Aug 28 2023 15:4:19 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ 
+Invalid `prisma.course.create()` invocation:
+
+{
+  data: {
+    title: "course1",
+    code: "1111",
+    credits: "0"
+             ~~~
+  }
+}
+
+Argument `credits`: Invalid value provided. Expected Int, provided String.

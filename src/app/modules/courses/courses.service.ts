@@ -7,9 +7,22 @@ import {  Prisma ,Course} from "@prisma/client";
 
 
 const insertDB = async (data: Course): Promise<Course> => {
-  const result = await prisma.courses.create({
-    data,
+  const {preRequisiteCourses,...courseData} = data
+  const result = await prisma.course.create({
+    data:courseData
   });
+  if(preRequisiteCourses && preRequisiteCourses.length>0){
+  for (let index =0 ; index < preRequisiteCourses.length; index++){
+    const createPrerequiesite = await prisma.courseToPrerequisite.create({
+      data:{
+        courseID:result.id,
+        prerequisiteId:preRequisiteCourses[index].courseId
+
+      }
+    })
+    console.log(createPrerequiesite,"pressssssss");
+  }
+  }
 
   return result;
 };
@@ -62,7 +75,7 @@ const getAllDb = async (
   const whereCondition: Prisma.CourseWhereInput =
     andConditions.length > 0 ? { AND: andConditions } : {};
 
-  const result = await prisma.courses.findMany({
+  const result = await prisma.course.findMany({
     where: whereCondition,
     skip,
     take: limit,
@@ -75,9 +88,9 @@ const getAllDb = async (
         : {
             createdAt: 'desc',
           },
-          include:{
-            rooms:true
-          }
+          // include:{
+          //   room:true
+          // }
   });
   const total = await prisma.academicSemester.count();
   return {
@@ -91,7 +104,7 @@ const getAllDb = async (
 };
 
 const getSingleData = async (id: string): Promise<Course | null> => {
-  const result = await prisma.courses.findUnique({
+  const result = await prisma.course.findUnique({
     where: {
       id,
     },
@@ -105,7 +118,7 @@ const getSingleData = async (id: string): Promise<Course | null> => {
 const updateItoDb = async(id:string,payload:Partial<Course>):Promise<Course>=>{
 
   console.log(id,payload);
-  const result =await prisma.courses.update({
+  const result =await prisma.course.update({
     where:{
       id
     },
@@ -119,13 +132,13 @@ const updateItoDb = async(id:string,payload:Partial<Course>):Promise<Course>=>{
 const deleteFromDb = async(id:string):Promise<Course>=>{
 
 
-  const result =await prisma.courses.delete({
+  const result =await prisma.course.delete({
     where:{
       id
     },
-    include:{
-      rooms:true
-    }
+    // include:{
+    //   rooms:true
+    // }
   })
 
   return result

@@ -20,6 +20,9 @@ CREATE TABLE "CourseToPrerequisite" (
     CONSTRAINT "CourseToPrerequisite_pkey" PRIMARY KEY ("courseID","prerequisiteId")
 );
 
+SELECT * from  courses;
+
+
 -- AddForeignKey
 ALTER TABLE "CourseToPrerequisite" ADD CONSTRAINT "CourseToPrerequisite_courseID_fkey" FOREIGN KEY ("courseID") REFERENCES "courses"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 

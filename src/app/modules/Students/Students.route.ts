@@ -10,7 +10,7 @@ import { ENUM_USER_ROLE } from '../../../enums/user';
 const router = Router();
 router.post(
   '/',
-  auth(ENUM_USER_ROLE.ADMIN),
+  // auth(ENUM_USER_ROLE.ADMIN),
   validateRequest(StudentsValidation.createStudents),
   StudentController.insertDB
 );

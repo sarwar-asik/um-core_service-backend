@@ -10,7 +10,7 @@ const router = Router();
 router.get('/',BuildingsController.getAllDb);
 router.post(
   '/',
-  auth(ENUM_USER_ROLE.ADMIN,ENUM_USER_ROLE.FACULTY,ENUM_USER_ROLE.SUPER_ADMIN),
+  // auth(ENUM_USER_ROLE.ADMIN,ENUM_USER_ROLE.FACULTY,ENUM_USER_ROLE.SUPER_ADMIN),
   validateRequest(BuildingsValidation.createBuildings),
   BuildingsController.insertDB
 );

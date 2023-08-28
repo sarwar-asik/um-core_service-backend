@@ -13,7 +13,7 @@ router.get('/:id', AcademicFacultyController.getByIdFromDB);
 
 router.post(
     '/',
-    auth(ENUM_USER_ROLE.ADMIN,ENUM_USER_ROLE.SUPER_ADMIN),
+    // auth(ENUM_USER_ROLE.ADMIN,ENUM_USER_ROLE.SUPER_ADMIN),
     validateRequest(AcademicFacultyValidation.create),
     // auth(ENUM_USER_ROLE.SUPER_ADMIN, ENUM_USER_ROLE.ADMIN),
     AcademicFacultyController.insertIntoDB
