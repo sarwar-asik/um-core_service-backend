@@ -23,4 +23,6 @@ router.delete('/:id',CoursesController.updateIntoDb)
 
 router.post("/:id/assign-faculties",CoursesController.assignFaculties)
 
+router.delete("/:id/remove-faculties",CoursesController.removeFaculties)
+
 export const coursesRoutes = router;

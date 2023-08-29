@@ -50,3 +50,43 @@ Invalid `prisma.faculty.create()` invocation:
 }
 
 Argument `gendar` is missing.
+Wed Aug 30 2023 1:4:18 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ 
+Invalid `prisma.courseFaculty.createMany()` invocation:
+
+
+Unique constraint failed on the fields: (`courseId`,`facultyId`)
+Wed Aug 30 2023 1:4:50 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ 
+Invalid `prisma.courseFaculty.createMany()` invocation:
+
+
+Unique constraint failed on the fields: (`courseId`,`facultyId`)
+Wed Aug 30 2023 1:5:7 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ 
+Invalid `prisma.courseFaculty.createMany()` invocation:
+
+
+Unique constraint failed on the fields: (`courseId`,`facultyId`)
+Wed Aug 30 2023 1:5:11 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ 
+Invalid `prisma.courseFaculty.createMany()` invocation:
+
+
+Unique constraint failed on the fields: (`courseId`,`facultyId`)
+Wed Aug 30 2023 1:5:15 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ 
+Invalid `prisma.courseFaculty.createMany()` invocation:
+
+
+Foreign key constraint failed on the field: `course_faculties_facultyId_fkey (index)`
+Wed Aug 30 2023 1:5:18 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ 
+Invalid `prisma.courseFaculty.createMany()` invocation:
+
+
+Foreign key constraint failed on the field: `course_faculties_facultyId_fkey (index)`
+Wed Aug 30 2023 1:5:38 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ 
+Invalid `prisma.courseFaculty.createMany()` invocation:
+
+
+Unique constraint failed on the fields: (`courseId`,`facultyId`)
+Wed Aug 30 2023 1:17:38 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ 
+Invalid `prisma.courseFaculty.createMany()` invocation:
+
+
+Unique constraint failed on the fields: (`courseId`,`facultyId`)

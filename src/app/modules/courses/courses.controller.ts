@@ -82,6 +82,8 @@ const getAllDb = catchAsync(async (req: Request, res: Response) => {
     });
   });
 
+  // ! faculty 
+
   const assignFaculties = catchAsync(async (req: Request, res: Response) => {
 
     const {id}= req.params
@@ -98,4 +100,21 @@ const getAllDb = catchAsync(async (req: Request, res: Response) => {
     });
   });
 
-export const CoursesController = {insertDB,getAllDb,getSingleDataById,deleteFromDb,updateIntoDb,assignFaculties};
+
+  const removeFaculties = catchAsync(async (req: Request, res: Response) => {
+
+    const {id}= req.params
+    const facultiesData = req.body.faculties
+  
+  
+    const result = await CoursesService.removeCourseFaculty(id,facultiesData)
+  
+    sendResponse<CourseFaculty[]>(res, {
+      statusCode: httpStatus.OK,
+      success: true,
+      message: `Successfully removed ${id}`,
+      data: result,
+    });
+  });
+
+export const CoursesController = {insertDB,getAllDb,getSingleDataById,deleteFromDb,updateIntoDb,assignFaculties,removeFaculties};

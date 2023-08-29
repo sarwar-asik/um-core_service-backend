@@ -310,6 +310,10 @@ const deleteFromDb = async (id: string): Promise<Course> => {
   return result;
 };
 
+
+
+// ! course faculty new model 
+
 const assignFaculties = async (
   id: string,
   payload: string[]
@@ -342,11 +346,38 @@ const assignFaculties = async (
   return assignFacultiesData
 };
 
+
+const removeCourseFaculty =async(id:string,payload:string[]):Promise<CourseFaculty[]> =>{
+  await prisma.courseFaculty.deleteMany({
+    where:{
+      courseId:id,
+      facultyId:{
+        // ! important
+        in:payload
+      }
+
+    }
+  })
+
+
+  const deleteFacultiesData =await prisma.courseFaculty.findMany({
+    where:{
+      courseId:id
+    },
+    include:{
+      faculty:true
+    }
+  })
+
+  return deleteFacultiesData
+}
+
 export const CoursesService = {
   insertDB,
   getAllDb,
   getSingleData,
   updateItoDb,
   deleteFromDb,
-  assignFaculties
+  assignFaculties,
+  removeCourseFaculty
 };
