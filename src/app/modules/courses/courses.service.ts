@@ -61,8 +61,7 @@ const insertDB = async (data: ICourseCreateData): Promise<any> => {
     }
 
     return result;
-  });
-
+  })
   // for nested data with course >>>>
 
   if (newCourse) {
@@ -211,7 +210,25 @@ const updateItoDb = async (
         coursePrerequisite.courseID && !coursePrerequisite.isDeleted)
         
 
-        for (let index=0 ; index< deletePrerequisite.length ; index++){
+        // for (let index=0 ; index< deletePrerequisite.length ; index++){
+        //   await transactionClient.courseToPrerequisite.deleteMany({
+        //     where:{
+        //       AND:[
+        //         {
+        //           courseID:id
+        //         },
+        //         {
+        //           prerequisiteId:deletePrerequisite[index].courseID
+        //         }
+        //       ]
+        //     }
+        //   })
+        // }
+
+        ///use the asyncFOrFunction 
+
+
+        await asyncForEach(deletePrerequisite,async(deletePreCourse:IPrerequisiteCourseRequest)=>{
           await transactionClient.courseToPrerequisite.deleteMany({
             where:{
               AND:[
@@ -219,21 +236,30 @@ const updateItoDb = async (
                   courseID:id
                 },
                 {
-                  prerequisiteId:deletePrerequisite[index].courseID
+                  prerequisiteId:deletePreCourse.courseID
                 }
               ]
             }
           })
-        }
+        })
 
-        for(let index = 0 ;index <newPrerequisite.length;index++){
-          await transactionClient.courseToPrerequisite.create({
-            data:{
-              courseID:id,
-              prerequisiteId:newPrerequisite[index].courseID
-            }
-          })
-        }
+        // for(let index = 0 ;index <newPrerequisite.length;index++){
+        //   await transactionClient.courseToPrerequisite.create({
+        //     data:{
+        //       courseID:id,
+        //       prerequisiteId:newPrerequisite[index].courseID
+        //     }
+        //   })
+        // }
+
+      await asyncForEach(newPrerequisite, async(insertPrerequisite:IPrerequisiteCourseRequest)=>{
+        await transactionClient.courseToPrerequisite.create({
+          data:{
+            courseID:id,
+            prerequisiteId:insertPrerequisite.courseID
+          }
+        })
+      })
 
         // await asyncForEach(pre)
     }
