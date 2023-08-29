@@ -134,20 +134,21 @@ in headers (example) >>>
 http://localhost:5000/api/v1/students/(POST)
 
 in req.body >>>
-        {
-      "studentID": "22222",
-      "firstName": "John",
-      "lastName": "Doe",
-      "middleName": "M",
-      "profileImage": "profile.jpg",
-      "email": "john.doe@example.com",
-      "contactNo": "1234567890",
-      "gendar": "Male",
-      "bloodGroup": "A+",
-      "academicSemestarId": "b5b9c7f8-a485-41f4-878f-503b0ec640ea",
-      "academicDepartmentId": "49eee978-4b24-4120-9a0b-e6ab74a2cc11",
-      "academicFacultyId": "84d88768-cb8a-443e-b148-b5c42758cc7b"
-    }
+
+                        {
+                      "studentID": "22222",
+                      "firstName": "John",
+                      "lastName": "Doe",
+                      "middleName": "M",
+                      "profileImage": "profile.jpg",
+                      "email": "john.doe@example.com",
+                      "contactNo": "1234567890",
+                      "gendar": "Male",
+                      "bloodGroup": "A+",
+                      "academicSemestarId": "b5b9c7f8-a485-41f4-878f-503b0ec640ea",
+                      "academicDepartmentId": "49eee978-4b24-4120-9a0b-e6ab74a2cc11",
+                      "academicFacultyId": "84d88768-cb8a-443e-b148-b5c42758cc7b"
+                    }
 
 in headers (example) >>>
     

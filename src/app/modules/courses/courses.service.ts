@@ -309,7 +309,7 @@ const deleteFromDb = async (id: string): Promise<Course> => {
 export const CoursesService = {
   insertDB,
   getAllDb,
-  getSingleData,
+  getSingleData,  
   updateItoDb,
   deleteFromDb,
-};
+}
