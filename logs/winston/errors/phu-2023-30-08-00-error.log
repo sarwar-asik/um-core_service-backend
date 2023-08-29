@@ -96,3 +96,427 @@ Invalid `prisma.courseFaculty.createMany()` invocation:
 
 
 Foreign key constraint failed on the field: `course_faculties_facultyId_fkey (index)`
+Wed Aug 30 2023 0:45:40 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ [
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "undefined",
+    "path": [
+      "body",
+      "facultyId"
+    ],
+    "message": "Faculty id is required"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "undefined",
+    "path": [
+      "body",
+      "firstName"
+    ],
+    "message": "First name is required"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "undefined",
+    "path": [
+      "body",
+      "lastName"
+    ],
+    "message": "Last name is required"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "undefined",
+    "path": [
+      "body",
+      "middleName"
+    ],
+    "message": "Middle name is required"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "undefined",
+    "path": [
+      "body",
+      "profileImage"
+    ],
+    "message": "Profile image is required"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "undefined",
+    "path": [
+      "body",
+      "email"
+    ],
+    "message": "Email is required"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "undefined",
+    "path": [
+      "body",
+      "contactNo"
+    ],
+    "message": "Contact no is required"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "undefined",
+    "path": [
+      "body",
+      "gender"
+    ],
+    "message": "Gender is required"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "undefined",
+    "path": [
+      "body",
+      "bloodGroup"
+    ],
+    "message": "Blood group is required"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "undefined",
+    "path": [
+      "body",
+      "designation"
+    ],
+    "message": "Designation is required"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "undefined",
+    "path": [
+      "body",
+      "academicDepartmentId"
+    ],
+    "message": "Academic department is required"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "undefined",
+    "path": [
+      "body",
+      "academicFacultyId"
+    ],
+    "message": "Academic faculty is required"
+  }
+]
+Wed Aug 30 2023 0:55:9 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ [
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "undefined",
+    "path": [
+      "body",
+      "facultyId"
+    ],
+    "message": "Faculty id is required"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "undefined",
+    "path": [
+      "body",
+      "firstName"
+    ],
+    "message": "First name is required"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "undefined",
+    "path": [
+      "body",
+      "lastName"
+    ],
+    "message": "Last name is required"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "undefined",
+    "path": [
+      "body",
+      "middleName"
+    ],
+    "message": "Middle name is required"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "undefined",
+    "path": [
+      "body",
+      "profileImage"
+    ],
+    "message": "Profile image is required"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "undefined",
+    "path": [
+      "body",
+      "email"
+    ],
+    "message": "Email is required"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "undefined",
+    "path": [
+      "body",
+      "contactNo"
+    ],
+    "message": "Contact no is required"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "undefined",
+    "path": [
+      "body",
+      "gender"
+    ],
+    "message": "Gender is required"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "undefined",
+    "path": [
+      "body",
+      "bloodGroup"
+    ],
+    "message": "Blood group is required"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "undefined",
+    "path": [
+      "body",
+      "designation"
+    ],
+    "message": "Designation is required"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "undefined",
+    "path": [
+      "body",
+      "academicDepartmentId"
+    ],
+    "message": "Academic department is required"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "undefined",
+    "path": [
+      "body",
+      "academicFacultyId"
+    ],
+    "message": "Academic faculty is required"
+  }
+]
+Wed Aug 30 2023 0:55:23 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ 
+Invalid `prisma.faculty.create()` invocation:
+
+{
+  data: {
+    facultyId: "F-001",
+    firstName: "Science ",
+    lastName: "Faculyty",
+    middleName: "Middle",
+    profileImage: "Profile image ",
+    email: "Email ",
+    contactNo: "0173423423",
+    gender: "male",
+    bloodGroup: "AB+",
+    designation: "Designation ",
+    academicDepartmentId: "Academic department ",
+    academicFacultyId: "9476a065-c292-4048-bab0-5cfe592af41d",
++   facultyID: String
+  },
+  include: {
+    academicFaculty: true,
+    academicDepartment: true
+  }
+}
+
+Argument `facultyID` is missing.
+Wed Aug 30 2023 0:55:44 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ 
+Invalid `prisma.faculty.create()` invocation:
+
+{
+  data: {
+    facultyId: "F-001",
+    firstName: "Science ",
+    lastName: "Faculyty",
+    middleName: "Middle",
+    profileImage: "Profile image ",
+    email: "Email ",
+    contactNo: "0173423423",
+    gender: "male",
+    bloodGroup: "AB+",
+    designation: "Designation ",
+    academicDepartmentId: "d60973cc-3db9-4f62-a429-7dbce956fbd3",
+    academicFacultyId: "9476a065-c292-4048-bab0-5cfe592af41d",
++   facultyID: String
+  },
+  include: {
+    academicFaculty: true,
+    academicDepartment: true
+  }
+}
+
+Argument `facultyID` is missing.
+Wed Aug 30 2023 0:55:45 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ 
+Invalid `prisma.faculty.create()` invocation:
+
+{
+  data: {
+    facultyId: "F-001",
+    firstName: "Science ",
+    lastName: "Faculyty",
+    middleName: "Middle",
+    profileImage: "Profile image ",
+    email: "Email ",
+    contactNo: "0173423423",
+    gender: "male",
+    bloodGroup: "AB+",
+    designation: "Designation ",
+    academicDepartmentId: "d60973cc-3db9-4f62-a429-7dbce956fbd3",
+    academicFacultyId: "9476a065-c292-4048-bab0-5cfe592af41d",
++   facultyID: String
+  },
+  include: {
+    academicFaculty: true,
+    academicDepartment: true
+  }
+}
+
+Argument `facultyID` is missing.
+Wed Aug 30 2023 0:55:46 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ 
+Invalid `prisma.faculty.create()` invocation:
+
+{
+  data: {
+    facultyId: "F-001",
+    firstName: "Science ",
+    lastName: "Faculyty",
+    middleName: "Middle",
+    profileImage: "Profile image ",
+    email: "Email ",
+    contactNo: "0173423423",
+    gender: "male",
+    bloodGroup: "AB+",
+    designation: "Designation ",
+    academicDepartmentId: "d60973cc-3db9-4f62-a429-7dbce956fbd3",
+    academicFacultyId: "9476a065-c292-4048-bab0-5cfe592af41d",
++   facultyID: String
+  },
+  include: {
+    academicFaculty: true,
+    academicDepartment: true
+  }
+}
+
+Argument `facultyID` is missing.
+Wed Aug 30 2023 0:56:19 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ [
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "undefined",
+    "path": [
+      "body",
+      "facultyId"
+    ],
+    "message": "Faculty id is required"
+  }
+]
+Wed Aug 30 2023 0:56:31 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ 
+Invalid `prisma.faculty.create()` invocation:
+
+{
+  data: {
+    facultyId: "1",
+    firstName: "Science ",
+    lastName: "Faculyty",
+    middleName: "Middle",
+    profileImage: "Profile image ",
+    email: "Email ",
+    contactNo: "0173423423",
+    gender: "male",
+    bloodGroup: "AB+",
+    designation: "Designation ",
+    academicDepartmentId: "d60973cc-3db9-4f62-a429-7dbce956fbd3",
+    academicFacultyId: "9476a065-c292-4048-bab0-5cfe592af41d",
++   facultyID: String
+  },
+  include: {
+    academicFaculty: true,
+    academicDepartment: true
+  }
+}
+
+Argument `facultyID` is missing.
+Wed Aug 30 2023 0:57:0 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ [
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "undefined",
+    "path": [
+      "body",
+      "facultyId"
+    ],
+    "message": "Faculty id is required"
+  }
+]
+Wed Aug 30 2023 0:59:43 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ 
+Invalid `prisma.faculty.create()` invocation:
+
+{
+  data: {
+    facultyId: "1",
+    firstName: "Science ",
+    lastName: "Faculyty",
+    middleName: "Middle",
+    profileImage: "Profile image ",
+    email: "Email ",
+    contactNo: "0173423423",
+    gender: "male",
+    bloodGroup: "AB+",
+    designation: "Designation ",
+    academicDepartmentId: "d60973cc-3db9-4f62-a429-7dbce956fbd3",
+    academicFacultyId: "9476a065-c292-4048-bab0-5cfe592af41d",
++   facultyID: String
+  },
+  include: {
+    academicFaculty: true,
+    academicDepartment: true
+  }
+}
+
+Argument `facultyID` is missing.

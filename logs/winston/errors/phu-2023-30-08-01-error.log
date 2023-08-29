@@ -1,0 +1,52 @@
+Wed Aug 30 2023 1:1:1 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ 
+Invalid `prisma.faculty.create()` invocation:
+
+{
+  data: {
+    facultyId: "1",
+    firstName: "Science ",
+    lastName: "Faculyty",
+    middleName: "Middle",
+    profileImage: "Profile image ",
+    email: "Email ",
+    contactNo: "0173423423",
+    gender: "male",
+    bloodGroup: "AB+",
+    designation: "Designation ",
+    academicDepartmentId: "d60973cc-3db9-4f62-a429-7dbce956fbd3",
+    academicFacultyId: "9476a065-c292-4048-bab0-5cfe592af41d",
++   gendar: String
+  },
+  include: {
+    academicFaculty: true,
+    academicDepartment: true
+  }
+}
+
+Argument `gendar` is missing.
+Wed Aug 30 2023 1:1:3 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ 
+Invalid `prisma.faculty.create()` invocation:
+
+{
+  data: {
+    facultyId: "1",
+    firstName: "Science ",
+    lastName: "Faculyty",
+    middleName: "Middle",
+    profileImage: "Profile image ",
+    email: "Email ",
+    contactNo: "0173423423",
+    gender: "male",
+    bloodGroup: "AB+",
+    designation: "Designation ",
+    academicDepartmentId: "d60973cc-3db9-4f62-a429-7dbce956fbd3",
+    academicFacultyId: "9476a065-c292-4048-bab0-5cfe592af41d",
++   gendar: String
+  },
+  include: {
+    academicFaculty: true,
+    academicDepartment: true
+  }
+}
+
+Argument `gendar` is missing.

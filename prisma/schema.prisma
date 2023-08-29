@@ -79,14 +79,14 @@ model Student {
 
 model Faculty {
   id           String @id @default(uuid())
-  facultyID    String
+  facultyId    String
   firstName    String
   lastName     String
   middleName   String
   profileImage String
   email        String
   contactNo    String
-  gendar       String
+  gender       String
   bloodGroup   String
   designation  String
 
