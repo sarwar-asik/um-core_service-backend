@@ -1,0 +1,98 @@
+Wed Aug 30 2023 0:17:41 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ 
+Invalid `prisma.course.update()` invocation:
+
+{
+  where: {
+    id: "c67ce94d-6e44-4508-9a1d-8a1677d338f8"
+  },
+  data: {
+    title: "course6",
+    code: "666666",
+    Prerequisite: [
+      {
+        courseID: "dd619c9c-8fd9-4211-a8cf-9194c5175817",
+        isDeleted: true
+      },
+      {
+        courseID: "cafe9117-eee4-49c4-8199-9ed615ccc46e",
+        isDeleted: true
+      },
+      {
+        courseID: "83cffb47-d1cd-4b92-a0d3-d9ad40c3473c",
+        isDeleted: false
+      }
+    ]
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  },
+  include: {
+    Prerequisite: true,
+    PrerequisiteFor: true
+  }
+}
+
+Argument `Prerequisite`: Invalid value provided. Expected CourseToPrerequisiteUpdateManyWithoutCourseNestedInput or CourseToPrerequisiteUncheckedUpdateManyWithoutCourseNestedInput, provided (Object, Object, Object).
+Wed Aug 30 2023 0:31:16 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ 
+Invalid `prisma.courseFaculty.createMany()` invocation:
+
+
+Foreign key constraint failed on the field: `course_faculties_facultyId_fkey (index)`
+Wed Aug 30 2023 0:32:8 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ 
+Invalid `prisma.courseFaculty.createMany()` invocation:
+
+
+Foreign key constraint failed on the field: `course_faculties_facultyId_fkey (index)`
+Wed Aug 30 2023 0:34:21 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ 
+Invalid `prisma.courseFaculty.createMany()` invocation:
+
+
+Foreign key constraint failed on the field: `course_faculties_facultyId_fkey (index)`
+Wed Aug 30 2023 0:34:55 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ 
+Invalid `prisma.course.update()` invocation:
+
+{
+  where: {
+    id: "c67ce94d-6e44-4508-9a1d-8a1677d338f8"
+  },
+  data: {
+    title: "course6",
+    code: "666666",
+    Prerequisite: [
+      {
+        courseID: "dd619c9c-8fd9-4211-a8cf-9194c5175817",
+        isDeleted: true
+      },
+      {
+        courseID: "cafe9117-eee4-49c4-8199-9ed615ccc46e",
+        isDeleted: true
+      },
+      {
+        courseID: "83cffb47-d1cd-4b92-a0d3-d9ad40c3473c",
+        isDeleted: false
+      }
+    ]
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  },
+  include: {
+    Prerequisite: true,
+    PrerequisiteFor: true
+  }
+}
+
+Argument `Prerequisite`: Invalid value provided. Expected CourseToPrerequisiteUpdateManyWithoutCourseNestedInput or CourseToPrerequisiteUncheckedUpdateManyWithoutCourseNestedInput, provided (Object, Object, Object).
+Wed Aug 30 2023 0:35:39 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ Cannot read properties of undefined (reading 'map')
+Wed Aug 30 2023 0:36:14 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ Cannot read properties of undefined (reading 'map')
+Wed Aug 30 2023 0:37:26 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ 
+Invalid `prisma.courseFaculty.createMany()` invocation:
+
+
+Foreign key constraint failed on the field: `course_faculties_facultyId_fkey (index)`
+Wed Aug 30 2023 0:38:58 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ 
+Invalid `prisma.courseFaculty.createMany()` invocation:
+
+
+Foreign key constraint failed on the field: `course_faculties_facultyId_fkey (index)`
+Wed Aug 30 2023 0:40:10 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ 
+Invalid `prisma.courseFaculty.createMany()` invocation:
+
+
+Foreign key constraint failed on the field: `course_faculties_facultyId_fkey (index)`

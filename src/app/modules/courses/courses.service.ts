@@ -1,11 +1,14 @@
-import { Course, Prisma } from '@prisma/client';
+import { Course, CourseFaculty, Prisma } from '@prisma/client';
 import httpStatus from 'http-status';
 import ApiError from '../../../errors/ApiError';
 import { paginationHelpers } from '../../../helpers/paginationHelper';
 import { IGenericResponse } from '../../../interfaces/common';
 import { IPaginationOptions } from '../../../interfaces/pagination';
 import prisma from '../../../shared/prisma';
-import { ICourseCreateData, IPrerequisiteCourseRequest } from './course.interface';
+import {
+  ICourseCreateData,
+  IPrerequisiteCourseRequest,
+} from './course.interface';
 import { asyncForEach } from './utils';
 
 const insertDB = async (data: ICourseCreateData): Promise<any> => {
@@ -49,19 +52,22 @@ const insertDB = async (data: ICourseCreateData): Promise<any> => {
       //   console.log(createPrerequiesite, 'pressssssss');
       // }
 
-      await asyncForEach(preRequisiteCourses,async(preRequisiteCourses:IPrerequisiteCourseRequest)=>{
-        const createPrerequiesite =
-          await transactionClient.courseToPrerequisite.create({
-            data: {
-              courseID: result?.id,
-              prerequisiteId: preRequisiteCourses.courseID,
-            },
-          });
-      })
+      await asyncForEach(
+        preRequisiteCourses,
+        async (preRequisiteCourses: IPrerequisiteCourseRequest) => {
+          const createPrerequiesite =
+            await transactionClient.courseToPrerequisite.create({
+              data: {
+                courseID: result?.id,
+                prerequisiteId: preRequisiteCourses.courseID,
+              },
+            });
+        }
+      );
     }
 
     return result;
-  })
+  });
   // for nested data with course >>>>
 
   if (newCourse) {
@@ -177,7 +183,6 @@ const updateItoDb = async (
   id: string,
   payload: Partial<ICourseCreateData>
 ): Promise<Course | null> => {
-
   // console.log(id, payload);
 
   const { preRequisiteCourses, ...courseData } = payload;
@@ -195,84 +200,84 @@ const updateItoDb = async (
       },
     });
 
-    
     if (!result) {
       throw new ApiError(httpStatus.BAD_REQUEST, 'Unable to update the course');
     }
 
-
     if (preRequisiteCourses && preRequisiteCourses?.length > 0) {
       const deletePrerequisite = preRequisiteCourses.filter(
-        (coursePrerequisite) =>
+        coursePrerequisite =>
           coursePrerequisite.courseID && coursePrerequisite?.isDeleted
-      )
-      const newPrerequisite = preRequisiteCourses.filter(coursePrerequisite=>
-        coursePrerequisite.courseID && !coursePrerequisite.isDeleted)
-        
+      );
+      const newPrerequisite = preRequisiteCourses.filter(
+        coursePrerequisite =>
+          coursePrerequisite.courseID && !coursePrerequisite.isDeleted
+      );
 
-        // for (let index=0 ; index< deletePrerequisite.length ; index++){
-        //   await transactionClient.courseToPrerequisite.deleteMany({
-        //     where:{
-        //       AND:[
-        //         {
-        //           courseID:id
-        //         },
-        //         {
-        //           prerequisiteId:deletePrerequisite[index].courseID
-        //         }
-        //       ]
-        //     }
-        //   })
-        // }
+      // for (let index=0 ; index< deletePrerequisite.length ; index++){
+      //   await transactionClient.courseToPrerequisite.deleteMany({
+      //     where:{
+      //       AND:[
+      //         {
+      //           courseID:id
+      //         },
+      //         {
+      //           prerequisiteId:deletePrerequisite[index].courseID
+      //         }
+      //       ]
+      //     }
+      //   })
+      // }
 
-        ///use the asyncFOrFunction 
+      ///use the asyncFOrFunction
 
-
-        await asyncForEach(deletePrerequisite,async(deletePreCourse:IPrerequisiteCourseRequest)=>{
+      await asyncForEach(
+        deletePrerequisite,
+        async (deletePreCourse: IPrerequisiteCourseRequest) => {
           await transactionClient.courseToPrerequisite.deleteMany({
-            where:{
-              AND:[
+            where: {
+              AND: [
                 {
-                  courseID:id
+                  courseID: id,
                 },
                 {
-                  prerequisiteId:deletePreCourse.courseID
-                }
-              ]
-            }
-          })
-        })
+                  prerequisiteId: deletePreCourse.courseID,
+                },
+              ],
+            },
+          });
+        }
+      );
 
-        // for(let index = 0 ;index <newPrerequisite.length;index++){
-        //   await transactionClient.courseToPrerequisite.create({
-        //     data:{
-        //       courseID:id,
-        //       prerequisiteId:newPrerequisite[index].courseID
-        //     }
-        //   })
-        // }
+      // for(let index = 0 ;index <newPrerequisite.length;index++){
+      //   await transactionClient.courseToPrerequisite.create({
+      //     data:{
+      //       courseID:id,
+      //       prerequisiteId:newPrerequisite[index].courseID
+      //     }
+      //   })
+      // }
 
-      await asyncForEach(newPrerequisite, async(insertPrerequisite:IPrerequisiteCourseRequest)=>{
-        await transactionClient.courseToPrerequisite.create({
-          data:{
-            courseID:id,
-            prerequisiteId:insertPrerequisite.courseID
-          }
-        })
-      })
+      await asyncForEach(
+        newPrerequisite,
+        async (insertPrerequisite: IPrerequisiteCourseRequest) => {
+          await transactionClient.courseToPrerequisite.create({
+            data: {
+              courseID: id,
+              prerequisiteId: insertPrerequisite.courseID,
+            },
+          });
+        }
+      );
 
-        // await asyncForEach(pre)
+      // await asyncForEach(pre)
     }
-    return result
-    
-  })
-
-
-
+    return result;
+  });
 
   const responseData = await prisma.course.findUnique({
     where: {
-      id
+      id,
     },
     include: {
       Prerequisite: {
@@ -288,7 +293,6 @@ const updateItoDb = async (
     },
   });
   return responseData;
-          
 };
 
 // for delete data.....
@@ -306,10 +310,43 @@ const deleteFromDb = async (id: string): Promise<Course> => {
   return result;
 };
 
+const assignFaculties = async (
+  id: string,
+  payload: string[]
+): Promise<CourseFaculty[] > => {
+  console.log("🚀 ~ file: courses.service.ts:317 ~ payload:", payload)
+  
+  // await prisma.courseFaculty.createMany({
+  //   data: payload.map(facultyId => ({
+  //     courseId: id,
+  //     facultyId: facultyId
+  //   })),
+  // });
+
+  await prisma.courseFaculty.createMany({
+    data: payload.map((facultyId) => ({
+        courseId: id,
+        facultyId: facultyId
+    }))
+})
+
+  const assignFacultiesData =await prisma.courseFaculty.findMany({
+    where:{
+      courseId:id
+    },
+    include:{
+      faculty:true
+    }
+  })
+
+  return assignFacultiesData
+};
+
 export const CoursesService = {
   insertDB,
   getAllDb,
-  getSingleData,  
+  getSingleData,
   updateItoDb,
   deleteFromDb,
-}
+  assignFaculties
+};

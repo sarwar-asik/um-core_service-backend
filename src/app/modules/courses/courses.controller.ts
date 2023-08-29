@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import catchAsync from "../../../shared/catchAsync";
 import sendResponse from "../../../shared/sendResponse";
 import httpStatus from "http-status";
-import {Course} from "@prisma/client";
+import {Course, CourseFaculty} from "@prisma/client";
 
 import pick from "../../../shared/pick";
 import { CoursesService } from "./courses.service";
@@ -66,6 +66,8 @@ const getAllDb = catchAsync(async (req: Request, res: Response) => {
       data: result,
     });
   });
+
+  
   const deleteFromDb = catchAsync(async (req: Request, res: Response) => {
     const id = req.params.id;
   
@@ -80,4 +82,20 @@ const getAllDb = catchAsync(async (req: Request, res: Response) => {
     });
   });
 
-export const CoursesController = {insertDB,getAllDb,getSingleDataById,deleteFromDb,updateIntoDb};
+  const assignFaculties = catchAsync(async (req: Request, res: Response) => {
+
+    const {id}= req.params
+    const facultiesData = req.body.faculties
+  
+  
+    const result = await CoursesService.assignFaculties(id,facultiesData)
+  
+    sendResponse<CourseFaculty[]>(res, {
+      statusCode: httpStatus.OK,
+      success: true,
+      message: `Successfully created ${id}`,
+      data: result,
+    });
+  });
+
+export const CoursesController = {insertDB,getAllDb,getSingleDataById,deleteFromDb,updateIntoDb,assignFaculties};

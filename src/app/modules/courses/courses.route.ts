@@ -21,4 +21,6 @@ router.get('/:id',CoursesController.getSingleDataById)
 router.put('/:id',CoursesController.updateIntoDb)
 router.delete('/:id',CoursesController.updateIntoDb)
 
+router.post("/:id/assign-faculties",CoursesController.assignFaculties)
+
 export const coursesRoutes = router;
