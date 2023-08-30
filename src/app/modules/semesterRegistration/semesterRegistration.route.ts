@@ -12,4 +12,5 @@ router.post('/',
 validateRequest(SemesterRegistrationValidation.create),
 SemesterRegistrationController.insertDB)
 
+
 export const semesterRegistrationRoutes = router;
