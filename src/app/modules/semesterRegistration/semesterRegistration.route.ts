@@ -5,7 +5,8 @@ import validateRequest from '../../middlewares/validateRequest';
 import { SemesterRegistrationController } from './semesterRegistration.controller';
 import { SemesterRegistrationValidation } from './semesterRegistration.validation';
 const router = Router();
-router.get('/',)
+router.get('/',SemesterRegistrationController.getAllFromDB)
+router.get('/:id',SemesterRegistrationController.getByIdFromDB)
 
 router.post('/',
 validateRequest(SemesterRegistrationValidation.create),
