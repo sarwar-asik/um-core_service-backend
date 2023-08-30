@@ -265,6 +265,66 @@ in headers (example) >>>
 3. get single data by id ::
 
           http://localhost:5000/api/v1/courses/19c54336-3fb4-4e83-962d-abcdd4d42cb2 (GET)
+4. update course data by id ::
+
+          http://localhost:5000/api/v1/courses/19c54336-3fb4-4e83-962d-abcdd4d42cb2 (PUT)
+
+
+In req.body >>>>
+
+                {
+                "title": "course6",
+                "code": "666666",
+                "Prerequisite": [
+                        {
+                        "courseID": "dd619c9c-8fd9-4211-a8cf-9194c5175817",
+                        "isDeleted": true
+                        },
+                        {
+                        "courseID": "cafe9117-eee4-49c4-8199-9ed615ccc46e",
+                        "isDeleted": true
+                        },
+                        {
+                        "courseID": "83cffb47-d1cd-4b92-a0d3-d9ad40c3473c",
+                        "isDeleted": false
+                        }
+                ]
+                }
+
+**courses-faculty**
+
+
+1. create data (jwt verified)
+
+in req.body >>>
+
+http://localhost:5000/api/v1/courses/c67ce94d-6e44-4508-9a1d-8a1677d338f8/remove-faculties(POST)
+
+
+        {
+        "faculties":[
+                "97e221c1-dcf2-4eef-9fd9-9c1ddca581ad",
+                "454e221c1-dcf2-4eef-9fd9-9c1ddca581da"
+        ]
+        }
+
+in headers (example) >>>
+    
+     
+        authorization  : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+ 
+3. delete single data by id ::
+
+          http://localhost:5000/api/v1/courses/c67ce94d-6e44-4508-9a1d-8a1677d338f8/remove-faculties(DELETE)
+
+
+In req?.body >>>>
+
+                {
+                "faculties":[
+                        "97e221c1-dcf2-4eef-9fd9-9c1ddca581ad"
+                ]
+                }
 
 
 

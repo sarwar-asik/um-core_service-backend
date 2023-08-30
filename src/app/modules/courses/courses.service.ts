@@ -293,7 +293,7 @@ const updateItoDb = async (
     },
   });
   return responseData;
-};
+}; 
 
 // for delete data.....
 
