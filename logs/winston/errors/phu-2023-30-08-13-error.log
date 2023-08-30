@@ -27,3 +27,4 @@ Invalid `prisma.semesterRegistration.update()` invocation:
 }
 
 Argument `where` of type SemesterRegistrationWhereUniqueInput needs at least one of `id` arguments. Available options are listed in green.
+Wed Aug 30 2023 13:56:56 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ Can only move from UPCOMING to ONGOING

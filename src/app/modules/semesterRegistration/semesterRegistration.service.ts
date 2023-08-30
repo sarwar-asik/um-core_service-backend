@@ -165,7 +165,7 @@ const updateOneToDB = async(id:string,payload:Partial<SemesterRegistration>):Pro
         academicSemester: true
     }
 })
-
+  
 return result;
 }
 
