@@ -12,5 +12,9 @@ router.post('/',
 validateRequest(SemesterRegistrationValidation.create),
 SemesterRegistrationController.insertDB)
 
+router.put('/:id',
+validateRequest(SemesterRegistrationValidation.update),
+SemesterRegistrationController.updateOneToDB)
+
 
 export const semesterRegistrationRoutes = router;

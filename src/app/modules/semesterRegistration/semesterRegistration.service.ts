@@ -5,10 +5,10 @@ import {
 } from '@prisma/client';
 import httpStatus from 'http-status';
 import ApiError from '../../../errors/ApiError';
-import prisma from '../../../shared/prisma';
-import { IPaginationOptions } from '../../../interfaces/pagination';
-import { IGenericResponse } from '../../../interfaces/common';
 import { paginationHelpers } from '../../../helpers/paginationHelper';
+import { IGenericResponse } from '../../../interfaces/common';
+import { IPaginationOptions } from '../../../interfaces/pagination';
+import prisma from '../../../shared/prisma';
 import { semesterRegistrationRelationalFields, semesterRegistrationRelationalFieldsMapper, semesterRegistrationSearchableFields } from './semesterRegistration.constant';
 
 const insertDB = async (
@@ -131,4 +131,24 @@ const getByIdFromDB = async (id: string): Promise<SemesterRegistration | null> =
   return result;
 };
 
-export const SemesterRegistrationService = { insertDB,getAllFromDB,getByIdFromDB };
+
+
+
+const updateOneToDB = async(id:string,payload:Partial<SemesterRegistration>):Promise<SemesterRegistration>=>{
+
+
+  const result = await prisma.semesterRegistration.update({
+    where: {
+        id
+    },
+    data: payload,
+    include: {
+        academicSemester: true
+    }
+})
+
+return result;
+}
+
+
+export const SemesterRegistrationService = { insertDB,getAllFromDB,getByIdFromDB,updateOneToDB };
