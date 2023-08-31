@@ -1,5 +1,6 @@
 
 import { z } from 'zod';
+
 const createOfferedCourseClassSchedules = z.object({
   body: z.object({
     startTime: z.string({
