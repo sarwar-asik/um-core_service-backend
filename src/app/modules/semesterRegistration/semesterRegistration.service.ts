@@ -192,7 +192,7 @@ const startMyRegistration = async (authUserId: string):Promise<{
     },
   });
   if (!studentInfo) {
-    throw new ApiError(httpStatus.BAD_REQUEST, 'Not Found Student');
+    throw new ApiError(httpStatus.BAD_REQUEST, 'Not Found the Student');
   }
   const semesterRegistrationInfo = await prisma.semesterRegistration.findFirst({
     where: {
@@ -247,7 +247,8 @@ const startMyRegistration = async (authUserId: string):Promise<{
     studentSemesterRegistration:studentRegistration
   }
 
-};
+}
+
 
 export const SemesterRegistrationService = {
   insertDB,
