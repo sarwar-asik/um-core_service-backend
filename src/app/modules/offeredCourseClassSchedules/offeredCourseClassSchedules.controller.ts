@@ -5,6 +5,8 @@ import sendResponse from "../../../shared/sendResponse";
 import httpStatus from "http-status";
 import { OfferedCourseClassSchedulesService } from "./offeredCourseClassSchedules.service";
 import { OfferedCourseClassSchedule } from "@prisma/client";
+import pick from "../../../shared/pick";
+import { offeredCourseClassScheduleFilterableFields } from "./OfferedCourseClassSchedule.const";
 
 const insertDB = catchAsync(async (req: Request, res: Response) => {
   const data = req.body;
@@ -17,6 +19,43 @@ const insertDB = catchAsync(async (req: Request, res: Response) => {
     message: 'Successfully OfferedCourseClassSchedules',
     data: result,
   });
+})
+
+
+
+// ! filter data 
+
+
+const getAllDb = catchAsync(async (req: Request, res: Response) => {
+  // console.log(req.query,'from getAll db controller');
+  const filters = pick(req.query,offeredCourseClassScheduleFilterableFields);
+  // CourseFilterableFields (use it in filters )
+  const options = pick(req.query, ['limit', 'page', 'sortBy', 'sortOrder']);
+
+  // console.log('filters:::',filters,'options::::',options);
+
+  const result = await OfferedCourseClassSchedulesService.getAllDb(filters, options);
+
+  sendResponse<OfferedCourseClassSchedule[]>(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'Successfully get OfferedCourseClassSchedules Data',
+    meta: result.meta,
+    data: result?.data,
+  });
 });
 
-export const OfferedCourseClassSchedulesController = {insertDB};
+const getSingleDataById = catchAsync(async (req: Request, res: Response) => {
+  const id = req.params.id;
+
+  const result = await OfferedCourseClassSchedulesService.getSingleData(id);
+
+  sendResponse<OfferedCourseClassSchedule>(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: `Successfully get ${id}`,
+    data: result,
+  });
+});
+
+export const OfferedCourseClassSchedulesController = {insertDB,getAllDb,getSingleDataById};

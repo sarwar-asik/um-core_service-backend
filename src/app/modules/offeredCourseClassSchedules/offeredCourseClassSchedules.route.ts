@@ -12,6 +12,7 @@ router.post(
   ),
   OfferedCourseClassSchedulesController.insertDB
 );
-router.get('/');
+router.get('/',OfferedCourseClassSchedulesController.getAllDb);
+router.get('/:id',OfferedCourseClassSchedulesController.getSingleDataById);
 
 export const offeredCourseClassSchedulesRoutes = router;
