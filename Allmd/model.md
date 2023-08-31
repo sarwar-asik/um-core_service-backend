@@ -3,15 +3,17 @@
 
              
         model user {
-            id          String         @id @default(uuid())
             <!-- for unique -->
-            createdAt   DateTime       @default(now())
+            id          String         @id @default(uuid())
             <!-- for current time  -->
-            updatedAt   DateTime       @updatedAt
+            createdAt   DateTime       @default(now())
             <!-- for updated time -->
-            credits     Int            @default(0)
+            updatedAt   DateTime       @updatedAt
             <!-- default value -->
+            credits     Int            @default(0)
+            <!-- use enum -->
             status   SemesterRegistrationStatus?   @default(UPCOMING)
+            dayOfWeek              WeekDays             @default(SATURDAY)
 
             
         }
@@ -23,3 +25,13 @@
                                          ONGOING
                                          ENDED
                                         }
+
+         enum WeekDays {
+                            SATURDAY
+                            SUNDAY
+                            MONDAY
+                            TUESDAY
+                            WEDNESDAY
+                            THURSDAY
+                            FRIDAY
+                        }
