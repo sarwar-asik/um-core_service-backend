@@ -244,8 +244,7 @@ const startMyRegistration = async (authUserId: string) => {
   }
 
   return studentRegistration;
-  // console.log(semesterRegistrationInfo);
-  // console.log(studentInfo,"info");
+
 };
 
 export const SemesterRegistrationService = {
