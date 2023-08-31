@@ -1,5 +1,9 @@
 export const OfferedCourseClassScheduleSearchableFields = ['dayOfWeek'];
 
+
+// used in service ?:::::
+
+
 export const offeredCourseClassScheduleRelationalFields = [
   'offeredCourseSectionId',
   'semesterRegistrationId',
@@ -17,6 +21,9 @@ export const offeredCourseClassScheduleRelationalFieldsMapper:{[key:string]:stri
     semesterRegistrationId:'semesterRegistration'
 
 }
+
+
+// used in controller ::::
 
 
 export const offeredCourseClassScheduleFilterableFields = [
