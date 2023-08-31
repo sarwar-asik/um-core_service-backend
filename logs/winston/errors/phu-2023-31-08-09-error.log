@@ -114,3 +114,52 @@ Thu Aug 31 2023 9:16:34 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ [
     "message": "Required"
   }
 ]
+Thu Aug 31 2023 9:43:31 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ [
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "undefined",
+    "path": [
+      "body",
+      "offeredCourseId"
+    ],
+    "message": "offeredCourseId is required"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "number",
+    "received": "undefined",
+    "path": [
+      "body",
+      "maxCapacity"
+    ],
+    "message": "maxCapacity is required"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "undefined",
+    "path": [
+      "body",
+      "title"
+    ],
+    "message": "title is required"
+  }
+]
+Thu Aug 31 2023 9:44:54 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ 
+Invalid `prisma.offeredCourseSection.create()` invocation:
+
+{
+  data: {
+    offeredCourseId: "f66e94db-1eb5-412b-bdd7-f0352193440f",
+    maxCapacity: 30,
+    title: "offered-course-section1",
++   offeredCourse: {
++     create: OfferedCourseCreateWithoutOfferedCourseSectionInput | OfferedCourseUncheckedCreateWithoutOfferedCourseSectionInput,
++     connectOrCreate: OfferedCourseCreateOrConnectWithoutOfferedCourseSectionInput,
++     connect: OfferedCourseWhereUniqueInput
++   }
+  }
+}
+
+Argument `offeredCourse` is missing.
