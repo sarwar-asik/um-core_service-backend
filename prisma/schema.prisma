@@ -270,7 +270,7 @@ model StudentSemesterRegistration {
   id                     String               @id @default(uuid())
   isConfirmed            Boolean?             @default(false)
   totalCreditsTaken      Int?                 @default(0)
-  createdAt              DateTime             @default(now())
+  createdAt              DateTime            @default(now())
   updatedAt              DateTime             @updatedAt
   studentId              String
   student                Student              @relation(fields: [studentId], references: [id])

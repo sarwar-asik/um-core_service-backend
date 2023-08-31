@@ -42,6 +42,9 @@ const insertDB = async (
 
 
 
+
+
+
 type ISemesterRegistrationFilterRequest = {
   searchTerm?: string | undefined;
     academicSemesterId?: string | undefined;
@@ -170,4 +173,53 @@ return result;
 }
 
 
-export const SemesterRegistrationService = { insertDB,getAllFromDB,getByIdFromDB,updateOneToDB };
+
+
+// start Regestration >>>
+
+const startMyRegistration  = async(authUserId:string)=>{
+
+// console.log(authUserId);
+const studentInfo = await prisma.student.findFirst({
+  where:{
+    studentID:authUserId
+  }
+})
+if(!studentInfo){
+  throw new ApiError(httpStatus.BAD_REQUEST,"Not Found Student")
+}
+const semesterRegistrationInfo = await prisma.semesterRegistration.findFirst({
+  where:{
+    status:{
+      in:[SemesterRegistrationStatus.ONGOING,SemesterRegistrationStatus.UPCOMING]
+    }
+  }
+})
+
+if(semesterRegistrationInfo?.status === SemesterRegistrationStatus.UPCOMING){
+  throw new ApiError(httpStatus.BAD_REQUEST,"Registration is not started yet")
+}
+
+const studentRegistration = await prisma.studentSemesterRegistration.create({
+  data:{
+    student:{
+      connect:{
+        id:studentInfo?.id
+      }
+    },
+    semesterRegistration:{
+      connect:{
+        id:semesterRegistrationInfo?.id
+      }
+    }
+  }
+})
+
+return studentRegistration
+console.log(semesterRegistrationInfo);
+// console.log(studentInfo,"info");
+
+}
+
+
+export const SemesterRegistrationService = { insertDB,getAllFromDB,getByIdFromDB,updateOneToDB,startMyRegistration };
