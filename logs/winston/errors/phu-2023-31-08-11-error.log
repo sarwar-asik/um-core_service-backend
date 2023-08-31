@@ -1,0 +1,94 @@
+Thu Aug 31 2023 11:8:3 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ [
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "undefined",
+    "path": [
+      "body",
+      "offeredCourseId"
+    ],
+    "message": "offeredCourseId is required"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "number",
+    "received": "undefined",
+    "path": [
+      "body",
+      "currentlyEnrolledStudent"
+    ],
+    "message": "currentlyEnrolledStudent is required"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "number",
+    "received": "undefined",
+    "path": [
+      "body",
+      "maxCapacity"
+    ],
+    "message": "maxCapacity is required"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "undefined",
+    "path": [
+      "body",
+      "title"
+    ],
+    "message": "title is required"
+  }
+]
+Thu Aug 31 2023 11:9:27 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ [
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "undefined",
+    "path": [
+      "body",
+      "offeredCourseId"
+    ],
+    "message": "offeredCourseId is required"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "number",
+    "received": "undefined",
+    "path": [
+      "body",
+      "currentlyEnrolledStudent"
+    ],
+    "message": "currentlyEnrolledStudent is required"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "number",
+    "received": "undefined",
+    "path": [
+      "body",
+      "maxCapacity"
+    ],
+    "message": "maxCapacity is required"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "undefined",
+    "path": [
+      "body",
+      "title"
+    ],
+    "message": "title is required"
+  }
+]
+Thu Aug 31 2023 11:10:16 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ 
+Invalid `prisma.offeredCourseClassSchedule.create()` invocation:
+
+{
+  data: {
++   startTime: String
+  }
+}
+
+Argument `startTime` is missing.

@@ -8,8 +8,7 @@ const create = z.object({
       
         currentlyEnrolledStudent: z.number({
             required_error: 'currentlyEnrolledStudent is required'
-        }),
-        maxCapacity: z.number({
+        }),        maxCapacity: z.number({
             required_error: 'maxCapacity is required'
         }),
         title: z.string({

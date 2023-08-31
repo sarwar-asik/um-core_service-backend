@@ -163,3 +163,4 @@ Invalid `prisma.offeredCourseSection.create()` invocation:
 }
 
 Argument `offeredCourse` is missing.
+Thu Aug 31 2023 9:56:39 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ offeredCourseId is not exist
