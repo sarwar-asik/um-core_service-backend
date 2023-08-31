@@ -7,6 +7,13 @@ const insertDB = async (
 ): Promise<OfferedCourseClassSchedule> => {
   const result = await prisma.offeredCourseClassSchedule.create({
     data,
+    include:{
+      faculty:true,
+      offeredCourseSection:true,
+      room:true,
+      semesterRegistration:true,
+      
+    }
   });
 
   return result;

@@ -8,7 +8,7 @@ import { OfferedCourseClassSchedule } from "@prisma/client";
 
 const insertDB = catchAsync(async (req: Request, res: Response) => {
   const data = req.body;
-  console.log(data,"oooooooo");
+  // console.log(data,"oooooooo");
   const result = await OfferedCourseClassSchedulesService.insertDB(data)
 
   sendResponse<OfferedCourseClassSchedule>(res, {
