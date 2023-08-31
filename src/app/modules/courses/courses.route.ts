@@ -8,14 +8,14 @@ import { ENUM_USER_ROLE } from '../../../enums/user';
 import { CoursesController } from './courses.controller';
 import { CoursesValidation } from './courses.validation';
 const router = Router();
-router.get('/',CoursesController.getAllDb);
 router.post(
   '/',
   auth(ENUM_USER_ROLE.ADMIN,ENUM_USER_ROLE.FACULTY,ENUM_USER_ROLE.SUPER_ADMIN),
   validateRequest(CoursesValidation.createCourses),
   CoursesController.insertDB
-);
-
+  );
+  
+  router.get('/',CoursesController.getAllDb);
 router.get('/:id',CoursesController.getSingleDataById)
 
 router.put('/:id',CoursesController.updateIntoDb)

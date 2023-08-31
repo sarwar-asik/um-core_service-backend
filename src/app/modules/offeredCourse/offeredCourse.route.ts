@@ -7,10 +7,13 @@ import validateRequest from '../../middlewares/validateRequest';
 import { ENUM_USER_ROLE } from '../../../enums/user';
 import auth from '../../middlewares/auth';
 const router = Router();
-router.get('/')
+
 
 router.post('/', auth(ENUM_USER_ROLE.SUPER_ADMIN, ENUM_USER_ROLE.ADMIN),validateRequest(OfferedCourseValidation.createOfferedCourse),OfferedCourseController.insertDB)
 
 // 
+
+router.get('/',OfferedCourseController.getAllDb);
+router.get('/:id',OfferedCourseController.getSingleDataById)
 
 export const offeredCourseRoutes = router;
