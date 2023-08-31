@@ -1,8 +1,4 @@
-import {
-  Prisma,
-  SemesterRegistration,
-  SemesterRegistrationStatus,
-} from '@prisma/client';
+import { SemesterRegistration, StudentSemesterRegistration, Prisma,SemesterRegistrationStatus, } from '@prisma/client';
 import httpStatus from 'http-status';
 import ApiError from '../../../errors/ApiError';
 import { paginationHelpers } from '../../../helpers/paginationHelper';
@@ -185,7 +181,10 @@ const updateOneToDB = async (
 
 // start Regestration >>>
 
-const startMyRegistration = async (authUserId: string) => {
+const startMyRegistration = async (authUserId: string):Promise<{
+  semesterRegistration:SemesterRegistration  | null,
+  studentSemesterRegistration:StudentSemesterRegistration | null
+}> => {
   // console.log(authUserId);
   const studentInfo = await prisma.student.findFirst({
     where: {
@@ -243,7 +242,10 @@ const startMyRegistration = async (authUserId: string) => {
     });
   }
 
-  return studentRegistration;
+  return {
+    semesterRegistration:semesterRegistrationInfo,
+    studentSemesterRegistration:studentRegistration
+  }
 
 };
 
