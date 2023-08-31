@@ -179,7 +179,7 @@ const updateOneToDB = async (
   return result;
 };
 
-// start Regestration >>>
+//! start Regestration >>>
 
 const startMyRegistration = async (authUserId: string):Promise<{
   semesterRegistration:SemesterRegistration  | null,

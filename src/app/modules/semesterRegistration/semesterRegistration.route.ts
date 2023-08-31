@@ -19,7 +19,7 @@ validateRequest(SemesterRegistrationValidation.update),
 SemesterRegistrationController.updateOneToDB)
 
 
-// registration ///
+//! registration ///
 
 
 router.post('/start-registration',auth(ENUM_USER_ROLE.STUDENT),SemesterRegistrationController.startRegistration)
