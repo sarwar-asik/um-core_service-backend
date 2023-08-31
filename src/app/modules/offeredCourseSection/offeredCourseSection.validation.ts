@@ -5,9 +5,7 @@ const create = z.object({
         offeredCourseId: z.string({
             required_error: 'offeredCourseId is required'
         }),
-        semesterRegistrationId: z.string({
-            required_error: 'semesterRegistrationId is required'
-        }),
+      
         currentlyEnrolledStudent: z.number({
             required_error: 'currentlyEnrolledStudent is required'
         }),
