@@ -1,0 +1,116 @@
+Thu Aug 31 2023 9:4:7 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ [
+  {
+    "code": "invalid_type",
+    "expected": "number",
+    "received": "array",
+    "path": [
+      "body",
+      "courseId"
+    ],
+    "message": "Expected number, received array"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "undefined",
+    "path": [
+      "body",
+      "academicDepartmentId"
+    ],
+    "message": "academicDepartmentId is Required (zod)"
+  }
+]
+Thu Aug 31 2023 9:4:35 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ [
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "array",
+    "path": [
+      "body",
+      "courseId"
+    ],
+    "message": "Expected string, received array"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "undefined",
+    "path": [
+      "body",
+      "academicDepartmentId"
+    ],
+    "message": "academicDepartmentId is Required (zod)"
+  }
+]
+Thu Aug 31 2023 9:6:55 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ [
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "array",
+    "path": [
+      "body",
+      "courseId"
+    ],
+    "message": "Expected string, received array"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "undefined",
+    "path": [
+      "body",
+      "academicDepartmentId"
+    ],
+    "message": "academicDepartmentId is Required (zod)"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "array",
+    "received": "string",
+    "path": [
+      "body",
+      "semesterRegistrationId"
+    ],
+    "message": "Expected array, received string"
+  }
+]
+Thu Aug 31 2023 9:7:42 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ [
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "undefined",
+    "path": [
+      "body",
+      "academicDepartmentId"
+    ],
+    "message": "academicDepartmentId is Required (zod)"
+  }
+]
+Thu Aug 31 2023 9:7:54 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ 
+Invalid `prisma.offeredCourse.create()` invocation:
+
+{
+  data: {
+    semesterRegistrationId: "abe94d6d-4ba7-422c-9bd5-0aa8d226932f",
+    academicDepartmentId: "d60973cc-3db9-4f62-a429-7dbce956fbd3",
+    courseId: [
+      "c67ce94d-6e44-4508-9a1d-8a1677d338f8",
+      "83cffb47-d1cd-4b92-a0d3-d9ad40c3473c"
+    ]
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  }
+}
+
+Argument `courseId`: Invalid value provided. Expected String, provided (String, String).
+Thu Aug 31 2023 9:16:34 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ [
+  {
+    "code": "invalid_type",
+    "expected": "array",
+    "received": "undefined",
+    "path": [
+      "body",
+      "courseIds"
+    ],
+    "message": "Required"
+  }
+]
