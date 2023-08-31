@@ -53,7 +53,7 @@
     }
 
 
-#### system-2 ()  ::::::
+#### system-2 (relation with 2 complex property )  ::::::
 
 
     model CourseToPrerequisite {
