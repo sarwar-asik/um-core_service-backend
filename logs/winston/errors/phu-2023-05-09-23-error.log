@@ -1,0 +1,26 @@
+Tue Sep 05 2023 23:2:35 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ 
+Invalid `prisma.course.create()` invocation:
+
+{
+  data: {
+    title: "course1",
+    code: "4444",
+    credits: 9,
+    course: "janina",
+    ~~~~~~
+?   id?: String,
+?   createdAt?: DateTime,
+?   updatedAt?: DateTime,
+?   Prerequisite?: CourseToPrerequisiteCreateNestedManyWithoutCourseInput,
+?   PrerequisiteFor?: CourseToPrerequisiteCreateNestedManyWithoutPrerequisiteInput,
+?   faculties?: CourseFacultyCreateNestedManyWithoutCourseInput,
+?   offeredCourses?: OfferedCourseCreateNestedManyWithoutCourseInput
+  }
+}
+
+Unknown argument `course`. Did you mean `code`? Available options are listed in green.
+Tue Sep 05 2023 23:13:57 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ 
+Invalid `prisma.courseToPrerequisite.create()` invocation:
+
+
+Foreign key constraint failed on the field: `CourseToPrerequisite_prerequisiteId_fkey (index)`

@@ -14,6 +14,6 @@ export type ICourseCreateData = {
 };
 
 export type IPrerequisiteCourseRequest = {
-  courseID: string;
+  courseId: string;
   isDeleted?: null;
 };

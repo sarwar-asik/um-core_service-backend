@@ -14,17 +14,18 @@ import { asyncForEach } from './utils';
 const insertDB = async (data: ICourseCreateData): Promise<any> => {
   const { preRequisiteCourses, ...courseData } = data;
 
-  // ! without transaction ::::
+  // // ! without transaction ::::
 
   // const result = await prisma.course.create({
   //   data: courseData,
   // });
+
   // if (preRequisiteCourses && preRequisiteCourses.length > 0) {
   //   for (let index = 0; index < preRequisiteCourses.length; index++) {
   //     const createPrerequiesite = await prisma.courseToPrerequisite.create({
   //       data: {
-  //         courseID: result.id,
-  //         prerequisiteId: preRequisiteCourses[index].courseID,
+  //         courseId: result.id,
+  //         prerequisiteId: preRequisiteCourses[index].courseId,
   //       },
   //     });
   //     console.log(createPrerequiesite, 'pressssssss');
@@ -33,20 +34,20 @@ const insertDB = async (data: ICourseCreateData): Promise<any> => {
 
   // ! with transaction ////
 
-  const newCourse = await prisma.$transaction(async transactionClient => {
+  const newCourse = await prisma.$transaction(async (transactionClient) => {
     const result = await transactionClient.course.create({
       data: courseData,
     });
-    if (result) {
-      throw new ApiError(httpStatus.NOT_FOUND, 'Not found course');
+    if (!result) {
+      throw new ApiError(httpStatus.NOT_FOUND, 'Unable to create course');
     }
     if (preRequisiteCourses && preRequisiteCourses.length > 0) {
       // for (let index = 0; index < preRequisiteCourses.length; index++) {
       //   const createPrerequiesite =
       //     await transactionClient.courseToPrerequisite.create({
       //       data: {
-      //         courseID: result?.id,
-      //         prerequisiteId: preRequisiteCourses[index].courseID,
+      //         courseId: result?.id,
+      //         prerequisiteId: preRequisiteCourses[index].courseId,
       //       },
       //     });
       //   console.log(createPrerequiesite, 'pressssssss');
@@ -55,13 +56,14 @@ const insertDB = async (data: ICourseCreateData): Promise<any> => {
       await asyncForEach(
         preRequisiteCourses,
         async (preRequisiteCourses: IPrerequisiteCourseRequest) => {
-          const createPrerequiesite =
+          const createPrerequisite =
             await transactionClient.courseToPrerequisite.create({
               data: {
-                courseID: result?.id,
-                prerequisiteId: preRequisiteCourses.courseID,
+                courseId: result?.id,
+                prerequisiteId: preRequisiteCourses.courseId,
               },
             });
+            console.log(createPrerequisite);
         }
       );
     }
@@ -76,12 +78,12 @@ const insertDB = async (data: ICourseCreateData): Promise<any> => {
         id: newCourse?.id,
       },
       include: {
-        Prerequisite: {
+        prerequisite: {
           include: {
             prerequisite: true,
           },
         },
-        PrerequisiteFor: {
+        prerequisiteFor: {
           include: {
             course: true,
           },
@@ -152,8 +154,8 @@ const getAllDb = async (
             createdAt: 'desc',
           },
     include: {
-      Prerequisite: true,
-      PrerequisiteFor: true,
+      prerequisite: true,
+      prerequisiteFor: true,
     },
   });
   const total = await prisma.academicSemester.count();
@@ -195,8 +197,8 @@ const updateItoDb = async (
       },
       data: courseData,
       include: {
-        Prerequisite: true,
-        PrerequisiteFor: true,
+       prerequisite:true,
+        prerequisiteFor:true
       },
     });
 
@@ -207,11 +209,11 @@ const updateItoDb = async (
     if (preRequisiteCourses && preRequisiteCourses?.length > 0) {
       const deletePrerequisite = preRequisiteCourses.filter(
         coursePrerequisite =>
-          coursePrerequisite.courseID && coursePrerequisite?.isDeleted
+          coursePrerequisite.courseId && coursePrerequisite?.isDeleted
       );
       const newPrerequisite = preRequisiteCourses.filter(
         coursePrerequisite =>
-          coursePrerequisite.courseID && !coursePrerequisite.isDeleted
+          coursePrerequisite.courseId && !coursePrerequisite.isDeleted
       );
 
       // for (let index=0 ; index< deletePrerequisite.length ; index++){
@@ -219,10 +221,10 @@ const updateItoDb = async (
       //     where:{
       //       AND:[
       //         {
-      //           courseID:id
+      //           courseId:id
       //         },
       //         {
-      //           prerequisiteId:deletePrerequisite[index].courseID
+      //           prerequisiteId:deletePrerequisite[index].courseId
       //         }
       //       ]
       //     }
@@ -238,10 +240,10 @@ const updateItoDb = async (
             where: {
               AND: [
                 {
-                  courseID: id,
+                  courseId: id,
                 },
                 {
-                  prerequisiteId: deletePreCourse.courseID,
+                  prerequisiteId: deletePreCourse.courseId,
                 },
               ],
             },
@@ -252,8 +254,8 @@ const updateItoDb = async (
       // for(let index = 0 ;index <newPrerequisite.length;index++){
       //   await transactionClient.courseToPrerequisite.create({
       //     data:{
-      //       courseID:id,
-      //       prerequisiteId:newPrerequisite[index].courseID
+      //       courseId:id,
+      //       prerequisiteId:newPrerequisite[index].courseId
       //     }
       //   })
       // }
@@ -263,8 +265,8 @@ const updateItoDb = async (
         async (insertPrerequisite: IPrerequisiteCourseRequest) => {
           await transactionClient.courseToPrerequisite.create({
             data: {
-              courseID: id,
-              prerequisiteId: insertPrerequisite.courseID,
+              courseId: id,
+              prerequisiteId: insertPrerequisite.courseId,
             },
           });
         }
@@ -280,12 +282,12 @@ const updateItoDb = async (
       id,
     },
     include: {
-      Prerequisite: {
+      prerequisite: {
         include: {
           prerequisite: true,
         },
       },
-      PrerequisiteFor: {
+      prerequisiteFor: {
         include: {
           course: true,
         },

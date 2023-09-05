@@ -250,10 +250,21 @@ const startMyRegistration = async (authUserId: string):Promise<{
 }
 
 
+// ! for enrollment ///
+
+const enrollIntoCourse = async (
+  id: string,
+  payload:Partial<SemesterRegistration>
+): Promise<SemesterRegistration | null> => {
+ console.log(id,payload,"from enroll");
+};
+
+
 export const SemesterRegistrationService = {
   insertDB,
   getAllFromDB,
   getByIdFromDB,
   updateOneToDB,
   startMyRegistration,
+  enrollIntoCourse
 };

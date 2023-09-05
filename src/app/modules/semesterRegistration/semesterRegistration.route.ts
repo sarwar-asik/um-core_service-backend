@@ -7,6 +7,8 @@ import { SemesterRegistrationValidation } from './semesterRegistration.validatio
 import auth from '../../middlewares/auth';
 import { ENUM_USER_ROLE } from '../../../enums/user';
 const router = Router();
+
+
 router.get('/',SemesterRegistrationController.getAllFromDB)
 router.get('/:id',SemesterRegistrationController.getByIdFromDB)
 
@@ -20,7 +22,6 @@ SemesterRegistrationController.updateOneToDB)
 
 
 //! registration ///
-
 
 router.post('/start-registration',auth(ENUM_USER_ROLE.STUDENT),SemesterRegistrationController.startRegistration)
 
