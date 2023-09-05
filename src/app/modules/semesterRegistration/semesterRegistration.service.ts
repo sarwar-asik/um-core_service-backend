@@ -188,7 +188,7 @@ const startMyRegistration = async (authUserId: string):Promise<{
   // console.log(authUserId);
   const studentInfo = await prisma.student.findFirst({
     where: {
-      studentID: authUserId,
+      studentId: authUserId,
     },
   });
   if (!studentInfo) {
@@ -257,6 +257,16 @@ const enrollIntoCourse = async (
   payload:Partial<SemesterRegistration>
 ): Promise<SemesterRegistration | null> => {
  console.log(id,payload,"from enroll");
+
+ const  student = await prisma.student.findFirst({
+  where:{
+    studentId:id
+  }
+ })
+ console.log(student);
+
+
+ return null
 };
 
 

@@ -1,7 +1,7 @@
 import { z } from 'zod';
 const createStudents = z.object({
   body: z.object({
-    studentID: z.string({
+    studentId: z.string({
       required_error: 'studentID is Required (zod)',
     }),
     firstName: z.string({
@@ -22,13 +22,13 @@ const createStudents = z.object({
     contactNo: z.string({
       required_error: 'contactNo is Required (zod)',
     }),
-    gendar: z.string({
+    gender: z.string({
       required_error: 'gendar is Required (zod)',
     }),
     bloodGroup: z.string({
       required_error: 'bloodGroup is Required (zod)',
     }),
-    academicSemestarId: z.string({
+    academicSemesterId: z.string({
       required_error: 'academicSemestarId is Required (zod)',
     }),
     academicDepartmentId: z.string({
@@ -41,16 +41,16 @@ const createStudents = z.object({
 });
 const updateStudents = z.object({
   body: z.object({
-    studentID: z.string().optional(),
+    studentId: z.string().optional(),
     firstName: z.string().optional(),
     lastName: z.string().optional(),
     middleName: z.string().optional(),
     profileImage: z.string().optional(),
     email: z.string().optional(),
     contactNo: z.string().optional(),
-    gendar: z.string().optional(),
+    gender: z.string().optional(),
     bloodGroup: z.string().optional(),
-    academicSemestarId: z.string().optional(),
+    academicSemesterId: z.string().optional(),
     academicDepartmentId: z.string().optional(),
     academicFacultyId: z.string().optional(),
   }),

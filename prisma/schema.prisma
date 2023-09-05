@@ -58,19 +58,19 @@ model AcademicDepartment {
 
 model Student {
   id                                String                              @id @default(uuid())
-  studentID                         String
+  studentId                         String
   firstName                         String
   lastName                          String
   middleName                        String
   profileImage                      String
   email                             String
   contactNo                         String
-  gendar                            String
+  gender                            String
   bloodGroup                        String
   createdAt                         DateTime                            @default(now())
   updatedAt                         DateTime                            @updatedAt
-  academicSemestarId                String
-  academicSemestar                  AcademicSemester                    @relation(fields: [academicSemestarId], references: [id])
+  academicSemesterId                String
+  academicSemester                  AcademicSemester                    @relation(fields: [academicSemesterId], references: [id])
   academicDepartmentId              String
   academicDepartment                AcademicDepartment                  @relation(fields: [academicDepartmentId], references: [id])
   academicFacultyId                 String
