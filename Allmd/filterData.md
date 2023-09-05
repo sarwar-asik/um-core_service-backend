@@ -6,8 +6,9 @@
     // ! filter data 
 
 
-    const getAllDb = catchAsync(async (req: Request, res: Response) => {
-       
+```
+
+        const getAllDb = catchAsync(async (req: Request, res: Response) => {
         const filters = pick(req.query,CourseFilterableFields);
   
         const options = pick(req.query, ['limit', 'page', 'sortBy', 'sortOrder']);
@@ -23,6 +24,7 @@
             data: result?.data,
         });
     });
+```
 
 #### course>course.service.ts :::::
 

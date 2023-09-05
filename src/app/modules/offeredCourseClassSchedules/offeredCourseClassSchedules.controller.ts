@@ -28,9 +28,17 @@ const insertDB = catchAsync(async (req: Request, res: Response) => {
 
 const getAllDb = catchAsync(async (req: Request, res: Response) => {
 
+//   const offeredCourseClassScheduleFilterableFields = [
+//     'searchTerm',
+//     'dayOfWeek',
+//     'offeredCourseSectionId',
+//     'semesterRegistrationId',
+//     'roomId',
+//     'facultyId'
+// ]
   const filters = pick(req.query,offeredCourseClassScheduleFilterableFields);
 
-  const options = pick(req.query, ['limit', 'page', 'sortBy', 'sortOrder']);
+  const options = pick(req.query, ['limit', 'page', 'sortBy', 'sortOrder'])
 
  
   const result = await OfferedCourseClassSchedulesService.getAllDb(filters, options);

@@ -1,29 +1,29 @@
 #### api endpoints  :::::
 
 
+
 ##### used backend technology :::
 
+- PostgresSQL (database),
 
-            PostgresSQL (database),
-
-            Prisma,
-            TypeScript,
-            Express,
-            dotenv
+- Prisma,
+- TypeScript,
+- Express,
+- dotenv
 
 
-            Husky,
-            EsLint,
-            EsLint Prettier,
-            winston,
-            ts-node-dev,
+- Husky,
+- EsLint,
+- EsLint Prettier,
+- winston,
+- ts-node-dev,
 
-            zod(for validation),
-            JWT(for authentication) ,
+- zod(for validation),
+- JWT(for authentication) ,
 
-            http-status,
-            bcrypt(password hashing),
-            
+- http-status,
+- bcrypt(password hashing),
+
 
 **academic-semester** 
 
@@ -152,8 +152,7 @@ in req.body >>>
 
 in headers (example) >>>
     
-     
-        authorization  : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+`authorization  : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c`
   
 
 2. get all data with pagination and filters
@@ -187,8 +186,7 @@ in req.body
 in headers (example) >>>
     
      
-        authorization  : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
-  
+`authorization  : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c`
 
 2. get all data with pagination and filters
 
@@ -220,7 +218,7 @@ http://localhost:5000/api/v1/rooms/(POST)
 in headers (example) >>>
     
      
-        authorization  : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+`authorization  : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c`
   
 
 2. get all data with pagination and filters
@@ -252,8 +250,7 @@ http://localhost:5000/api/v1/courses/(POST)
 
 in headers (example) >>>
     
-     
-        authorization  : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+`authorization  : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c`
   
 
 2. get all data with pagination and filters ;
@@ -311,7 +308,7 @@ http://localhost:5000/api/v1/courses/c67ce94d-6e44-4508-9a1d-8a1677d338f8/remove
 in headers (example) >>>
     
      
-        authorization  : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+ `authorization  : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c`
  
 3. delete single data by id ::
 
