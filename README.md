@@ -4,25 +4,25 @@
 
 ##### used backend technology :::
 
-- PostgresSQL (database),
+        - PostgresSQL (database),
 
-- Prisma,
-- TypeScript,
-- Express,
-- dotenv
+        - Prisma,
+        - TypeScript,
+        - Express,
+        - dotenv
 
 
-- Husky,
-- EsLint,
-- EsLint Prettier,
-- winston,
-- ts-node-dev,
+        - Husky,
+        - EsLint,
+        - EsLint Prettier,
+        - winston,
+        - ts-node-dev,
 
-- zod(for validation),
-- JWT(for authentication) ,
+        - zod(for validation),
+        - JWT(for authentication) ,
 
-- http-status,
-- bcrypt(password hashing),
+        - http-status,
+        - bcrypt(password hashing),
 
 
 **academic-semester** 
