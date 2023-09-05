@@ -1,0 +1,31 @@
+Wed Sep 06 2023 0:2:11 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ There is already an ONGOING registration 
+Wed Sep 06 2023 0:7:36 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ 
+Invalid `prisma.studentSemesterRegistrationCourse.create()` invocation:
+
+
+Foreign key constraint failed on the field: `student_semester_registration_courses_studentId_fkey (index)`
+Wed Sep 06 2023 0:8:55 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ 
+Invalid `prisma.studentSemesterRegistrationCourse.create()` invocation:
+
+
+Foreign key constraint failed on the field: `student_semester_registration_courses_studentId_fkey (index)`
+Wed Sep 06 2023 0:11:3 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ 
+Invalid `prisma.studentSemesterRegistrationCourse.create()` invocation:
+
+
+Foreign key constraint failed on the field: `student_semester_registration_courses_studentId_fkey (index)`
+Wed Sep 06 2023 0:12:1 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ 
+Invalid `prisma.studentSemesterRegistrationCourse.create()` invocation:
+
+
+Foreign key constraint failed on the field: `student_semester_registration_courses_studentId_fkey (index)`
+Wed Sep 06 2023 0:12:50 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ 
+Invalid `prisma.studentSemesterRegistrationCourse.create()` invocation:
+
+
+Foreign key constraint failed on the field: `student_semester_registration_courses_studentId_fkey (index)`
+Wed Sep 06 2023 0:15:1 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ 
+Invalid `prisma.studentSemesterRegistrationCourse.create()` invocation:
+
+
+Foreign key constraint failed on the field: `student_semester_registration_courses_studentId_fkey (index)`

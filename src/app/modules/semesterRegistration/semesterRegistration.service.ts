@@ -1,4 +1,4 @@
-import { SemesterRegistration, StudentSemesterRegistration, Prisma,SemesterRegistrationStatus, } from '@prisma/client';
+import { SemesterRegistration, StudentSemesterRegistration, Prisma,SemesterRegistrationStatus, StudentSemesterRegistrationCourse, } from '@prisma/client';
 import httpStatus from 'http-status';
 import ApiError from '../../../errors/ApiError';
 import { paginationHelpers } from '../../../helpers/paginationHelper';
@@ -10,6 +10,7 @@ import {
   semesterRegistrationRelationalFieldsMapper,
   semesterRegistrationSearchableFields,
 } from './semesterRegistration.constant';
+import { IEnrollCoursePayload } from './semesterRegistration.interface';
 
 const insertDB = async (
   data: SemesterRegistration
@@ -254,8 +255,8 @@ const startMyRegistration = async (authUserId: string):Promise<{
 
 const enrollIntoCourse = async (
   id: string,
-  payload:Partial<SemesterRegistration>
-): Promise<SemesterRegistration | null> => {
+  payload:IEnrollCoursePayload
+): Promise<StudentSemesterRegistrationCourse| null> => {
  console.log(id,payload,"from enroll");
 
  const  student = await prisma.student.findFirst({
@@ -263,10 +264,34 @@ const enrollIntoCourse = async (
     studentId:id
   }
  })
- console.log(student);
 
+ if(!student){
+  throw new ApiError(httpStatus.NOT_FOUND,"Student not found")
+ }
+//  console.log(student);
+ const semesterRegistration = await prisma.semesterRegistration.findFirst({
+  where:{
+    status:SemesterRegistrationStatus.ONGOING
+  }
+ })
 
- return null
+ if(!semesterRegistration){
+  throw new ApiError(httpStatus.NOT_FOUND,"semesterRegistration not found")
+ }
+// console.log(semesterRegistration);
+// console.log(semesterRegistration?.id);
+
+const enrollCourse  = await prisma.studentSemesterRegistrationCourse.create({
+  data:{
+    studentId:student?.studentId,
+    semesterRegistrationId:semesterRegistration?.id,
+    offeredCourseId:payload.offeredCourseId,
+    offeredCourseSectionId:payload?.offeredCourseSectionId
+
+  }
+})
+
+ return enrollCourse
 };
 
 
