@@ -77,10 +77,25 @@ const startRegistration = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
+const enrollToCourse = catchAsync(async (req: Request, res: Response) => {
+const user = (req as any ).user
+console.log(user);
+
+
+sendResponse(res, {
+  statusCode: httpStatus.OK,
+  success: true,
+  message: 'enrollment successfully',
+  data: {},
+});
+
+})
+
 export const SemesterRegistrationController = {
   insertDB,
   getAllFromDB,
   getByIdFromDB,
   updateOneToDB,
   startRegistration,
+  enrollToCourse
 };

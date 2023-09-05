@@ -25,5 +25,11 @@ SemesterRegistrationController.updateOneToDB)
 router.post('/start-registration',auth(ENUM_USER_ROLE.STUDENT),SemesterRegistrationController.startRegistration)
 
 
+router.post('/enroll-into-course',
+auth(ENUM_USER_ROLE.STUDENT),
+SemesterRegistrationController.enrollToCourse)
+
+
+
 
 export const semesterRegistrationRoutes = router;
