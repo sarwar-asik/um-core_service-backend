@@ -297,6 +297,7 @@ model StudentSemesterRegistrationCourse {
   offeredCourseSection   OfferedCourseSection @relation(fields: [offeredCourseSectionId], references: [id])
   createdAt              DateTime             @default(now())
   updatedAt              DateTime             @updatedAt
-  @@id([semesterRegistrationId, studentId, offeredCourseId])
+
+  @@id([semesterRegistrationId, studentId, offeredCourseId])   //! for unique every field like id
   @@map("student_semester_registration_courses")
 }

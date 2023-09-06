@@ -18,4 +18,16 @@ const insertDB = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
-export const OfferedCourseSectionController = {insertDB};
+const getAllDB = catchAsync(async (req: Request, res: Response) => {
+ 
+  const result = await OfferedCourseSectionService.getAllDb()
+
+  sendResponse<OfferedCourseSection[]>(res, {
+    statusCode: httpStatus.CREATED,
+    success: true,
+    message: 'Successfully fetched OfferedCourseSection',
+    data: result,
+  });
+});
+
+export const OfferedCourseSectionController = {insertDB,getAllDB};

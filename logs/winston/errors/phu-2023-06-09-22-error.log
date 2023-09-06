@@ -28,3 +28,13 @@ Invalid `prisma.studentSemesterRegistrationCourse.create()` invocation:
 
 
 Foreign key constraint failed on the field: `student_semester_registration_courses_studentId_fkey (index)`
+Wed Sep 06 2023 22:44:36 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ 
+Invalid `prisma.studentSemesterRegistrationCourse.create()` invocation:
+
+
+Unique constraint failed on the fields: (`semesterRegistrationId`,`studentId`,`offeredCourseId`)
+Wed Sep 06 2023 22:46:55 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ 
+Invalid `prisma.courseToPrerequisite.create()` invocation:
+
+
+Foreign key constraint failed on the field: `CourseToPrerequisite_prerequisiteId_fkey (index)`

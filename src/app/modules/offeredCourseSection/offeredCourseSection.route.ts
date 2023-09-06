@@ -6,6 +6,6 @@ import {OfferedCourseSectionValidation } from './offeredCourseSection.validation
 import validateRequest from '../../middlewares/validateRequest';
 const router = Router();
 router.post('/',validateRequest(OfferedCourseSectionValidation.create),OfferedCourseSectionController.insertDB)
-router.get('/')
+router.get('/',OfferedCourseSectionController.getAllDB)
 
 export const offeredCourseSectionRoutes = router;

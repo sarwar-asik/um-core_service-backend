@@ -304,16 +304,38 @@ const enrollIntoCourse = async (
 // console.log(semesterRegistration?.id);
 
 
-const enrollCourse  = await prisma.studentSemesterRegistrationCourse.create({data:
-  {
-    studentId:student?.id,
-    semesterRegistrationId:semesterRegistration?.id,
-    offeredCourseId:payload.offeredCourseId,
-    offeredCourseSectionId:payload?.offeredCourseSectionId
-  }
+await prisma.$transaction(async(transactionClient)=>{
+  await transactionClient.studentSemesterRegistrationCourse.create({data:
+    {
+      studentId:student?.id,
+      semesterRegistrationId:semesterRegistration?.id,
+      offeredCourseId:payload.offeredCourseId,
+      offeredCourseSectionId:payload?.offeredCourseSectionId
+    }
+  })
+  await transactionClient.offeredCourseSection.update({
+    where:{
+      id:payload?.offeredCourseSectionId
+    },
+    data:{
+      currentlyEnrolledStudent:{
+        increment:1
+      }
+    }
+  })
 })
 
- return enrollCourse
+return null
+// const enrollCourse  = await prisma.studentSemesterRegistrationCourse.create({data:
+//   {
+//     studentId:student?.id,
+//     semesterRegistrationId:semesterRegistration?.id,
+//     offeredCourseId:payload.offeredCourseId,
+//     offeredCourseSectionId:payload?.offeredCourseSectionId
+//   }
+// })
+
+//  return enrollCourse
 };
 
 
