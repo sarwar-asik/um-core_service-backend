@@ -281,6 +281,9 @@ const enrollIntoCourse = async (
  const offeredCourse = await prisma.offeredCourse.findFirst({
   where:{
    id:payload?.offeredCourseId
+  },
+  include:{
+    course:true
   }
  })
 
@@ -325,6 +328,22 @@ await prisma.$transaction(async(transactionClient)=>{
     data:{
       currentlyEnrolledStudent:{
         increment:1
+      }
+    }
+  })
+
+  await transactionClient.studentSemesterRegistration.updateMany({
+    where:{
+      student:{
+        studentId:student?.id
+      },
+      semesterRegistration:{
+        id:semesterRegistration?.id
+      }
+    },
+    data:{
+      totalCreditsTaken:{
+        increment:offeredCourse?.course.credits
       }
     }
   })
