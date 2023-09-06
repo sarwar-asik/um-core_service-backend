@@ -278,19 +278,39 @@ const enrollIntoCourse = async (
  if(!semesterRegistration){
   throw new ApiError(httpStatus.NOT_FOUND,"semesterRegistration not found")
  }
+ const offeredCourse = await prisma.offeredCourse.findFirst({
+  where:{
+   id:payload?.offeredCourseId
+  }
+ })
+
+ if(!offeredCourse){
+  throw new ApiError(httpStatus.NOT_FOUND,"offered course not found")
+ }
+ 
+ const offeredCourseSection = await prisma.offeredCourseSection.findFirst({
+  where:{
+   id:payload?.offeredCourseSectionId
+  }
+ })
+
+ if(!offeredCourseSection){
+  throw new ApiError(httpStatus.NOT_FOUND,"offered course  sectionnot found")
+ }
+
+
+
 // console.log(semesterRegistration);
 // console.log(semesterRegistration?.id);
 
 
-const enrollCourse  = await prisma.studentSemesterRegistrationCourse.create({
-  data:
+const enrollCourse  = await prisma.studentSemesterRegistrationCourse.create({data:
   {
     studentId:student?.id,
     semesterRegistrationId:semesterRegistration?.id,
     offeredCourseId:payload.offeredCourseId,
     offeredCourseSectionId:payload?.offeredCourseSectionId
   }
-
 })
 
  return enrollCourse

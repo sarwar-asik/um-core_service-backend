@@ -92,6 +92,8 @@ sendResponse(res, {
 
 })
 
+
+
 export const SemesterRegistrationController = {
   insertDB,
   getAllFromDB,
