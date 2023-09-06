@@ -1,0 +1,17 @@
+Wed Sep 06 2023 23:0:24 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ 
+Invalid `prisma.studentSemesterRegistrationCourse.create()` invocation:
+
+
+Unique constraint failed on the fields: (`semesterRegistrationId`,`studentId`,`offeredCourseId`)
+Wed Sep 06 2023 23:1:24 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ 
+Invalid `prisma.studentSemesterRegistrationCourse.create()` invocation:
+
+
+Unique constraint failed on the fields: (`semesterRegistrationId`,`studentId`,`offeredCourseId`)
+Wed Sep 06 2023 23:2:11 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ offered course not found
+Wed Sep 06 2023 23:2:20 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ offered course  sectionnot found
+Wed Sep 06 2023 23:2:33 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ 
+Invalid `prisma.studentSemesterRegistrationCourse.create()` invocation:
+
+
+Unique constraint failed on the fields: (`semesterRegistrationId`,`studentId`,`offeredCourseId`)
