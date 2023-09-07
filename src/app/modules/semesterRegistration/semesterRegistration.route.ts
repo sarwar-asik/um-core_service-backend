@@ -28,13 +28,15 @@ router.post('/start-registration',auth(ENUM_USER_ROLE.STUDENT),SemesterRegistrat
 
 router.post('/enroll-into-course',
 auth(ENUM_USER_ROLE.STUDENT),
+validateRequest(SemesterRegistrationValidation.enrollOrWithdrawCourse),
 SemesterRegistrationController.enrollToCourse)
 
 router.post('/withdraw-from-course',
 auth(ENUM_USER_ROLE.STUDENT),
+validateRequest(SemesterRegistrationValidation.enrollOrWithdrawCourse),
 SemesterRegistrationController.withdrawFromCourse)
 
-
+             
 
 
 export const semesterRegistrationRoutes = router;
