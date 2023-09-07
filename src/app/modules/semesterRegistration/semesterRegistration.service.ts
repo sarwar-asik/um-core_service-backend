@@ -347,6 +347,9 @@ const getMyRegistration = async(authUserId:string)=>{
   const semesterRegistration = await prisma.semesterRegistration.findFirst({
     where:{
       status:SemesterRegistrationStatus.ONGOING
+    },
+    include:{
+      academicSemester:true
     }
   })
 
@@ -358,6 +361,9 @@ const getMyRegistration = async(authUserId:string)=>{
       student:{
         studentId:authUserId
       }
+    },
+    include:{
+      student:true
     }
   })
 
