@@ -36,6 +36,11 @@ auth(ENUM_USER_ROLE.STUDENT),
 validateRequest(SemesterRegistrationValidation.enrollOrWithdrawCourse),
 SemesterRegistrationController.withdrawFromCourse)
 
+router.post('/confirm-my-registration',
+auth(ENUM_USER_ROLE.STUDENT),
+// validateRequest(SemesterRegistrationValidation.enrollOrWithdrawCourse),
+SemesterRegistrationController.confirmMyRegistration)
+
              
 
 

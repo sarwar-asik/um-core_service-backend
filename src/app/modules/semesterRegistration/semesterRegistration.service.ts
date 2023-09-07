@@ -1,17 +1,22 @@
-import { SemesterRegistration, StudentSemesterRegistration, Prisma,SemesterRegistrationStatus,  } from '@prisma/client';
+import {
+  Prisma,
+  SemesterRegistration,
+  SemesterRegistrationStatus,
+  StudentSemesterRegistration,
+} from '@prisma/client';
 import httpStatus from 'http-status';
 import ApiError from '../../../errors/ApiError';
 import { paginationHelpers } from '../../../helpers/paginationHelper';
 import { IGenericResponse } from '../../../interfaces/common';
 import { IPaginationOptions } from '../../../interfaces/pagination';
 import prisma from '../../../shared/prisma';
+import { studentSemesterRegistrationCourseService } from '../studentSemesterRegistrationCourse/studentSemesterRegistrationCourse.services';
 import {
   semesterRegistrationRelationalFields,
   semesterRegistrationRelationalFieldsMapper,
   semesterRegistrationSearchableFields,
 } from './semesterRegistration.constant';
 import { IEnrollCoursePayload } from './semesterRegistration.interface';
-import { studentSemesterRegistrationCourseService } from '../studentSemesterRegistrationCourse/studentSemesterRegistrationCourse.services';
 
 const insertDB = async (
   data: SemesterRegistration
@@ -183,9 +188,11 @@ const updateOneToDB = async (
 
 //! start Regestration >>>
 
-const startMyRegistration = async (authUserId: string):Promise<{
-  semesterRegistration:SemesterRegistration  | null,
-  studentSemesterRegistration:StudentSemesterRegistration | null
+const startMyRegistration = async (
+  authUserId: string
+): Promise<{
+  semesterRegistration: SemesterRegistration | null;
+  studentSemesterRegistration: StudentSemesterRegistration | null;
 }> => {
   // console.log(authUserId);
   const studentInfo = await prisma.student.findFirst({
@@ -245,33 +252,78 @@ const startMyRegistration = async (authUserId: string):Promise<{
   }
 
   return {
-    semesterRegistration:semesterRegistrationInfo,
-    studentSemesterRegistration:studentRegistration
-  }
-
-}
-
+    semesterRegistration: semesterRegistrationInfo,
+    studentSemesterRegistration: studentRegistration,
+  };
+};
 
 // ! for enrollment ///
 
 const enrollIntoCourse = async (
   authUserId: string,
-  payload:IEnrollCoursePayload
-):Promise<{message:string}> => {
- return studentSemesterRegistrationCourseService.enrollIntoCourse(authUserId,payload)
+  payload: IEnrollCoursePayload
+): Promise<{ message: string }> => {
+  return studentSemesterRegistrationCourseService.enrollIntoCourse(
+    authUserId,
+    payload
+  );
 };
-
 
 // ! for withdraw ////
 
-
 const withdrawFromCourse = async (
   authUserId: string,
-  payload:IEnrollCoursePayload
-):Promise<{message:string}>  => {
- return studentSemesterRegistrationCourseService.withdrawFromCourse(authUserId,payload)
+  payload: IEnrollCoursePayload
+): Promise<{ message: string }> => {
+  return studentSemesterRegistrationCourseService.withdrawFromCourse(
+    authUserId,
+    payload
+  );
 };
 
+const confirmMyRegistration = async (
+  authUserId: string
+): Promise<{ message: string }> => {
+  const semesterRegistration = await prisma.semesterRegistration.findFirst({
+    where: {
+      status: SemesterRegistrationStatus.ONGOING,
+    },
+  });
+
+  const studentSemesterRegistration =
+    await prisma.studentSemesterRegistration.findFirst({
+      where: {
+        semesterRegistration: {
+          id: semesterRegistration?.id,
+        },
+        student: {
+          studentId: authUserId,
+        },
+      },
+    });
+
+  if (!studentSemesterRegistration) {
+    throw new ApiError(httpStatus.BAD_REQUEST, 'You were not registration yet');
+  }
+  if (
+    studentSemesterRegistration.totalCreditsTaken &&
+    semesterRegistration?.minCredit &&
+    semesterRegistration?.maxCredit &&
+    (studentSemesterRegistration?.totalCreditsTaken <
+      semesterRegistration?.minCredit ||
+      studentSemesterRegistration?.totalCreditsTaken >
+        semesterRegistration?.maxCredit)
+  ) {
+    throw new ApiError(
+      httpStatus.BAD_REQUEST,
+      `You can take only ${semesterRegistration?.minCredit} to ${semesterRegistration?.maxCredit}`
+    );
+  }
+
+  // console.log(studentSemesterRegistration,authUserId,semesterRegistration);
+
+  return { message: 'testing' };
+};
 
 export const SemesterRegistrationService = {
   insertDB,
@@ -280,5 +332,6 @@ export const SemesterRegistrationService = {
   updateOneToDB,
   startMyRegistration,
   enrollIntoCourse,
-  withdrawFromCourse
+  withdrawFromCourse,
+  confirmMyRegistration,
 };

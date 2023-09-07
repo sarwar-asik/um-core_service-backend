@@ -10,3 +10,14 @@ Thu Sep 07 2023 13:9:7 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ [
     "message": "Offered course id is required"
   }
 ]
+Thu Sep 07 2023 13:18:33 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ 
+Invalid `prisma.studentSemesterRegistrationCourse.create()` invocation:
+
+
+Unique constraint failed on the fields: (`semesterRegistrationId`,`studentId`,`offeredCourseId`)
+Thu Sep 07 2023 13:37:25 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ 
+Invalid `prisma.studentSemesterRegistrationCourse.create()` invocation:
+
+
+Unique constraint failed on the fields: (`semesterRegistrationId`,`studentId`,`offeredCourseId`)
+Thu Sep 07 2023 13:40:7 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ You are not registration yet
