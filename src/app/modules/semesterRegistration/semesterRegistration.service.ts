@@ -405,18 +405,22 @@ const startNewSemester =async(id:string)=>{
         isCurrent:false
       }
     })
-  })
-  const updateStatus = await prisma.academicSemester.update({
-    where:{
-      id:semesterRegistration.academicSemester.id
-    },
-    data:{
-      isCurrent:true
-    }
+    await prismaTransactionClient.academicSemester.update({
+      where:{
+        id:semesterRegistration.academicSemester.id
+      },
+      data:{
+        isCurrent:true
+      }
+    })
   })
 
+  // const updateStatus = 
 
-  return updateStatus
+
+  return {
+    message:"Semester Started successfully"
+  }
 }
 
 export const SemesterRegistrationService = {
