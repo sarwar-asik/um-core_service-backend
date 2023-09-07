@@ -375,7 +375,33 @@ return{ semesterRegistration,studentSemesterRegistration}
 
 
 const startNewSemester =async(id:string)=>{
-  console.log(id,"started new semester registration");
+  // console.log(id,"started new semester registration");
+  const semesterRegistration = await prisma.semesterRegistration.findFirst({
+    where:{
+      id
+    },
+    include:{
+      academicSemester:true
+    }
+  })
+
+  if(!semesterRegistration){
+    throw new ApiError(httpStatus.NOT_FOUND,"Semester Registration not found")
+  }
+  if(semesterRegistration.status !== SemesterRegistrationStatus.ENDED){
+    throw new ApiError(httpStatus.NOT_FOUND,"Semester Registration is not ENDED yet")
+  }
+
+  const updateStatus = await prisma.academicSemester.update({
+    where:{
+      id:semesterRegistration.academicSemester.id
+    },
+    data:{
+      isCurrent:true
+    }
+  })
+
+  return updateStatus
 }
 
 export const SemesterRegistrationService = {
