@@ -305,6 +305,13 @@ const confirmMyRegistration = async (
   if (!studentSemesterRegistration) {
     throw new ApiError(httpStatus.BAD_REQUEST, 'You were not registration yet');
   }
+
+  if(studentSemesterRegistration.totalCreditsTaken===0){
+    throw new ApiError(
+      httpStatus.BAD_REQUEST,
+      `You are not enroll to any course`
+    );
+  }
   if (
     studentSemesterRegistration.totalCreditsTaken &&
     semesterRegistration?.minCredit &&
@@ -320,10 +327,46 @@ const confirmMyRegistration = async (
     );
   }
 
+
+  await prisma.studentSemesterRegistration.update({
+    where:{
+      id:studentSemesterRegistration.id
+    },
+    data:{
+      isConfirmed:true
+    }
+  })
+
   // console.log(studentSemesterRegistration,authUserId,semesterRegistration);
 
-  return { message: 'testing' };
+  return { message: 'Your registration is confirmed' };
 };
+
+
+const getMyRegistration = async(authUserId:string)=>{
+  const semesterRegistration = await prisma.semesterRegistration.findFirst({
+    where:{
+      status:SemesterRegistrationStatus.ONGOING
+    }
+  })
+
+  const studentSemesterRegistration = await prisma.studentSemesterRegistration.findFirst({
+    where:{
+      semesterRegistration:{
+        id:semesterRegistration?.id
+      },
+      student:{
+        studentId:authUserId
+      }
+    }
+  })
+
+
+return{ semesterRegistration,studentSemesterRegistration}
+
+
+
+}
 
 export const SemesterRegistrationService = {
   insertDB,
@@ -334,4 +377,5 @@ export const SemesterRegistrationService = {
   enrollIntoCourse,
   withdrawFromCourse,
   confirmMyRegistration,
+  getMyRegistration
 };
