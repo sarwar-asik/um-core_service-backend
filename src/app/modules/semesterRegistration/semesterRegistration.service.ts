@@ -10,7 +10,8 @@ import {
   semesterRegistrationRelationalFieldsMapper,
   semesterRegistrationSearchableFields,
 } from './semesterRegistration.constant';
-
+import { IEnrollCoursePayload } from './semesterRegistration.interface';
+import { studentSemesterRegistrationCourseService } from '../studentSemesterRegistrationCourse/studentSemesterRegistrationCourse.services';
 
 const insertDB = async (
   data: SemesterRegistration
@@ -251,6 +252,26 @@ const startMyRegistration = async (authUserId: string):Promise<{
 }
 
 
+// ! for enrollment ///
+
+const enrollIntoCourse = async (
+  authUserId: string,
+  payload:IEnrollCoursePayload
+):Promise<{message:string}> => {
+ return studentSemesterRegistrationCourseService.enrollIntoCourse(authUserId,payload)
+};
+
+
+// ! for withdraw ////
+
+
+const withdrawFromCourse = async (
+  authUserId: string,
+  payload:IEnrollCoursePayload
+):Promise<{message:string}>  => {
+ return studentSemesterRegistrationCourseService.withdrawFromCourse(authUserId,payload)
+};
+
 
 export const SemesterRegistrationService = {
   insertDB,
@@ -258,6 +279,6 @@ export const SemesterRegistrationService = {
   getByIdFromDB,
   updateOneToDB,
   startMyRegistration,
-  // enrollIntoCourse,
-  // withdrawFromCourse
+  enrollIntoCourse,
+  withdrawFromCourse
 };

@@ -1,4 +1,3 @@
-import { studentSemesterRegistrationCourseService } from './../studentSemesterRegistrationCourse/studentSemesterRegistrationCourse.services';
 import { SemesterRegistration } from '@prisma/client';
 import { Request, Response } from 'express';
 import httpStatus from 'http-status';
@@ -82,7 +81,7 @@ const enrollToCourse = catchAsync(async (req: Request, res: Response) => {
 const user = (req as any ).user
 // console.log(user);
 
-const result = await studentSemesterRegistrationCourseService.enrollIntoCourse(user?.userId,req.body)
+const result = await SemesterRegistrationService.enrollIntoCourse(user?.userId,req.body)
 
 sendResponse(res, {
   statusCode: httpStatus.OK,
@@ -96,7 +95,7 @@ const withdrawFromCourse = catchAsync(async (req: Request, res: Response) => {
 const user = (req as any ).user
 // console.log(user);
 
-const result = await studentSemesterRegistrationCourseService.withdrawFromCourse(user?.userId,req.body)
+const result = await SemesterRegistrationService.withdrawFromCourse(user?.userId,req.body)
 
 sendResponse(res, {
   statusCode: httpStatus.OK,
