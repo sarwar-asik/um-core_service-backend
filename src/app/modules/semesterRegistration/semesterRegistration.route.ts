@@ -62,7 +62,6 @@ router.post(
 router.post(
   '/start-new-semester/:id',
   auth(ENUM_USER_ROLE.ADMIN),
-  // validateRequest(SemesterRegistrationValidation.enrollOrWithdrawCourse),
   SemesterRegistrationController.startNewRegistration
 );
 
