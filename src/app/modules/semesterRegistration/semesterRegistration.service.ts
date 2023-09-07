@@ -392,6 +392,20 @@ const startNewSemester =async(id:string)=>{
     throw new ApiError(httpStatus.NOT_FOUND,"Semester Registration is not ENDED yet")
   }
 
+  if(semesterRegistration.academicSemester.isCurrent){
+    throw new ApiError(httpStatus.BAD_REQUEST,"Semester Registration is already started")
+  }
+
+  await prisma.$transaction(async(prismaTransactionClient)=>{
+    await prismaTransactionClient.academicSemester.updateMany({
+      where:{
+        isCurrent:true
+      },
+      data:{
+        isCurrent:false
+      }
+    })
+  })
   const updateStatus = await prisma.academicSemester.update({
     where:{
       id:semesterRegistration.academicSemester.id
@@ -400,6 +414,7 @@ const startNewSemester =async(id:string)=>{
       isCurrent:true
     }
   })
+
 
   return updateStatus
 }
