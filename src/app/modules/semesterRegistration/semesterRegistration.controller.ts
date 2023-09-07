@@ -140,6 +140,23 @@ sendResponse(res, {
 })
 
 
+const startNewRegistration= catchAsync(async (req: Request, res: Response) => {
+
+const {id} = req.params
+// console.log(user);
+
+const result = await SemesterRegistrationService.startNewSemester(id)
+
+sendResponse(res, {
+  statusCode: httpStatus.OK,
+  success: true,
+  message: 'start New semester registration successfully',
+  data: result,
+});
+
+})
+
+
 
 export const SemesterRegistrationController = {
   insertDB,
@@ -150,5 +167,6 @@ export const SemesterRegistrationController = {
   enrollToCourse,
   withdrawFromCourse,
   confirmMyRegistration,
-  getMyRegistration
+  getMyRegistration,
+  startNewRegistration
 };

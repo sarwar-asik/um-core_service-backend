@@ -366,12 +366,16 @@ const getMyRegistration = async(authUserId:string)=>{
       student:true
     }
   })
-
-
 return{ semesterRegistration,studentSemesterRegistration}
+}
 
 
 
+// start new semester /
+
+
+const startNewSemester =async(id:string)=>{
+  console.log(id,"started new semester registration");
 }
 
 export const SemesterRegistrationService = {
@@ -383,5 +387,6 @@ export const SemesterRegistrationService = {
   enrollIntoCourse,
   withdrawFromCourse,
   confirmMyRegistration,
-  getMyRegistration
+  getMyRegistration,
+  startNewSemester
 };
