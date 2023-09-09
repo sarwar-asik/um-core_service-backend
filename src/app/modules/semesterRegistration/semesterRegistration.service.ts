@@ -462,10 +462,11 @@ const startNewSemester =async(id:string)=>{
               courseId :item?.offeredCourse?.courseId,
               academicSemesterId:semesterRegistration.academicSemesterId
             }
-            
+
             await prismaTransactionClient.studentEnrolledCourse.create({
               data:enrolledCourseData
             })
+            
           })
 
     })
