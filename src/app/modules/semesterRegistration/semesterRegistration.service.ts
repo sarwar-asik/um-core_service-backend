@@ -1,8 +1,11 @@
 import {
+  Course,
+  OfferedCourse,
   Prisma,
   SemesterRegistration,
   SemesterRegistrationStatus,
   StudentSemesterRegistration,
+  StudentSemesterRegistrationCourse,
 } from '@prisma/client';
 import httpStatus from 'http-status';
 import ApiError from '../../../errors/ApiError';
@@ -451,7 +454,10 @@ const startNewSemester =async(id:string)=>{
           }
          })
           console.log(studentSemesterRegistrationCourse);
-          
+          asyncForEach(studentSemesterRegistrationCourse,async(item:StudentSemesterRegistrationCourse & {offeredCourse:OfferedCourse & {course:Course}})=>{
+            console.log(item);
+          })
+
     })
   })
 
