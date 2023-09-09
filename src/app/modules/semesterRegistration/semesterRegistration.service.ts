@@ -419,7 +419,7 @@ const startNewSemester =async(id:string)=>{
     // find enrolled student ///
 
 
-    const  studentSemesterRegistrationCheck = await prismaTransactionClient.studentSemesterRegistration.findMany({
+    const  studentSemesterRegistrationCheck = await prisma.studentSemesterRegistration.findMany({
       where:{
         semesterRegistration:{
           id
@@ -432,7 +432,7 @@ const startNewSemester =async(id:string)=>{
 
     asyncForEach(studentSemesterRegistrationCheck,async(studentSemReg:StudentSemesterRegistration)=>{
         //  console.log(studentSemReg);
-         const studentSemesterRegistrationCourse= await prismaTransactionClient.studentSemesterRegistrationCourse.findMany({
+         const studentSemesterRegistrationCourse= await prisma.studentSemesterRegistrationCourse.findMany({
           where:{
             semesterRegistration:{
               id
@@ -441,9 +441,17 @@ const startNewSemester =async(id:string)=>{
             student:{
               id:studentSemReg?.studentId
             }
+          },
+          include:{
+            offeredCourse:{
+              include:{
+                course:true
+              }
+            }
           }
          })
           console.log(studentSemesterRegistrationCourse);
+          
     })
   })
 
