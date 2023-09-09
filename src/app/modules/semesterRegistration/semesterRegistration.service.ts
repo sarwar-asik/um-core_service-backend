@@ -455,7 +455,17 @@ const startNewSemester =async(id:string)=>{
          })
           console.log(studentSemesterRegistrationCourse);
           asyncForEach(studentSemesterRegistrationCourse,async(item:StudentSemesterRegistrationCourse & {offeredCourse:OfferedCourse & {course:Course}})=>{
-            console.log(item);
+            // console.log(item);
+
+            const enrolledCourseData ={
+              studentId :item.studentId,
+              courseId :item?.offeredCourse?.courseId,
+              academicSemesterId:semesterRegistration.academicSemesterId
+            }
+            
+            await prismaTransactionClient.studentEnrolledCourse.create({
+              data:enrolledCourseData
+            })
           })
 
     })
