@@ -21,6 +21,7 @@ import {
   semesterRegistrationSearchableFields,
 } from './semesterRegistration.constant';
 import { IEnrollCoursePayload } from './semesterRegistration.interface';
+import { StudentSemesterPaymentService } from '../studentSemesterPayment/semesterRegistration.service';
 
 const insertDB = async (
   data: SemesterRegistration
@@ -437,6 +438,17 @@ const startNewSemester = async (id: string) => {
     asyncForEach(
       studentSemesterRegistrationCheck,
       async (studentSemReg: StudentSemesterRegistration) => {
+
+
+      //! student payment 
+
+      if(studentSemReg?.totalCreditsTaken){
+        const totalPaymentAmmount =  studentSemReg.totalCreditsTaken * 5000;
+        await StudentSemesterPaymentService.createSemesterPayment()
+        
+
+      }
+
         //  console.log(studentSemReg);
         const studentSemesterRegistrationCourse =
           await prisma.studentSemesterRegistrationCourse.findMany({
