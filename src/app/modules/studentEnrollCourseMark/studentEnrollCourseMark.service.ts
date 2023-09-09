@@ -14,94 +14,104 @@ const createStudentEnrollCourseDefaultMarks = async (
 ) => {
   console.log('Default marks', prismaClient, payload);
 
-
-  const isExistMidTermData  = await prismaClient.studentEnrolledCourseMark.findFirst({
-    where:{
-        examType:ExamType.MIDTERM,
-        student:{
-            id:payload?.studentId
+  const isExistMidTermData =
+    await prismaClient.studentEnrolledCourseMark.findFirst({
+      where: {
+        examType: ExamType.MIDTERM,
+        student: {
+          id: payload?.studentId,
         },
-        studentEnrolledCourse:{
-            id:payload?.studentEnrolledCourseId
+        studentEnrolledCourse: {
+          id: payload?.studentEnrolledCourseId,
         },
-        academicSemester:{
-            id:payload.academicSemesterId
-        }
-    }
-  })
+        academicSemester: {
+          id: payload.academicSemesterId,
+        },
+      },
+    });
 
-  if(!isExistMidTermData){
-  //   created for midTime ///
+  if (!isExistMidTermData) {
+    //   created for midTime ///
 
-  await prismaClient.studentEnrolledCourseMark.create({
-    data:{
+    await prismaClient.studentEnrolledCourseMark.create({
+      data: {
         // ! !important used connect in studentEnrollMark
-        
-        student:{
-            connect:{
-                id:payload?.studentId
-            }
+
+        student: {
+          connect: {
+            id: payload?.studentId,
+          },
         },
-        studentEnrolledCourse:{
-            connect:{
-                id:payload?.studentEnrolledCourseId
-            }
+        studentEnrolledCourse: {
+          connect: {
+            id: payload?.studentEnrolledCourseId,
+          },
         },
-        academicSemester:{
-            connect:{
-                id:payload?.academicSemesterId
-            }
+        academicSemester: {
+          connect: {
+            id: payload?.academicSemesterId,
+          },
         },
-        examType:ExamType.MIDTERM
-    }
-  })
+        examType: ExamType.MIDTERM,
+      },
+    });
   }
-  const isExistFinalData  = await prismaClient.studentEnrolledCourseMark.findFirst({
-    where:{
-        examType:ExamType.FINAL,
-        student:{
-            id:payload?.studentId
+  const isExistFinalData =
+    await prismaClient.studentEnrolledCourseMark.findFirst({
+      where: {
+        examType: ExamType.FINAL,
+        student: {
+          id: payload?.studentId,
         },
-        studentEnrolledCourse:{
-            id:payload?.studentEnrolledCourseId
+        studentEnrolledCourse: {
+          id: payload?.studentEnrolledCourseId,
         },
-        academicSemester:{
-            id:payload.academicSemesterId
-        }
-    }
-  })
+        academicSemester: {
+          id: payload.academicSemesterId,
+        },
+      },
+    });
 
-  if(!isExistFinalData){
-  //   created for midTime ///
+  if (!isExistFinalData) {
+    //   created for midTime ///
 
-  await prismaClient.studentEnrolledCourseMark.create({
-    data:{
+    await prismaClient.studentEnrolledCourseMark.create({
+      data: {
         // ! !important used connect in studentEnrollMark
-        
-        student:{
-            connect:{
-                id:payload?.studentId
-            }
+
+        student: {
+          connect: {
+            id: payload?.studentId,
+          },
         },
-        studentEnrolledCourse:{
-            connect:{
-                id:payload?.studentEnrolledCourseId
-            }
+        studentEnrolledCourse: {
+          connect: {
+            id: payload?.studentEnrolledCourseId,
+          },
         },
-        academicSemester:{
-            connect:{
-                id:payload?.academicSemesterId
-            }
+        academicSemester: {
+          connect: {
+            id: payload?.academicSemesterId,
+          },
         },
-        examType:ExamType.FINAL
-    }
-  })
+        examType: ExamType.FINAL,
+      },
+    });
   }
-
-
-
 };
+
+
+
+
+
+const updateStudentMarks = async(payload:any)=>{
+    console.log(payload);
+}
+
+
+
 
 export const StudentEnrollCourseMarkService = {
   createStudentEnrollCourseDefaultMarks,
+  updateStudentMarks
 };
