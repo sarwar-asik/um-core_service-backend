@@ -443,9 +443,18 @@ const startNewSemester = async (id: string) => {
       //! student payment 
 
       if(studentSemReg?.totalCreditsTaken){
-        const totalPaymentAmmount =  studentSemReg.totalCreditsTaken * 5000;
-        await StudentSemesterPaymentService.createSemesterPayment()
-        
+        const totalPaymentAmount =  studentSemReg.totalCreditsTaken * 5000;
+
+        await StudentSemesterPaymentService.createSemesterPayment(
+          prismaTransactionClient,
+          { 
+            studentId:studentSemReg?.studentId,
+            academicSemesterId :semesterRegistration.academicSemesterId,
+            totalPaymentAmount
+          }
+
+        )
+
 
       }
 
