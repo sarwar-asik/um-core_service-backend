@@ -17,6 +17,7 @@ import {
   semesterRegistrationSearchableFields,
 } from './semesterRegistration.constant';
 import { IEnrollCoursePayload } from './semesterRegistration.interface';
+import { asyncForEach } from '../courses/utils';
 
 const insertDB = async (
   data: SemesterRegistration
@@ -414,7 +415,11 @@ const startNewSemester =async(id:string)=>{
       }
     })
 
-    const  studentSemesterRegistrations = await prisma.studentSemesterRegistration.findMany({
+
+    // find enrolled student ///
+
+
+    const  studentSemesterRegistrationCheck = await prismaTransactionClient.studentSemesterRegistration.findMany({
       where:{
         semesterRegistration:{
           id
@@ -423,9 +428,30 @@ const startNewSemester =async(id:string)=>{
       }
     })
 
-    console.log(studentSemesterRegistrations);
+    console.log(studentSemesterRegistrationCheck);
+
+    asyncForEach(studentSemesterRegistrationCheck,async(studentSemReg:StudentSemesterRegistration)=>{
+        //  console.log(studentSemReg);
+         const studentSemesterRegistrationCourse= await prismaTransactionClient.studentSemesterRegistrationCourse.findMany({
+          where:{
+            semesterRegistration:{
+              id
+            },
+
+            student:{
+              id:studentSemReg?.studentId
+            }
+          }
+         })
+          console.log(studentSemesterRegistrationCourse);
+    })
   })
 
+   
+
+    
+
+ 
   // const updateStatus = 
 
 
