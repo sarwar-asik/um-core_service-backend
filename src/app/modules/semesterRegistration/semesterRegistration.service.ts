@@ -492,12 +492,10 @@ const startNewSemester = async (id: string) => {
     );
   });
 
-  // const updateStatus =
-
   return {
     message: 'Semester Started successfully',
-  };
-};
+  }
+};  
 
 export const SemesterRegistrationService = {
   insertDB,

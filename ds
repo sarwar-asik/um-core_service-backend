@@ -1,0 +1,38 @@
+warning: in the working copy of 'src/app/modules/semesterRegistration/semesterRegistration.service.ts', LF will be replaced by CRLF the next time Git touches it
+[1mdiff --git a/logs/winston/errors/phu-2023-09-09-10-error.log b/logs/winston/errors/phu-2023-09-09-10-error.log[m
+[1mindex e69de29..bcb95e6 100644[m
+[1m--- a/logs/winston/errors/phu-2023-09-09-10-error.log[m
+[1m+++ b/logs/winston/errors/phu-2023-09-09-10-error.log[m
+[36m@@ -0,0 +1 @@[m
+[32m+[m[32mSat Sep 09 2023 10:37:50 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ Semester Registration not found[m
+[1mdiff --git a/logs/winston/successes/phu-2023-09-09-10-success.log b/logs/winston/successes/phu-2023-09-09-10-success.log[m
+[1mindex cc7f602..b96c727 100644[m
+[1m--- a/logs/winston/successes/phu-2023-09-09-10-success.log[m
+[1m+++ b/logs/winston/successes/phu-2023-09-09-10-success.log[m
+[36m@@ -31,3 +31,7 @@[m [mSat Sep 09 2023 10:35:44 } [PH] info: [1m[4m[32mServer running on port 5000[[m
+ Sat Sep 09 2023 10:35:47 } [PH] info: [1m[4m[32mServer running on port 5000[39m[24m[22m[m
+ Sat Sep 09 2023 10:36:1 } [PH] info: [1m[4m[32mServer running on port 5000[39m[24m[22m[m
+ Sat Sep 09 2023 10:36:17 } [PH] info: [1m[4m[32mServer running on port 5000[39m[24m[22m[m
+[32m+[m[32mSat Sep 09 2023 10:36:23 } [PH] info: [1m[4m[32mServer running on port 5000[39m[24m[22m[m
+[32m+[m[32mSat Sep 09 2023 10:37:46 } [PH] info: [1m[4m[32mServer running on port 5000[39m[24m[22m[m
+[32m+[m[32mSat Sep 09 2023 10:51:50 } [PH] info: [1m[4m[32mServer running on port 5000[39m[24m[22m[m
+[32m+[m[32mSat Sep 09 2023 10:52:49 } [PH] info: [1m[4m[32mServer running on port 5000[39m[24m[22m[m
+[1mdiff --git a/src/app/modules/semesterRegistration/semesterRegistration.service.ts b/src/app/modules/semesterRegistration/semesterRegistration.service.ts[m
+[1mindex b7b5daa..3a19a3e 100644[m
+[1m--- a/src/app/modules/semesterRegistration/semesterRegistration.service.ts[m
+[1m+++ b/src/app/modules/semesterRegistration/semesterRegistration.service.ts[m
+[36m@@ -492,12 +492,10 @@[m [mconst startNewSemester = async (id: string) => {[m
+     );[m
+   });[m
+ [m
+[31m-  // const updateStatus =[m
+[31m-[m
+   return {[m
+     message: 'Semester Started successfully',[m
+[31m-  };[m
+[31m-};[m
+[32m+[m[32m  }[m
+[32m+[m[32m};[m[41m  [m
+ [m
+ export const SemesterRegistrationService = {[m
+   insertDB,[m
