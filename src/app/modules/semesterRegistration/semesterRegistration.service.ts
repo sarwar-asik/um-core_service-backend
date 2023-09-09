@@ -413,6 +413,17 @@ const startNewSemester =async(id:string)=>{
         isCurrent:true
       }
     })
+
+    const  studentSemesterRegistrations = await prisma.studentSemesterRegistration.findMany({
+      where:{
+        semesterRegistration:{
+          id
+        },
+        isConfirmed:true
+      }
+    })
+
+    console.log(studentSemesterRegistrations);
   })
 
   // const updateStatus = 
