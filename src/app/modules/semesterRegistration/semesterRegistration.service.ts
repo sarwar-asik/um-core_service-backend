@@ -22,6 +22,7 @@ import {
 } from './semesterRegistration.constant';
 import { IEnrollCoursePayload } from './semesterRegistration.interface';
 import { StudentSemesterPaymentService } from '../studentSemesterPayment/semesterRegistration.service';
+import { StudentEnrollCourseMarkService } from '../studentEnrollCourseMark/studentEnrollCourseMark.service';
 
 const insertDB = async (
   data: SemesterRegistration
@@ -460,7 +461,7 @@ const startNewSemester = async (id: string) => {
 
         //  console.log(studentSemReg);
         const studentSemesterRegistrationCourse =
-          await prisma.studentSemesterRegistrationCourse.findMany({
+          await prismaTransactionClient.studentSemesterRegistrationCourse.findMany({
             where: {
               semesterRegistration: {
                 id,
@@ -487,7 +488,7 @@ const startNewSemester = async (id: string) => {
             }
           ) => {
             // console.log(item);
-            const isExistData = await prisma.studentEnrolledCourse.findFirst({
+            const isExistData = await prismaTransactionClient.studentEnrolledCourse.findFirst({
               where: {
                 studentId: item.studentId,
                 courseId: item?.offeredCourse?.courseId,
@@ -502,9 +503,18 @@ const startNewSemester = async (id: string) => {
                 academicSemesterId: semesterRegistration.academicSemesterId,
               };
   
-              await prisma.studentEnrolledCourse.create({
+             const studentEnrolledCourseData = await prismaTransactionClient.studentEnrolledCourse.create({
                 data: enrolledCourseData,
-              });
+              })
+
+              await StudentEnrollCourseMarkService.createStudentEnrollCourseDefaultMarks(prismaTransactionClient,{
+                studentId:item?.studentId,
+                studentEnrolledCourseId :studentEnrolledCourseData?.id,
+                academicSemesterId:semesterRegistration?.academicSemesterId
+              })
+
+
+
             }
            
           }
