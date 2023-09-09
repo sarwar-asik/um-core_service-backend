@@ -15,7 +15,23 @@ const createStudentEnrollCourseDefaultMarks = async (
   console.log('Default marks', prismaClient, payload);
 
 
-//   created for midTime ///
+  const isExistMidTermData  = await prismaClient.studentEnrolledCourseMark.findFirst({
+    where:{
+        examType:ExamType.MIDTERM,
+        student:{
+            id:payload?.studentId
+        },
+        studentEnrolledCourse:{
+            id:payload?.studentEnrolledCourseId
+        },
+        academicSemester:{
+            id:payload.academicSemesterId
+        }
+    }
+  })
+
+  if(!isExistMidTermData){
+  //   created for midTime ///
 
   await prismaClient.studentEnrolledCourseMark.create({
     data:{
@@ -39,12 +55,29 @@ const createStudentEnrollCourseDefaultMarks = async (
         examType:ExamType.MIDTERM
     }
   })
+  }
+  const isExistFinalData  = await prismaClient.studentEnrolledCourseMark.findFirst({
+    where:{
+        examType:ExamType.FINAL,
+        student:{
+            id:payload?.studentId
+        },
+        studentEnrolledCourse:{
+            id:payload?.studentEnrolledCourseId
+        },
+        academicSemester:{
+            id:payload.academicSemesterId
+        }
+    }
+  })
 
-//   created for final
+  if(!isExistFinalData){
+  //   created for midTime ///
+
   await prismaClient.studentEnrolledCourseMark.create({
     data:{
         // ! !important used connect in studentEnrollMark
-
+        
         student:{
             connect:{
                 id:payload?.studentId
@@ -63,6 +96,10 @@ const createStudentEnrollCourseDefaultMarks = async (
         examType:ExamType.FINAL
     }
   })
+  }
+
+
+
 };
 
 export const StudentEnrollCourseMarkService = {
