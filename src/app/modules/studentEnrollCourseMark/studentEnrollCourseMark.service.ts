@@ -106,6 +106,7 @@ const createStudentEnrollCourseDefaultMarks = async (
 
 const updateStudentMarks = async(payload:any)=>{
     console.log(payload);
+    return payload
 }
 
 
