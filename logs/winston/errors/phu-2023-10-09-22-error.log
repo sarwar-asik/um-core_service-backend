@@ -1,0 +1,12 @@
+Sun Sep 10 2023 22:4:37 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ You are not enroll to any course
+Sun Sep 10 2023 22:4:44 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ 
+Invalid `prisma.studentSemesterRegistrationCourse.create()` invocation:
+
+
+Unique constraint failed on the fields: (`semesterRegistrationId`,`studentId`,`offeredCourseId`)
+Sun Sep 10 2023 22:15:55 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ 
+Invalid `prisma.studentSemesterRegistrationCourse.create()` invocation:
+
+
+Unique constraint failed on the fields: (`semesterRegistrationId`,`studentId`,`offeredCourseId`)
+Sun Sep 10 2023 22:23:45 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ You can take only 12 to 20
