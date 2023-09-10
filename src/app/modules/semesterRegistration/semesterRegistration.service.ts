@@ -407,7 +407,8 @@ const startNewSemester = async (id: string) => {
       'Semester Registration is not ENDED yet'
     );
   }
-
+  // console.log(semesterRegistration,"semesterRegistration");
+  
   if (semesterRegistration.academicSemester.isCurrent) {
     throw new ApiError(
       httpStatus.BAD_REQUEST,
@@ -445,7 +446,7 @@ const startNewSemester = async (id: string) => {
         },
       });
 
-    console.log(studentSemesterRegistrationCheck);
+    // console.log(studentSemesterRegistrationCheck);
 
     asyncForEach(
       studentSemesterRegistrationCheck,
@@ -487,7 +488,7 @@ const startNewSemester = async (id: string) => {
               },
             }
           );
-        console.log(studentSemesterRegistrationCourse);
+        // console.log(studentSemesterRegistrationCourse);
         asyncForEach(
           studentSemesterRegistrationCourse,
           async (

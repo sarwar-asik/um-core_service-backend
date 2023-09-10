@@ -63,7 +63,7 @@ const updateOneToDB = catchAsync(async (req: Request, res: Response) => {
 const startRegistration = catchAsync(async (req: Request, res: Response) => {
   const user = (req as any).user;
 
-  console.log(user, 'uuuuuuuuuuu');
+  // console.log(user, 'uuuuuuuuuuu');
   // console.log(req.headers.authorization,"aaaaaaaaa");
 
   const result = await SemesterRegistrationService.startMyRegistration(
