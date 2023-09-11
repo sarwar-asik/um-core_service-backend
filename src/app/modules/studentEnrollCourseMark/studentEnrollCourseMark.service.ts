@@ -197,6 +197,44 @@ const updateStudentMarks = async (payload: any) => {
 
 const updateFinalMarks = async(payload:any)=>{
   console.log(payload);
+
+  const {studentId,academicSemesterId,courseId} = payload
+  const studentEnrollCourse = await prisma.studentEnrolledCourse.findFirst({
+    where:{
+      student:{
+        id:studentId
+      },
+      academicSemester:{
+        id:academicSemesterId
+      },
+      course:{
+        id:courseId
+      }
+    }
+  })
+  if(!studentEnrollCourse){
+    throw new ApiError(httpStatus.BAD_REQUEST,"studentEnrolledCourse data not found")
+  }
+  const studentEnrollCourseMark = await prisma.studentEnrolledCourseMark.findMany({
+    where:{
+      student:{
+        id:studentId
+      },
+      academicSemester:{
+        id:academicSemesterId
+      },
+      studentEnrolledCourse:{
+        course:{
+          id:courseId
+        }
+      }
+    }
+  })
+  if(!studentEnrollCourseMark?.length){
+    throw new ApiError(httpStatus.BAD_REQUEST,"studentEnrolledCourseMarks data not found")
+  }
+
+
   return payload
 }
 
