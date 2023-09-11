@@ -1,16 +1,16 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-unused-expressions */
 /* eslint-disable @typescript-eslint/no-unused-vars */
+import { Prisma } from '@prisma/client';
 import { ErrorRequestHandler, NextFunction, Request, Response } from 'express';
+import { ZodError } from 'zod';
 import config from '../../config';
 import ApiError from '../../errors/ApiError';
+import handleClientError from '../../errors/handleClientError';
 import handleValidationError from '../../errors/handleValidationError';
-import { ZodError } from 'zod';
 import handleZodError from '../../errors/handleZodError';
 import { IGenericErrorMessage } from '../../interfaces/error';
 import { errorlogger } from '../../shared/logger';
-import { Prisma } from '@prisma/client';
-import handleClientError from '../../errors/handleClientError';
 
 const globalErrorHandler: ErrorRequestHandler = (
   error,
@@ -26,21 +26,28 @@ const globalErrorHandler: ErrorRequestHandler = (
   let message = 'Something went wrong !';
   let errorMessages: IGenericErrorMessage[] = [];
 
-   // ! for prisma ////
+  // ! for prisma ////
   if (error instanceof Prisma.PrismaClientValidationError) {
     const simplifiedError = handleValidationError(error);
     statusCode = simplifiedError.statusCode;
-    message = simplifiedError.message;
+     //! send organized error from conceptual session Mastering Error Handling
+    
+     const lines = error.message.trim().split('\n')
+
+     message =` ${lines[lines.length-1]} (${simplifiedError.message})`
+
+    // message = lines[lines.length-1]
+    // message = simplifiedError.message;
     errorMessages = simplifiedError.errorMessages;
-  } 
+  }
   // ! for zod
   else if (error instanceof ZodError) {
     const simplifiedError = handleZodError(error);
     statusCode = simplifiedError.statusCode;
     message = simplifiedError.message;
     errorMessages = simplifiedError.errorMessages;
-  } 
-  
+  }
+
   // ! for prisma ////
   else if (error instanceof Prisma.PrismaClientKnownRequestError) {
     const simplifiedError = handleClientError(error);
@@ -50,6 +57,8 @@ const globalErrorHandler: ErrorRequestHandler = (
   } else if (error instanceof ApiError) {
     statusCode = error?.statusCode;
     message = error.message;
+   
+
     errorMessages = error?.message
       ? [
           {

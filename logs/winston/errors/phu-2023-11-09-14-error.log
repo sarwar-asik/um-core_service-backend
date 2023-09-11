@@ -1,0 +1,290 @@
+Mon Sep 11 2023 14:21:44 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ studentEnrolledCourse data not found
+Mon Sep 11 2023 14:24:53 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ studentEnrolledCourse data not found
+Mon Sep 11 2023 14:32:43 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ [
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "undefined",
+    "path": [
+      "body",
+      "startDate"
+    ],
+    "message": "Start date is required"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "undefined",
+    "path": [
+      "body",
+      "endDate"
+    ],
+    "message": "End date is required"
+  }
+]
+Mon Sep 11 2023 14:32:56 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ There is already an ONGOING registration 
+Mon Sep 11 2023 14:38:58 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ [
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "undefined",
+    "path": [
+      "body",
+      "offeredCourseId"
+    ],
+    "message": "Offered course id is required"
+  }
+]
+Mon Sep 11 2023 14:39:21 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ [
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "undefined",
+    "path": [
+      "body",
+      "studentId"
+    ],
+    "message": "studentID is Required (zod)"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "undefined",
+    "path": [
+      "body",
+      "firstName"
+    ],
+    "message": "firstName is Required (zod)"
+  }
+]
+Mon Sep 11 2023 14:40:15 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ 
+Invalid `prisma.student.create()` invocation:
+
+{
+  data: {
+    firstName: "John-test-1",
+    lastName: "Doe",
+    middleName: "M",
+    profileImage: "profile.jpg",
+    email: "john.doe@example.com",
+    contactNo: "1234567890",
+    gender: "Male",
+    bloodGroup: "A+",
+    academicSemesterId: "fb10f3d9-b9d4-410f-9b10-9b40f0b9328b",
+    academicDepartmentId: "26a2e127-6278-4c35-831d-e48ba7dd0297",
+    academicFacultyId: "e4ad30c7-6e0d-4cd1-a9e2-bd6b7e78c777",
++   studentId: String
+  }
+}
+
+Argument `studentId` is missing.
+Mon Sep 11 2023 14:40:22 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ 
+Invalid `prisma.student.create()` invocation:
+
+{
+  data: {
+    firstName: "John-test-1",
+    lastName: "Doe",
+    middleName: "M",
+    profileImage: "profile.jpg",
+    email: "john.doe@example.com",
+    contactNo: "1234567890",
+    gender: "Male",
+    bloodGroup: "A+",
+    academicSemesterId: "fb10f3d9-b9d4-410f-9b10-9b40f0b9328b",
+    academicDepartmentId: "26a2e127-6278-4c35-831d-e48ba7dd0297",
+    academicFacultyId: "e4ad30c7-6e0d-4cd1-a9e2-bd6b7e78c777",
++   studentId: String
+  }
+}
+
+Argument `studentId` is missing.
+Mon Sep 11 2023 14:41:19 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ 
+Invalid `prisma.student.create()` invocation:
+
+{
+  data: {
+    firstName: "John-test-1",
+    lastName: "Doe",
+    middleName: "M",
+    profileImage: "profile.jpg",
+    email: "john.doe@example.com",
+    contactNo: "1234567890",
+    gender: "Male",
+    bloodGroup: "A+",
+    academicSemesterId: "fb10f3d9-b9d4-410f-9b10-9b40f0b9328b",
+    academicDepartmentId: "26a2e127-6278-4c35-831d-e48ba7dd0297",
+    academicFacultyId: "e4ad30c7-6e0d-4cd1-a9e2-bd6b7e78c777",
++   studentId: String
+  }
+}
+
+Argument `studentId` is missing.
+Mon Sep 11 2023 14:41:23 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ 
+Invalid `prisma.student.create()` invocation:
+
+{
+  data: {
+    firstName: "John-test-1",
+    lastName: "Doe",
+    middleName: "M",
+    profileImage: "profile.jpg",
+    email: "john.doe@example.com",
+    contactNo: "1234567890",
+    gender: "Male",
+    bloodGroup: "A+",
+    academicSemesterId: "fb10f3d9-b9d4-410f-9b10-9b40f0b9328b",
+    academicDepartmentId: "26a2e127-6278-4c35-831d-e48ba7dd0297",
+    academicFacultyId: "e4ad30c7-6e0d-4cd1-a9e2-bd6b7e78c777",
++   studentId: String
+  }
+}
+
+Argument `studentId` is missing.
+Mon Sep 11 2023 14:41:45 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ 
+Invalid `prisma.student.create()` invocation:
+
+{
+  data: {
+    firstName: "John-test-1",
+    lastName: "Doe",
+    middleName: "M",
+    profileImage: "profile.jpg",
+    email: "john.doe@example.com",
+    contactNo: "1234567890",
+    gender: "Male",
+    bloodGroup: "A+",
+    academicSemesterId: "fb10f3d9-b9d4-410f-9b10-9b40f0b9328b",
+    academicDepartmentId: "26a2e127-6278-4c35-831d-e48ba7dd0297",
+    academicFacultyId: "e4ad30c7-6e0d-4cd1-a9e2-bd6b7e78c777",
++   studentId: String
+  }
+}
+
+Argument `studentId` is missing.
+Mon Sep 11 2023 14:43:27 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ 
+Invalid `prisma.student.create()` invocation:
+
+{
+  data: {
+    firstName: "John-test-1",
+    lastName: "Doe",
+    middleName: "M",
+    profileImage: "profile.jpg",
+    email: "john.doe@example.com",
+    contactNo: "1234567890",
+    gender: "Male",
+    bloodGroup: "A+",
+    academicSemesterId: "fb10f3d9-b9d4-410f-9b10-9b40f0b9328b",
+    academicDepartmentId: "26a2e127-6278-4c35-831d-e48ba7dd0297",
+    academicFacultyId: "e4ad30c7-6e0d-4cd1-a9e2-bd6b7e78c777",
++   studentId: String
+  }
+}
+
+Argument `studentId` is missing.
+Mon Sep 11 2023 14:43:29 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ 
+Invalid `prisma.student.create()` invocation:
+
+{
+  data: {
+    firstName: "John-test-1",
+    lastName: "Doe",
+    middleName: "M",
+    profileImage: "profile.jpg",
+    email: "john.doe@example.com",
+    contactNo: "1234567890",
+    gender: "Male",
+    bloodGroup: "A+",
+    academicSemesterId: "fb10f3d9-b9d4-410f-9b10-9b40f0b9328b",
+    academicDepartmentId: "26a2e127-6278-4c35-831d-e48ba7dd0297",
+    academicFacultyId: "e4ad30c7-6e0d-4cd1-a9e2-bd6b7e78c777",
++   studentId: String
+  }
+}
+
+Argument `studentId` is missing.
+Mon Sep 11 2023 14:43:50 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ 
+Invalid `prisma.student.create()` invocation:
+
+{
+  data: {
+    firstName: "John-test-1",
+    lastName: "Doe",
+    middleName: "M",
+    profileImage: "profile.jpg",
+    email: "john.doe@example.com",
+    contactNo: "1234567890",
+    gender: "Male",
+    bloodGroup: "A+",
+    academicSemesterId: "fb10f3d9-b9d4-410f-9b10-9b40f0b9328b",
+    academicDepartmentId: "26a2e127-6278-4c35-831d-e48ba7dd0297",
+    academicFacultyId: "e4ad30c7-6e0d-4cd1-a9e2-bd6b7e78c777",
++   studentId: String
+  }
+}
+
+Argument `studentId` is missing.
+Mon Sep 11 2023 14:44:40 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ 
+Invalid `prisma.student.create()` invocation:
+
+{
+  data: {
+    firstName: "John-test-1",
+    lastName: "Doe",
+    middleName: "M",
+    profileImage: "profile.jpg",
+    email: "john.doe@example.com",
+    contactNo: "1234567890",
+    gender: "Male",
+    bloodGroup: "A+",
+    academicSemesterId: "fb10f3d9-b9d4-410f-9b10-9b40f0b9328b",
+    academicDepartmentId: "26a2e127-6278-4c35-831d-e48ba7dd0297",
+    academicFacultyId: "e4ad30c7-6e0d-4cd1-a9e2-bd6b7e78c777",
++   studentId: String
+  }
+}
+
+Argument `studentId` is missing.
+Mon Sep 11 2023 14:44:43 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ 
+Invalid `prisma.student.create()` invocation:
+
+{
+  data: {
+    firstName: "John-test-1",
+    lastName: "Doe",
+    middleName: "M",
+    profileImage: "profile.jpg",
+    email: "john.doe@example.com",
+    contactNo: "1234567890",
+    gender: "Male",
+    bloodGroup: "A+",
+    academicSemesterId: "fb10f3d9-b9d4-410f-9b10-9b40f0b9328b",
+    academicDepartmentId: "26a2e127-6278-4c35-831d-e48ba7dd0297",
+    academicFacultyId: "e4ad30c7-6e0d-4cd1-a9e2-bd6b7e78c777",
++   studentId: String
+  }
+}
+
+Argument `studentId` is missing.
+Mon Sep 11 2023 14:45:18 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ 
+Invalid `prisma.student.create()` invocation:
+
+{
+  data: {
+    firstName: "John-test-1",
+    lastName: "Doe",
+    middleName: "M",
+    profileImage: "profile.jpg",
+    email: "john.doe@example.com",
+    contactNo: "1234567890",
+    gender: "Male",
+    bloodGroup: "A+",
+    academicSemesterId: "fb10f3d9-b9d4-410f-9b10-9b40f0b9328b",
+    academicDepartmentId: "26a2e127-6278-4c35-831d-e48ba7dd0297",
+    academicFacultyId: "e4ad30c7-6e0d-4cd1-a9e2-bd6b7e78c777",
++   studentId: String
+  }
+}
+
+Argument `studentId` is missing.
