@@ -282,7 +282,19 @@ const grades = await prisma.studentEnrolledCourse.findMany({
   }
 })
 
-await studentEnrollCourseMarkUtils.calcCGPAandGrade(grades)
+const academicResult = await studentEnrollCourseMarkUtils.calcCGPAandGrade(grades)
+
+await prisma.studentAcademicInfo.create({
+  data:{
+    student:{
+      connect:{
+        id:studentId
+      }
+    },
+    totalCompletedCredit:academicResult?.totalCompletedCredit,
+    cgpa:academicResult?.cgpa
+  }
+})
 
 
 

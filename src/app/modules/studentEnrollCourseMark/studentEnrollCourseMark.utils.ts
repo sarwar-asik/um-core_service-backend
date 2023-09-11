@@ -42,32 +42,37 @@ const calcCGPAandGrade = (
   payload: (StudentEnrolledCourse & { course: Course })[]
 ) => {
   console.log(payload);
-  let result = {
-    totalCompletedCredit: 0,
-    cgpa: 0,
-  };
+//   const result = {
+//     totalCompletedCredit: 0,
+//     cgpa: 0,
+//   };
+// console.log(result);
+
   if (payload.length === 0) {
-    result = {
+    return {
       totalCompletedCredit: 0,
       cgpa: 0,
     };
   }
 
-  console.log(result);
   let totalCredits = 0;
   let totalCGPA = 0;
 
   for (const grade of payload) {
     // console.log(grade);
-    totalCredits += grade.course.credits|| 0;
+    totalCredits += grade.course.credits || 0;
 
     totalCGPA += grade.point || 0;
 
-    console.log(totalCGPA,totalCredits);
+    console.log(totalCGPA, totalCredits);
   }
-  const avgCGPA = totalCGPA/payload.length;
-  console.log(avgCGPA)
-  ;
+  const avgCGPA = Number((totalCGPA / payload.length).toFixed(2))
+//   console.log(avgCGPA);
+
+  return {
+    totalCompletedCredit: totalCredits,
+    cgpa: avgCGPA,
+  };
 };
 
 export const studentEnrollCourseMarkUtils = {
