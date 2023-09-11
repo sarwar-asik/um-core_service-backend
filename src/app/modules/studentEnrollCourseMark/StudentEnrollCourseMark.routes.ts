@@ -4,5 +4,6 @@ import { StudentEnrollCourseMarkController } from "./studentEnrollCourseMark.con
 const router = express.Router()
 
 router.patch('/update-marks',StudentEnrollCourseMarkController.updateStudentMarks)
+router.patch('/final-marks',StudentEnrollCourseMarkController.updateStudentMarks)
 
 export const studentEnrollCourseMarkRouter = router

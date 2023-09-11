@@ -1,9 +1,13 @@
 import { studentEnrollCourseMarkUtils } from './studentEnrollCourseMark.utils';
-import { ExamType, Prisma, PrismaClient } from '@prisma/client';
+import { ExamType, Prisma, PrismaClient, StudentEnrolledCourseMark } from '@prisma/client';
 import { DefaultArgs } from '@prisma/client/runtime/library';
 import httpStatus from 'http-status';
 import ApiError from '../../../errors/ApiError';
 import prisma from '../../../shared/prisma';
+import { IPaginationOptions } from '../../../interfaces/pagination';
+import { IGenericResponse } from '../../../interfaces/common';
+import { paginationHelpers } from '../../../helpers/paginationHelper';
+import { IStudentEnrolledCourseMarkFilterRequest } from './studentEnrollCourseMark.interface';
 
 const createStudentEnrollCourseDefaultMarks = async (
   prismaClient: Omit<
@@ -104,6 +108,47 @@ const createStudentEnrollCourseDefaultMarks = async (
   }
 };
 
+const getAllFromDB = async (
+  filters: IStudentEnrolledCourseMarkFilterRequest,
+  options: IPaginationOptions
+): Promise<IGenericResponse<StudentEnrolledCourseMark[]>> => {
+  const { limit, page } = paginationHelpers.calculatePagination(options);
+
+  const marks = await prisma.studentEnrolledCourseMark.findMany({
+      where: {
+          student: {
+              id: filters.studentId
+          },
+          academicSemester: {
+              id: filters.academicSemesterId
+          },
+          studentEnrolledCourse: {
+              course: {
+                  id: filters.courseId
+              }
+          }
+      },
+      include: {
+          studentEnrolledCourse: {
+              include: {
+                  course: true
+              }
+          },
+          student: true
+      }
+  });
+
+  return {
+      meta: {
+          total: marks.length,
+          page,
+          limit
+      },
+      data: marks
+  };
+};
+
+
 const updateStudentMarks = async (payload: any) => {
   // console.log(payload);
 
@@ -137,7 +182,7 @@ const updateStudentMarks = async (payload: any) => {
 
 
   const updateMarks = await prisma.studentEnrolledCourseMark.update({
-    where: {
+    where:{
       id: studentEnrollCourseMarks.id,
     },
     data: {
@@ -148,9 +193,15 @@ const updateStudentMarks = async (payload: any) => {
   });
 
   return updateMarks;
-};
+}
+
+const updateFinalMarks = async(payload:any)=>{
+  console.log(payload);
+}
 
 export const StudentEnrollCourseMarkService = {
   createStudentEnrollCourseDefaultMarks,
+  getAllFromDB,
   updateStudentMarks,
+  updateFinalMarks
 };
