@@ -197,6 +197,7 @@ const updateStudentMarks = async (payload: any) => {
 
 const updateFinalMarks = async(payload:any)=>{
   console.log(payload);
+  return payload
 }
 
 export const StudentEnrollCourseMarkService = {

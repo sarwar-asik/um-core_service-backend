@@ -11,6 +11,6 @@ router.get('/',
 );
 
 router.patch('/update-marks',StudentEnrollCourseMarkController.updateStudentMarks)
-router.patch('/final-marks',StudentEnrollCourseMarkController.updateStudentMarks)
+router.patch('/final-marks',StudentEnrollCourseMarkController.updateFinalMarks)
 
 export const studentEnrollCourseMarkRouter = router
