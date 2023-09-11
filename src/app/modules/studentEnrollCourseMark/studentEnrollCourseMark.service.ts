@@ -215,7 +215,7 @@ const updateFinalMarks = async(payload:any)=>{
   if(!studentEnrollCourse){
     throw new ApiError(httpStatus.BAD_REQUEST,"studentEnrolledCourse data not found")
   }
-  const studentEnrollCourseMark = await prisma.studentEnrolledCourseMark.findMany({
+  const studentEnrollCourseMarks = await prisma.studentEnrolledCourseMark.findMany({
     where:{
       student:{
         id:studentId
@@ -230,9 +230,29 @@ const updateFinalMarks = async(payload:any)=>{
       }
     }
   })
-  if(!studentEnrollCourseMark?.length){
+  if(!studentEnrollCourseMarks?.length){
     throw new ApiError(httpStatus.BAD_REQUEST,"studentEnrolledCourseMarks data not found")
   }
+
+  const midTermMarks =  studentEnrollCourseMarks.find(item=>item?.examType === ExamType.MIDTERM)?.marks || 0;
+
+  const finalTermMarks =  studentEnrollCourseMarks.find(item=>item?.examType === ExamType.FINAL)?.marks || 0
+// console.log(midTermMarks,finalTermMarks);
+
+
+const totalFinalMarks = Math.ceil(midTermMarks* 0.4) + Math.ceil(finalTermMarks* 0.6)  ///math used for round figure marks
+
+console.log("🚀 totalFinalMarks:", totalFinalMarks)
+
+const grade = studentEnrollCourseMarkUtils.getGradeFromMarks(totalFinalMarks)
+
+console.log(grade);
+
+
+
+
+
+
 
 
   return payload
