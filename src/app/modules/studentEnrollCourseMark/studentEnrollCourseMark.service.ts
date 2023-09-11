@@ -1,3 +1,4 @@
+import { studentEnrollCourseMarkUtils } from './studentEnrollCourseMark.utils';
 import { ExamType, Prisma, PrismaClient } from '@prisma/client';
 import { DefaultArgs } from '@prisma/client/runtime/library';
 import httpStatus from 'http-status';
@@ -129,38 +130,24 @@ const updateStudentMarks = async (payload: any) => {
     throw new ApiError(
       httpStatus.BAD_REQUEST,
       'Student enrolled course mark not found '
-    )
+    );
   }
 
-  let grade = '';
-
-  if (marks >= 0 && marks <= 33) {
-    grade = 'F';
-  } else if (marks >= 34 && marks <= 49) {
-    grade = 'D';
-  } else if (marks >= 50 && marks <= 59) {
-    grade = 'C';
-  } else if (marks >= 60 && marks <= 69) {
-    grade = 'B';
-  } else if (marks >= 70 && marks <= 79) {
-    grade = 'A';
-  } else if (marks >= 80 && marks <= 100) {
-    grade = 'A+';
-  }
+ const {grade} = studentEnrollCourseMarkUtils.getGradeFromMarks(marks)
 
 
   const updateMarks = await prisma.studentEnrolledCourseMark.update({
-    where:{
-      id:studentEnrollCourseMarks.id
+    where: {
+      id: studentEnrollCourseMarks.id,
     },
-    data:{
+    data: {
       marks,
       grade,
-      examType
-    }
-  })
+      examType,
+    },
+  });
 
-  return updateMarks
+  return updateMarks;
 };
 
 export const StudentEnrollCourseMarkService = {

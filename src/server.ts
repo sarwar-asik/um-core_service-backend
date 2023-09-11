@@ -4,7 +4,7 @@ import app from './app';
 import config from './config';
 import { errorlogger, logger } from './shared/logger';
 
-async function bootstrap() {
+async function mainFunc() {
   const server: Server = app.listen(config.port, () => {
     logger.info(`Server running on port ${config.port}`.green.underline.bold);
   });
@@ -34,4 +34,4 @@ async function bootstrap() {
   });
 }
 
-bootstrap();
+mainFunc();
