@@ -1,5 +1,5 @@
 import { studentEnrollCourseMarkUtils } from './studentEnrollCourseMark.utils';
-import { ExamType, Prisma, PrismaClient, StudentEnrolledCourseMark } from '@prisma/client';
+import { ExamType, Prisma, PrismaClient, StudentEnrolledCourseMark, StudentEnrolledCourseStatus } from '@prisma/client';
 import { DefaultArgs } from '@prisma/client/runtime/library';
 import httpStatus from 'http-status';
 import ApiError from '../../../errors/ApiError';
@@ -244,11 +244,45 @@ const totalFinalMarks = Math.ceil(midTermMarks* 0.4) + Math.ceil(finalTermMarks*
 
 console.log("🚀 totalFinalMarks:", totalFinalMarks)
 
-const grade = studentEnrollCourseMarkUtils.getGradeFromMarks(totalFinalMarks)
+const result = studentEnrollCourseMarkUtils.getGradeFromMarks(totalFinalMarks)
 
-console.log(grade);
+console.log(result,"result");
+
+await prisma.studentEnrolledCourse.updateMany({
+  where:{
+    student:{
+      id:studentId
+    },
+    academicSemester:{
+      id:academicSemesterId
+    },
+    course:{
+      id:courseId
+    }
+  },
+  data:{
+    grade:result.grade,
+    point:result?.point,
+    totalMarks:totalFinalMarks,
+    status:StudentEnrolledCourseStatus.COMPLETED
+  }
+})
 
 
+
+const grades = await prisma.studentEnrolledCourse.findMany({
+  where:{
+    student:{
+      id:studentId
+    },
+    status:StudentEnrolledCourseStatus.COMPLETED
+  },
+  include:{
+    course:true
+  }
+})
+
+await studentEnrollCourseMarkUtils.calcCGPAandGrade(grades)
 
 
 

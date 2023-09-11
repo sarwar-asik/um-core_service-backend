@@ -1,7 +1,9 @@
 import { z } from 'zod';
 const createStudents = z.object({
   body: z.object({
-    
+    studentId: z.string({
+      required_error: 'studentID is Required (zod)',
+    }),
     firstName: z.string({
       required_error: 'firstName is Required (zod)',
     }),
