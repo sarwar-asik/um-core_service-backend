@@ -1,0 +1,28 @@
+Tue Sep 12 2023 14:25:51 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ You are not authorized
+Tue Sep 12 2023 14:49:36 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ 
+Invalid `prisma.offeredCourseClassSchedule.createMany()` invocation:
+
+{
+  data: [
+    {
+      startTime: "08:00",
+      endTime: "09:00",
+      dayOfWeak: "MONDAY",
+      roomId: "3325c557-e55a-4d6b-9207-294312fa3a45",
+      facultyId: "572dc553-9010-4656-8fec-07fa066af76d",
+      offeredCourseSectionId: "4583d209-dcc1-40d4-8533-ac96ddd31651",
+      semesterRegistrationId: "88ff37e9-9849-45e9-8f97-55d8e039340e"
+    },
+    {
+      startTime: "10:00",
+      endTime: "11:20",
+      dayOfWeak: "SUNDAY",
+      roomId: "3325c557-e55a-4d6b-9207-294312fa3a45",
+      facultyId: "572dc553-9010-4656-8fec-07fa066af76d",
+      offeredCourseSectionId: "4583d209-dcc1-40d4-8533-ac96ddd31651",
+      semesterRegistrationId: "88ff37e9-9849-45e9-8f97-55d8e039340e"
+    }
+  ]
+}
+
+Unknown argument `dayOfWeak`. Did you mean `dayOfWeek`? Available options are listed in green.

@@ -331,7 +331,7 @@ const updateFinalMarks = async (payload: any) => {
     });
   }
 
-  return payload;
+  return grades   
 };
 
 export const StudentEnrollCourseMarkService = {
