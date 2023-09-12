@@ -1,4 +1,4 @@
-import { Student } from '@prisma/client';
+import { Student, StudentEnrolledCourse } from '@prisma/client';
 import { Request, Response } from 'express';
 import httpStatus from 'http-status';
 import catchAsync from '../../../shared/catchAsync';
@@ -70,6 +70,7 @@ const data = req?.body;
     data: result,
   });
 });
+
 const deleteFromDb = catchAsync(async (req: Request, res: Response) => {
   const id = req.params.id;
 
@@ -83,4 +84,21 @@ const deleteFromDb = catchAsync(async (req: Request, res: Response) => {
     data: result,
   });
 });
-export const StudentController = { insertDB, getAllDb, getSingleDataById,updateIntoDb,deleteFromDb };
+
+
+const myCourses = catchAsync(async (req: Request, res: Response) => {
+
+  const  user = (req as any).user
+
+
+  const result = await StudentsService.myCourses(user?.userId)
+
+  sendResponse<StudentEnrolledCourse[]>(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: `Successfully fetched myCoursesData`,
+    data: result,
+  });
+});
+
+export const StudentController = { insertDB, getAllDb, getSingleDataById,updateIntoDb,deleteFromDb ,myCourses};

@@ -1,4 +1,4 @@
-import { Prisma, Student } from '@prisma/client';
+import { Prisma, Student, StudentEnrolledCourse } from '@prisma/client';
 import { paginationHelpers } from '../../../helpers/paginationHelper';
 import { IGenericResponse } from '../../../interfaces/common';
 import { IPaginationOptions } from '../../../interfaces/pagination';
@@ -92,36 +92,68 @@ const getSingleData = async (id: string): Promise<Student | null> => {
   return result;
 };
 
-
-
-const updateItoDb = async(id:string,payload:Partial<Student>):Promise<Student>=>{
-
-  console.log(id,payload);
-  const result =await prisma.student.update({
-    where:{
-      id
+const updateItoDb = async (
+  id: string,
+  payload: Partial<Student>
+): Promise<Student> => {
+  console.log(id, payload);
+  const result = await prisma.student.update({
+    where: {
+      id,
     },
-    data:payload
-  })
+    data: payload,
+  });
 
-  return result
+  return result;
+};
 
-}
-
-const deleteFromDb = async(id:string):Promise<Student>=>{
-
-
-  const result =await prisma.student.delete({
-    where:{
-      id
+const deleteFromDb = async (id: string): Promise<Student> => {
+  const result = await prisma.student.delete({
+    where: {
+      id,
     },
-    include:{
-      academicDepartment:true,
-      academicFaculty:true
+    include: {
+      academicDepartment: true,
+      academicFaculty: true,
+    },
+  });
+
+  return result;
+};
+
+
+const myCourses = async (authId: string): Promise<StudentEnrolledCourse[]> => {
+
+  console.log(authId);
+
+
+  const currentSemester  = await prisma.academicSemester.findFirst({
+    where:{
+      isCurrent:true
     }
   })
 
-  return result
+  console.log(currentSemester);
 
-}
-export const StudentsService = { insertDB, getAllDb, getSingleData ,updateItoDb,deleteFromDb};
+  const result = await prisma.studentEnrolledCourse.findMany({
+    where:{
+      student:{
+        studentId:authId
+      },
+      academicSemesterId:currentSemester?.id
+    },
+    include: {
+     course:true
+    },
+  });
+
+  return result;
+};
+export const StudentsService = {
+  insertDB,
+  getAllDb,
+  getSingleData,
+  updateItoDb,
+  deleteFromDb,
+  myCourses,
+};
