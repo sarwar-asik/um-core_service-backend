@@ -7,7 +7,7 @@ export type IOfferedCourseSectionFilterRequest = {
 
 
 
-type ClassSchedule= {
+export type IClassSchedule= {
     startTime: string;
     endTime: string;
     dayOfWeek: WeekDays
@@ -20,6 +20,6 @@ type ClassSchedule= {
     maxCapacity: number;
     offeredCourseId: string;
     currentlyEnrolledStudent: number;
-    classSchedules: ClassSchedule[];
+    classSchedules: IClassSchedule[];
   }
   

@@ -4,7 +4,7 @@ import ApiError from '../../../errors/ApiError';
 import prisma from '../../../shared/prisma';
 import { asyncForEach } from '../courses/utils';
 import { OfferedCourseClassSchedulesUtils } from '../offeredCourseClassSchedules/offeredCourseClassSchedules.utils';
-import { IOfferedCourseSectionCreate } from './offeredCourseSection.interface';
+import { IClassSchedule, IOfferedCourseSectionCreate } from './offeredCourseSection.interface';
 
 const insertDB = async (
   payload: IOfferedCourseSectionCreate
@@ -59,7 +59,7 @@ const insertDB = async (
           semesterRegistrationId:isExistsOfferedCourse?.semesterRegistrationId
         }
       });
-    const scheduleData = classSchedules.map((schedule: any) => ({
+    const scheduleData = classSchedules.map((schedule: IClassSchedule) => ({
       startTime: schedule?.startTime,
       endTime: schedule?.endTime,
       dayOfWeek: schedule?.dayOfWeek,
