@@ -2,3 +2,10 @@ Wed Sep 13 2023 13:18:22 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ invalid
 Wed Sep 13 2023 13:19:10 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ invalid signature
 Wed Sep 13 2023 13:23:40 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ You are not authorized
 Wed Sep 13 2023 13:23:52 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ Forbidden
+Wed Sep 13 2023 13:32:59 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ You are not authorized
+Wed Sep 13 2023 13:33:26 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ 
+Invalid `prisma.courseFaculty.createMany()` invocation:
+
+
+Unique constraint failed on the fields: (`courseId`,`facultyId`)
+Wed Sep 13 2023 13:33:47 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ You are not authorized
