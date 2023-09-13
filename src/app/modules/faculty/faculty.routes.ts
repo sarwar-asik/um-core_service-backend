@@ -9,6 +9,10 @@ const router = express.Router();
 
 router.get('/', FacultyController.getAllFromDB);
 
+router.get('/my-courses',
+auth(ENUM_USER_ROLE.FACULTY),
+ FacultyController.myCourses);
+
 router.get('/:id', FacultyController.getByIdFromDB);
 
 
@@ -21,7 +25,7 @@ router.post(
 router.patch(
     '/:id',
     validateRequest(FacultyValidation.update),
-    auth(ENUM_USER_ROLE.SUPER_ADMIN, ENUM_USER_ROLE.ADMIN),
+    auth(ENUM_USER_ROLE.SUPER_ADMIN, ENUM_USER_ROLE.ADMIN,ENUM_USER_ROLE.FACULTY),
     FacultyController.updateOneInDB
 );
 

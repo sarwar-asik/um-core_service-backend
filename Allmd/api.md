@@ -16,6 +16,18 @@ http://localhost:5000/api/v1/academic-faculty?page=1&limit=5&sortBy=asc&title=Co
 
 http://localhost:5000/api/v1/academic-faculty/19c54336-3fb4-4e83-962d-abcdd4d42cb2 (GET)
 
+
+#### Faculty 
+http://localhost:5000/api/v1/faculty (POST)
+
+http://localhost:5000/api/v1/faculty (GET)
+
+http://localhost:5000/api/v1/faculty/572dc553-9010-4656-8fec-07fa066af76d (GET SINGLE)
+
+http://localhost:5000/api/v1/faculty/572dc553-9010-4656-8fec-07fa066af76d (PATCH)
+
+http://localhost:5000/api/v1/faculty/572dc553-9010-4656-8fec-07fa066af76d (DELETE)
+
 ### academic-department
 
 http://localhost:5000/api/v1/academic-department(POST)
@@ -33,6 +45,8 @@ http://localhost:5000/api/v1/students?page=1&limit=5&sortBy=asc&title=Course1 (G
 http://localhost:5000/api/v1/students/19c54336-3fb4-4e83-962d-abcdd4d42cb2 (GET)
 
 http://localhost:5000/api/v1/students/19c54336-3fb4-4e83-962d-abcdd4d42cb2 (DELETE)
+
+http://localhost:5000/api/v1/students/my-courses?academicSemesterId=e2d134123423dsd12e2354 (GET)
 
 ### building
 

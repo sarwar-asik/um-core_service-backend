@@ -87,6 +87,21 @@ const removeCourses = catchAsync(async (req: Request, res: Response) => {
 })
 
 
+// my courses
+
+const myCourses = catchAsync(async (req: Request, res: Response) => {
+    const user = (req as any).user
+
+    const result = await FacultyService.myCourses(user.userId);
+    sendResponse(res, {
+        statusCode: httpStatus.OK,
+        success: true,
+        message: ' faculty Course fetched successfully',
+        data: result
+    });
+})
+
+
 export const FacultyController = {
     insertIntoDB,
     getAllFromDB,
@@ -94,5 +109,7 @@ export const FacultyController = {
     updateOneInDB,
     deleteByIdFromDB,
     assignCourses,
-    removeCourses
+    removeCourses,
+
+    myCourses
 };

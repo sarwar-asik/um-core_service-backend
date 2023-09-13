@@ -178,6 +178,15 @@ const removeCourses = async (
 }
 
 
+// get faculty courses ///
+
+const myCourses = async (
+    authId: string
+): Promise<CourseFaculty[] | null | any> => {
+    console.log(authId,"auth id");
+   return authId
+}
+
 export const FacultyService = {
     insertIntoDB,
     getAllFromDB,
@@ -185,5 +194,6 @@ export const FacultyService = {
     updateOneInDB,
     deleteByIdFromDB,
     assignCourses,
-    removeCourses
+    removeCourses,
+    myCourses
 };
