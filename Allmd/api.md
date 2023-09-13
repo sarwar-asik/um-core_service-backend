@@ -28,6 +28,12 @@ http://localhost:5000/api/v1/faculty/572dc553-9010-4656-8fec-07fa066af76d (PATCH
 
 http://localhost:5000/api/v1/faculty/572dc553-9010-4656-8fec-07fa066af76d (DELETE)
 
+http://localhost:5000/api/v1/faculty/572dc553-9010-4656-8fec-07fa066af76d/assign-courses (POST)
+
+http://localhost:5000/api/v1/faculty/572dc553-9010-4656-8fec-07fa066af76d/remove-courses (DELETE)
+
+http://localhost:5000/api/v1/faculty/my-course  (GET)
+
 ### academic-department
 
 http://localhost:5000/api/v1/academic-department(POST)
