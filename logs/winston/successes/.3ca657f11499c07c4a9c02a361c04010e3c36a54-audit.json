@@ -6,46 +6,6 @@
     "auditLog": "C:\\WEB\\NEXT_LEVEL_2\\6_SQL\\university-management-core-service-starter\\logs\\winston\\successes\\.3ca657f11499c07c4a9c02a361c04010e3c36a54-audit.json",
     "files": [
         {
-            "date": 1693324462014,
-            "name": "C:\\WEB\\NEXT_LEVEL_2\\6_SQL\\university-management-core-service-starter\\logs\\winston\\successes\\phu-2023-29-08-21-success.log",
-            "hash": "84241e9f56144ae52b41571a6887d5149525f449542d2accee4907242bc37cc3"
-        },
-        {
-            "date": 1693327838880,
-            "name": "C:\\WEB\\NEXT_LEVEL_2\\6_SQL\\university-management-core-service-starter\\logs\\winston\\successes\\phu-2023-29-08-22-success.log",
-            "hash": "1f8e446256ef12f556b4f5f45cc26607f4a18957ff0afab749b2e987f4c2722f"
-        },
-        {
-            "date": 1693328532949,
-            "name": "C:\\WEB\\NEXT_LEVEL_2\\6_SQL\\university-management-core-service-starter\\logs\\winston\\successes\\phu-2023-29-08-23-success.log",
-            "hash": "4cef744b2aa7fd21473fbcb8c907d8b29ba00ebd2eed6a46ffd9fbfcde5d83ad"
-        },
-        {
-            "date": 1693332153180,
-            "name": "C:\\WEB\\NEXT_LEVEL_2\\6_SQL\\university-management-core-service-starter\\logs\\winston\\successes\\phu-2023-30-08-00-success.log",
-            "hash": "db695c46117690d5a59dfd73b3e4a58e0d12c19a3396d4e3ce2c68a9822b98e7"
-        },
-        {
-            "date": 1693335657252,
-            "name": "C:\\WEB\\NEXT_LEVEL_2\\6_SQL\\university-management-core-service-starter\\logs\\winston\\successes\\phu-2023-30-08-01-success.log",
-            "hash": "00be31d9b46137166f1cc0ce00d9705e77274681ce2489d382cf6c1c1b8e6ad9"
-        },
-        {
-            "date": 1693366414373,
-            "name": "C:\\WEB\\NEXT_LEVEL_2\\6_SQL\\university-management-core-service-starter\\logs\\winston\\successes\\phu-2023-30-08-09-success.log",
-            "hash": "bcb62d52cd4e120e1933eaea5a4e6ed9ae1a4f7a2a50d1a0f75afa2677794d42"
-        },
-        {
-            "date": 1693374213439,
-            "name": "C:\\WEB\\NEXT_LEVEL_2\\6_SQL\\university-management-core-service-starter\\logs\\winston\\successes\\phu-2023-30-08-11-success.log",
-            "hash": "826d0a5e01712447624d2c5235af365981b755debbf0066824aaee6094224b37"
-        },
-        {
-            "date": 1693375952275,
-            "name": "C:\\WEB\\NEXT_LEVEL_2\\6_SQL\\university-management-core-service-starter\\logs\\winston\\successes\\phu-2023-30-08-12-success.log",
-            "hash": "6f85cf05d878bed19cefdfeb79f399b968e9b9903f4a5d0b49478339a4c4d395"
-        },
-        {
             "date": 1693381225163,
             "name": "C:\\WEB\\NEXT_LEVEL_2\\6_SQL\\university-management-core-service-starter\\logs\\winston\\successes\\phu-2023-30-08-13-success.log",
             "hash": "3d0277898461682faa9a5634b93a782d18a9c6095c36e0394dfcdd32d668ef05"
@@ -269,6 +229,21 @@
             "date": 1694509203086,
             "name": "C:\\WEB\\NEXT_LEVEL_2\\6_SQL\\university-management-core-service-starter\\logs\\winston\\successes\\phu-2023-12-09-15-success.log",
             "hash": "4da9a9402bc3cd5a674c18f2dd75e6c4d8379ea06f3da4b13810fe6961ece3df"
+        },
+        {
+            "date": 1694530641585,
+            "name": "C:\\WEB\\NEXT_LEVEL_2\\6_SQL\\university-management-core-service-starter\\logs\\winston\\successes\\phu-2023-12-09-20-success.log",
+            "hash": "a3bdc5132ed03809e1f193322d4ac658b49d41cf3dc26f034a8f671a4f48edde"
+        },
+        {
+            "date": 1694533379343,
+            "name": "C:\\WEB\\NEXT_LEVEL_2\\6_SQL\\university-management-core-service-starter\\logs\\winston\\successes\\phu-2023-12-09-21-success.log",
+            "hash": "d374f4a6c0039151af205c6c377f43e12ddd4cbe7b72a97124806271104484c9"
+        },
+        {
+            "date": 1694586156703,
+            "name": "C:\\WEB\\NEXT_LEVEL_2\\6_SQL\\university-management-core-service-starter\\logs\\winston\\successes\\phu-2023-13-09-12-success.log",
+            "hash": "74e85598c68a389a271f0748b33dcc67ae041f590fb3bd5d464e7ba1320b3465"
         }
     ],
     "hashType": "sha256"
