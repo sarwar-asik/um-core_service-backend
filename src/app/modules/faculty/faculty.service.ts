@@ -184,7 +184,7 @@ const removeCourses = async (
   return assignCoursesData;
 };
 
-// get faculty courses ///
+// get faculty courses like student and other  ///
 
 const myCourses = async (
   authUser: {
