@@ -110,4 +110,72 @@ const getSingleData = async (id: string): Promise<AcademicSemester | null> => {
 
   return result;
 };
+
+const myCourses = async (
+  authUser: {
+    userId: string;
+    role: string;
+  },
+  filter: {
+    academicSemesterId?: string | null | undefined;
+    courseId?: string | null | undefined;
+  }
+): Promise<CourseFaculty[] | null | any> => {
+  console.log(authUser, 'auth id', filter);
+
+  if (!filter?.academicSemesterId) {
+    const currentSemester = await prisma.academicSemester.findFirst({
+      where: {
+        isCurrent: true,
+      },
+    });
+
+    filter.academicSemesterId = currentSemester?.id;
+  }
+
+  const offeredCourseSection = prisma.offeredCourseSection.findFirst({
+    where: {
+      offeredCourseClassSchedule: {
+        // ! !important for best query by this or other
+
+        some: {
+          faculty: {
+            facultyId: authUser?.userId,
+          },
+        },
+      },
+      offeredCourse:{
+        semesterRegistration:{
+            academicSemester:{
+                id:filter.academicSemesterId
+            }
+        }
+      }
+    },
+    include:{
+        offeredCourse:{
+            include:{
+                course:true
+            }
+        },
+        offeredCourseClassSchedule:{
+            include:{
+                room:{
+                    include:{
+                        building:true
+                    }
+                },
+                faculty:{
+                    include:{
+                        courses:true
+                    }
+                }
+            }
+        }
+    }
+
+  });
+
+  return offeredCourseSection;
+};
 export const AcademicSemesterServices = { insertDB, getAllDb, getSingleData };
