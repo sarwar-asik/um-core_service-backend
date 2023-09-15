@@ -196,7 +196,7 @@ const myCourses = async (
     courseId?: string | null | undefined;
   }
 ): Promise<CourseFaculty[] | null | any> => {
-  console.log(authUser, 'auth id', filter);
+  // console.log(authUser, 'auth id', filter);
 
   if (!filter?.academicSemesterId) {
     const currentSemester = await prisma.academicSemester.findFirst({
@@ -208,7 +208,7 @@ const myCourses = async (
     filter.academicSemesterId = currentSemester?.id;
   }
 
-  const offeredCourseSection = prisma.offeredCourseSection.findFirst({
+  const offeredCourseSection = await prisma.offeredCourseSection.findMany({
     where: {
       offeredCourseClassSchedule: {
         // ! !important for best query by this or other
@@ -219,39 +219,74 @@ const myCourses = async (
           },
         },
       },
-      offeredCourse:{
-        semesterRegistration:{
-            academicSemester:{
-                id:filter.academicSemesterId
-            }
-        }
-      }
-    },
-    include:{
-        offeredCourse:{
-            include:{
-                course:true
-            }
+      offeredCourse: {
+        semesterRegistration: {
+          academicSemester: {
+            id: filter.academicSemesterId,
+          },
         },
-        offeredCourseClassSchedule:{
-            include:{
-                room:{
-                    include:{
-                        building:true
-                    }
-                },
-                faculty:{
-                    include:{
-                        courses:true
-                    }
-                }
-            }
-        }
-    }
-
+      },
+    },
+    include: {
+      offeredCourse: {
+        include: {
+          course: true,
+        },
+      },
+      offeredCourseClassSchedule: {
+        include: {
+          room: {
+            include: {
+              building: true,
+            },
+          },
+          // faculty:{
+          //     include:{
+          //         courses:true
+          //     }
+          // }
+        },
+      },
+    },
   });
+  console.log('offeredCourseSection', offeredCourseSection);
 
-  return offeredCourseSection;
+  const courseAndSchedule = offeredCourseSection.reduce(
+    (acc: any, obj: any) => {
+      console.log('🚀 ~ file: faculty.service.ts:256 ~ acc:', acc);
+      console.log('🚀 ~ file: faculty.service.ts:257 ~ obj:', obj);
+
+      // // console.log(obj, 'ob/j..');
+
+      const course = obj?.offeredCourse?.course;
+      const classSchedules = obj.offeredCourseClassSchedule;
+
+      const existingCourse = acc.find(
+        (item: any) => item?.course?.id === course?.id
+      );
+      if (existingCourse) {
+        existingCourse.sections.push({
+          section: obj,
+          classSchedules,
+        });
+      } else {
+        acc.push({
+          course,
+          sections: [
+            {
+              section: obj,
+              classSchedules,
+            },
+          ],
+        });
+      }
+      return acc;
+    },
+    []
+  );
+
+  return courseAndSchedule;
+  // return offeredCourseSection;
 };
 
 export const FacultyService = {
