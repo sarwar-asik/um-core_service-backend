@@ -24,6 +24,7 @@ import {
   semesterRegistrationSearchableFields,
 } from './semesterRegistration.constant';
 import { IEnrollCoursePayload } from './semesterRegistration.interface';
+import { SemesterRegistrationUtils } from './semesterRegistration.utils';
 
 const insertDB = async (
   data: SemesterRegistration
@@ -571,67 +572,76 @@ const getMySemesterRegistrationCourses = async (
   }
 
   const studentCompleteCourse = await prisma.studentEnrolledCourse.findMany({
-    where:{
-      status:StudentEnrolledCourseStatus.COMPLETED,
-      student:{
-        id:student?.id
-      }
+    where: {
+      status: StudentEnrolledCourseStatus.COMPLETED,
+      student: {
+        id: student?.id,
+      },
     },
-    include:{
-      course:true
-    }
+    include: {
+      course: true,
+    },
   });
 
-  const studentCurrentSemesterTakenCourse = await prisma.studentSemesterRegistrationCourse.findMany({
-    where:{
-      student:{
-        id:student?.id
+  const studentCurrentSemesterTakenCourse =
+    await prisma.studentSemesterRegistrationCourse.findMany({
+      where: {
+        student: {
+          id: student?.id,
+        },
+        semesterRegistration: {
+          id: semesterRegistration?.id,
+        },
       },
-      semesterRegistration:{
-        id:semesterRegistration?.id
-      }
-    },
-    include:{
-      offeredCourse:true,
-      offeredCourseSection:true
-    }
-  })
+      include: {
+        offeredCourse: true,
+        offeredCourseSection: true,
+      },
+    });
 
   const offeredCourse = await prisma.offeredCourse.findMany({
-  where:{
-    semesterRegistration:{
-      id:semesterRegistration.id
+    where: {
+      semesterRegistration: {
+        id: semesterRegistration.id,
+      },
+      academicDepartment: {
+        id: student?.academicDepartmentId,
+      },
     },
-    academicDepartment:{
-      id:student?.academicDepartmentId
-    }
-  },
-  include:{
-    course:{
-      include:{
-        prerequisite:{
-          include:{
-            prerequisite:true
-          }
-        }
-      }
+    include: {
+      course: {
+        include: {
+          prerequisite: {
+            include: {
+              prerequisite: true,
+            },
+          },
+        },
+      },
+      offeredCourseSection: {
+        include: {
+          offeredCourseClassSchedule: {
+            include: {
+              room: {
+                include: {
+                  building: true,
+                },
+              },
+            },
+          },
+        },
+      },
     },
-    offeredCourseSection:{
-      include:{
-      offeredCourseClassSchedule:{
-        include:{
-          room:{
-            include:{
-              building:true
-            }
-          }
-        }
-      }  
-      }
-    }
-  }
-  })
-  return {offeredCourse,studentCompleteCourse}
+  });
+
+  const availableCourses = SemesterRegistrationUtils.getAvailableCourses(
+    offeredCourse,
+    studentCompleteCourse,
+    studentCurrentSemesterTakenCourse
+  );
+  console.log(availableCourses,"available courses");
+
+  return availableCourses
 };
 
 export const SemesterRegistrationService = {
