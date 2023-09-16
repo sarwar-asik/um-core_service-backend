@@ -4,6 +4,7 @@ import {
   Prisma,
   SemesterRegistration,
   SemesterRegistrationStatus,
+  StudentEnrolledCourseStatus,
   StudentSemesterRegistration,
   StudentSemesterRegistrationCourse,
 } from '@prisma/client';
@@ -540,7 +541,7 @@ const startNewSemester = async (id: string) => {
 const getMySemesterRegistrationCourses = async (
   authUserId: string
 ): Promise<any> => {
-  console.log('fromService authUser', authUserId);
+  // console.log('fromService authUser', authUserId);
 
   const student = await prisma.student.findFirst({
     where: {
@@ -549,21 +550,53 @@ const getMySemesterRegistrationCourses = async (
   });
 
   const semesterRegistration = await prisma.semesterRegistration.findFirst({
+    where: {
+      status: {
+        in: [
+          SemesterRegistrationStatus.UPCOMING,
+          SemesterRegistrationStatus.ONGOING,
+        ],
+      },
+    },
+    include: {
+      academicSemester: true,
+    },
+  });
+
+  if (!semesterRegistration) {
+    throw new ApiError(
+      httpStatus.BAD_REQUEST,
+      'Not found semester registration'
+    );
+  }
+
+  const studentCompleteCourse = await prisma.studentEnrolledCourse.findMany({
     where:{
-      status:{
-        in:[SemesterRegistrationStatus.UPCOMING,SemesterRegistrationStatus.ONGOING]
+      status:StudentEnrolledCourseStatus.COMPLETED,
+      student:{
+        id:student?.id
       }
     },
     include:{
-      academicSemester:true
+      course:true
+    }
+  });
+
+  const studentCurrentSemesterTakenCourse = await prisma.studentSemesterRegistrationCourse.findMany({
+    where:{
+      student:{
+        id:student?.id
+      },
+      semesterRegistration:{
+        id:semesterRegistration?.id
+      }
+    },
+    include:{
+      offeredCourse:true,
+      offeredCourseSection:true
     }
   })
-
-  if(!semesterRegistration){
-    throw new ApiError(httpStatus.BAD_REQUEST,"Not found semester registration")
-  }
-  
-  return semesterRegistration 
+  return {studentCurrentSemesterTakenCourse,studentCompleteCourse}
 };
 
 export const SemesterRegistrationService = {
