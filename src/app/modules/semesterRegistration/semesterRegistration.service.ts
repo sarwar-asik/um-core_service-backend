@@ -408,7 +408,7 @@ const startNewSemester = async (id: string) => {
     );
   }
   // console.log(semesterRegistration,"semesterRegistration");
-  
+
   if (semesterRegistration.academicSemester.isCurrent) {
     throw new ApiError(
       httpStatus.BAD_REQUEST,
@@ -537,10 +537,34 @@ const startNewSemester = async (id: string) => {
   };
 };
 
-const getMySemesterRegistrationCourses = async (authUserId: string)=>{
-  console.log("fromService authUser",authUserId);
+const getMySemesterRegistrationCourses = async (
+  authUserId: string
+): Promise<any> => {
+  console.log('fromService authUser', authUserId);
 
-}
+  const student = await prisma.student.findFirst({
+    where: {
+      studentId: authUserId,
+    },
+  });
+
+  const semesterRegistration = await prisma.semesterRegistration.findFirst({
+    where:{
+      status:{
+        in:[SemesterRegistrationStatus.UPCOMING,SemesterRegistrationStatus.ONGOING]
+      }
+    },
+    include:{
+      academicSemester:true
+    }
+  })
+
+  if(!semesterRegistration){
+    throw new ApiError(httpStatus.BAD_REQUEST,"Not found semester registration")
+  }
+  
+  return semesterRegistration 
+};
 
 export const SemesterRegistrationService = {
   insertDB,
@@ -553,5 +577,5 @@ export const SemesterRegistrationService = {
   confirmMyRegistration,
   getMyRegistration,
   startNewSemester,
-  getMySemesterRegistrationCourses
+  getMySemesterRegistrationCourses,
 };
