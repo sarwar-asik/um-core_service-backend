@@ -537,6 +537,11 @@ const startNewSemester = async (id: string) => {
   };
 };
 
+const getMySemesterRegistrationCourses = async (authUserId: string)=>{
+  console.log("fromService authUser",authUserId);
+
+}
+
 export const SemesterRegistrationService = {
   insertDB,
   getAllFromDB,
@@ -548,4 +553,5 @@ export const SemesterRegistrationService = {
   confirmMyRegistration,
   getMyRegistration,
   startNewSemester,
+  getMySemesterRegistrationCourses
 };

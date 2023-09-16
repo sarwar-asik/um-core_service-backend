@@ -9,6 +9,17 @@ import { SemesterRegistrationValidation } from './semesterRegistration.validatio
 const router = Router();
 
 router.get('/', SemesterRegistrationController.getAllFromDB);
+
+
+// getting semester registration courses//
+
+router.get(
+  '/get-my-semester-courses',
+  auth(ENUM_USER_ROLE.STUDENT),
+  SemesterRegistrationController.getMySemesterRegistrationCourses
+);
+
+
 router.get('/:id', SemesterRegistrationController.getByIdFromDB);
 
 router.post(
@@ -64,5 +75,7 @@ router.post(
   auth(ENUM_USER_ROLE.ADMIN),
   SemesterRegistrationController.startNewRegistration
 );
+
+
 
 export const semesterRegistrationRoutes = router;
