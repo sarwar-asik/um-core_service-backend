@@ -6,6 +6,7 @@ const getAvailableCourses = (
   studentCurrentlyTakenCourses: any[]
 ) => {
   // console.log("availableCourse",offeredCourse,studentCompleteCourses,studentCurrentlyTakenCourses);
+//   console.log(studentCurrentlyTakenCourses);
   const completedCoursesId = studentCompleteCourses.map(
     (course: any) => course?.id
   );
@@ -27,7 +28,7 @@ const getAvailableCourses = (
 
       }
     })
-    
+
   // console.log(availableCourseList);
 
   return availableCourseList;

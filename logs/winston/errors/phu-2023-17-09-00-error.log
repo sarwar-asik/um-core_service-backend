@@ -21,3 +21,53 @@ Invalid `prisma.studentSemesterRegistrationCourse.delete()` invocation:
 
 
 An operation failed because it depends on one or more records that were required but not found. Record to delete does not exist.
+Sun Sep 17 2023 0:46:24 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ Student enrolled course mark not found 
+Sun Sep 17 2023 0:49:38 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ [
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "undefined",
+    "path": [
+      "body",
+      "academicSemesterId"
+    ],
+    "message": "Academic semester id is required"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "undefined",
+    "path": [
+      "body",
+      "studentId"
+    ],
+    "message": "Student id is required"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "undefined",
+    "path": [
+      "body",
+      "courseId"
+    ],
+    "message": "Course id is required"
+  }
+]
+Sun Sep 17 2023 0:50:46 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ You are not authorized
+Sun Sep 17 2023 0:51:4 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ Forbidden
+Sun Sep 17 2023 0:51:44 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ 
+Invalid `prisma.studentEnrolledCourse.create()` invocation:
+
+
+Foreign key constraint failed on the field: `student_enrolled_courses_studentId_fkey (index)`
+Sun Sep 17 2023 0:52:58 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ 
+Invalid `prisma.studentEnrolledCourse.create()` invocation:
+
+
+Foreign key constraint failed on the field: `student_enrolled_courses_studentId_fkey (index)`
+Sun Sep 17 2023 0:53:1 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ 
+Invalid `prisma.studentEnrolledCourse.create()` invocation:
+
+
+Foreign key constraint failed on the field: `student_enrolled_courses_studentId_fkey (index)`
