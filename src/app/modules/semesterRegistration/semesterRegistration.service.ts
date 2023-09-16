@@ -596,7 +596,42 @@ const getMySemesterRegistrationCourses = async (
       offeredCourseSection:true
     }
   })
-  return {studentCurrentSemesterTakenCourse,studentCompleteCourse}
+
+  const offeredCourse = await prisma.offeredCourse.findMany({
+  where:{
+    semesterRegistration:{
+      id:semesterRegistration.id
+    },
+    academicDepartment:{
+      id:student?.academicDepartmentId
+    }
+  },
+  include:{
+    course:{
+      include:{
+        prerequisite:{
+          include:{
+            prerequisite:true
+          }
+        }
+      }
+    },
+    offeredCourseSection:{
+      include:{
+      offeredCourseClassSchedule:{
+        include:{
+          room:{
+            include:{
+              building:true
+            }
+          }
+        }
+      }  
+      }
+    }
+  }
+  })
+  return {offeredCourse,studentCompleteCourse}
 };
 
 export const SemesterRegistrationService = {
