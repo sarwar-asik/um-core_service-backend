@@ -1,0 +1,23 @@
+Sun Sep 17 2023 0:29:10 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ Cannot read properties of undefined (reading 'length')
+Sun Sep 17 2023 0:29:24 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ Cannot read properties of undefined (reading 'map')
+Sun Sep 17 2023 0:29:26 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ Cannot read properties of undefined (reading 'map')
+Sun Sep 17 2023 0:31:56 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ 
+Invalid `prisma.studentSemesterRegistrationCourse.create()` invocation:
+
+
+Unique constraint failed on the fields: (`semesterRegistrationId`,`studentId`,`offeredCourseId`)
+Sun Sep 17 2023 0:32:8 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ 
+Invalid `prisma.studentSemesterRegistrationCourse.create()` invocation:
+
+
+Unique constraint failed on the fields: (`semesterRegistrationId`,`studentId`,`offeredCourseId`)
+Sun Sep 17 2023 0:32:10 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ 
+Invalid `prisma.studentSemesterRegistrationCourse.create()` invocation:
+
+
+Unique constraint failed on the fields: (`semesterRegistrationId`,`studentId`,`offeredCourseId`)
+Sun Sep 17 2023 0:32:14 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ 
+Invalid `prisma.studentSemesterRegistrationCourse.delete()` invocation:
+
+
+An operation failed because it depends on one or more records that were required but not found. Record to delete does not exist.

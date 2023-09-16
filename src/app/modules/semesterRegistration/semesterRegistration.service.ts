@@ -639,7 +639,7 @@ const getMySemesterRegistrationCourses = async (
     studentCompleteCourse,
     studentCurrentSemesterTakenCourse
   );
-  console.log(availableCourses,"available courses");
+  // console.log(availableCourses,"available courses");
 
   return availableCourses
 };
