@@ -268,6 +268,7 @@ const getMyAcademicInfo = async (authUserId: string): Promise<any> => {
     },
   })
 
+// came from studentUtils
 
   const groupByAcademicSemesterData =
     StudentUtils.groupByAcademicSemester(enrolledCourses);
