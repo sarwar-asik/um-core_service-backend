@@ -1,8 +1,14 @@
-import { Prisma, Student, StudentEnrolledCourse, StudentEnrolledCourseStatus } from '@prisma/client';
+import {
+  Prisma,
+  Student,
+  StudentEnrolledCourse,
+  StudentEnrolledCourseStatus,
+} from '@prisma/client';
 import { paginationHelpers } from '../../../helpers/paginationHelper';
 import { IGenericResponse } from '../../../interfaces/common';
 import { IPaginationOptions } from '../../../interfaces/pagination';
 import prisma from '../../../shared/prisma';
+import { StudentUtils } from './Student.Utils';
 
 const insertDB = async (data: Student): Promise<Student> => {
   const result = await prisma.student.create({
@@ -236,33 +242,37 @@ const getMyCourseSchedules = async (
   return result;
 };
 
-const getMyAcademicInfo = async (authUserId: string):Promise<any> => {
-  console.log(authUserId,"authUserid");
+const getMyAcademicInfo = async (authUserId: string): Promise<any> => {
+  console.log(authUserId, 'authUserid');
   const academicInfo = await prisma.studentAcademicInfo.findFirst({
-    where:{
-      student:{
-        studentId:authUserId
-      }
-    }
-  })
-// console.log(academicInfo);
-const enrolledCourses = await prisma.studentEnrolledCourse.findMany({
-  where:{
-    student:{
-      studentId:authUserId
+    where: {
+      student: {
+        studentId: authUserId,
+      },
     },
-    status:StudentEnrolledCourseStatus.COMPLETED
-  },
-  include:{
-    course:true,
-    academicSemester:true
-  },
-  orderBy:{
-    createdAt:"asc"
-  }
-})
-  return {academicInfo,enrolledCourses}
+  });
+  // console.log(academicInfo);
+  const enrolledCourses = await prisma.studentEnrolledCourse.findMany({
+    where: {
+      student: {
+        studentId: authUserId,
+      },
+      status: StudentEnrolledCourseStatus.COMPLETED,
+    },
+    include: {
+      course: true,
+      academicSemester: true,
+    },
+    orderBy: {
+      createdAt: 'asc',
+    },
+  })
 
+
+  const groupByAcademicSemesterData =
+    StudentUtils.groupByAcademicSemester(enrolledCourses);
+
+  return { academicInfo, course:groupByAcademicSemesterData };
 };
 
 export const StudentsService = {
