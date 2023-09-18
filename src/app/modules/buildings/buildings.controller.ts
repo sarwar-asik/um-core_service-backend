@@ -80,3 +80,4 @@ const getAllDb = catchAsync(async (req: Request, res: Response) => {
   });
 
 export const BuildingsController = {insertDB,getAllDb,getSingleDataById,deleteFromDb,updateIntoDb};
+ 
