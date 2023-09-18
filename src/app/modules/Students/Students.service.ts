@@ -158,6 +158,16 @@ const myCourses = async (
   return result;
 };
 
+const getMyCourseSchedules = async(authId: string,
+  filter: {
+    courseId?: string | undefined;
+    academicSemesterId?: string | undefined;
+  })=>{
+  console.log(filter);
+
+  return null
+}
+
 export const StudentsService = {
   insertDB,
   getAllDb,
@@ -165,4 +175,5 @@ export const StudentsService = {
   updateItoDb,
   deleteFromDb,
   myCourses,
+  getMyCourseSchedules
 };

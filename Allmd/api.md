@@ -54,6 +54,11 @@ http://localhost:5000/api/v1/students/19c54336-3fb4-4e83-962d-abcdd4d42cb2 (DELE
 
 http://localhost:5000/api/v1/students/my-courses?academicSemesterId=e2d134123423dsd12e2354 (GET)
 
+
+http://localhost:5000/api/v1/students/my-course-schedules (GET)
+
+
+
 ### building
 
 http://localhost:5000/api/v1/buildings/(POST)
@@ -123,6 +128,8 @@ http://localhost:5000/api/v1/semester-registration/confirm-my-registration (POST
 http://localhost:5000/api/v1/semester-registration/get-my-registration (GET)
 
 http://localhost:5000/api/v1/semester-registration/start-new-semester/fc4c3fa6-9392-4b3f-8ded-285da61ee317 (POST)
+
+http://localhost:5000/api/v1/semester-registration/get-my-semester-courses
 
 #### student enroll
 

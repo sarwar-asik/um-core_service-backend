@@ -38,7 +38,6 @@ const getAvailableCourses = (
         course.offeredCourseSections.map((section:any)=>{
           if(section?.id === isAlreadyTakenCourse.offeredCourseSectionId){
             section.isTaken = true
-
           }
           else{
             section.isTaken = false

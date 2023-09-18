@@ -44,6 +44,7 @@ const updateFinalMarks = catchAsync(async(req:Request,res:Response)=>{
 })
 
 
+
 export const StudentEnrollCourseMarkController ={
     getAllFromDB,
     updateStudentMarks,

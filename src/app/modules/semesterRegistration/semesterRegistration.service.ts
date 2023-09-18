@@ -632,16 +632,18 @@ const getMySemesterRegistrationCourses = async (
         },
       },
     },
-  });
+  })
+
 
   const availableCourses = SemesterRegistrationUtils.getAvailableCourses(
     offeredCourse,
     studentCompleteCourse,
     studentCurrentSemesterTakenCourse
   );
+  
   // console.log(availableCourses,"available courses");
 
-  return availableCourses
+  return availableCourses;
 };
 
 export const SemesterRegistrationService = {
