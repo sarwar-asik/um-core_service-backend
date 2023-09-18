@@ -151,21 +151,23 @@ const myCourses = async (
         studentId: authId,
       },
       //! !important for filter by destructure
-      ...filter
+      ...filter,
     },
     include: {
       course: true,
     },
   });
-  
+
   return result;
 };
 
-const getMyCourseSchedules = async(authId: string,
+const getMyCourseSchedules = async (
+  authId: string,
   filter: {
     courseId?: string | undefined;
     academicSemesterId?: string | undefined;
-  })=>{
+  }
+) => {
   // console.log(authId,filter);
   if (!filter?.academicSemesterId) {
     const currentSemester = await prisma.academicSemester.findFirst({
@@ -180,63 +182,64 @@ const getMyCourseSchedules = async(authId: string,
   }
   console.log(authId);
 
-  const studentEnrolledCourses = await myCourses(authId,filter)
+  const studentEnrolledCourses = await myCourses(authId, filter);
 
   // console.log(studentEnrolledCourses);
   //  return studentEnrolledCourses
 
-  const studentEnrolledCourseIds =studentEnrolledCourses?.map((item:StudentEnrolledCourse)=>item.courseId);
+  const studentEnrolledCourseIds = studentEnrolledCourses?.map(
+    (item: StudentEnrolledCourse) => item.courseId
+  );
 
   const result = await prisma.studentSemesterRegistrationCourse.findMany({
-    where:{
-      student:{
-        studentId:authId
+    where: {
+      student: {
+        studentId: authId,
       },
-      semesterRegistration:{
-        academicSemester:{
-          id:filter.academicSemesterId
-        }
+      semesterRegistration: {
+        academicSemester: {
+          id: filter.academicSemesterId,
+        },
       },
-      offeredCourse:{
-        course:{
-          id:{
+      offeredCourse: {
+        course: {
+          id: {
             // ! !important in . here studentEnrolledCourseIds is a Array[]
-            in:studentEnrolledCourseIds
-          }
-        }
-      }
-    },
-    include:{
-      offeredCourse:{
-        include:{
-          course:true
-        }
+            in: studentEnrolledCourseIds,
+          },
+        },
       },
-      offeredCourseSection:{
-        include:{
-          offeredCourseClassSchedule:{
-            include:{
-              room:{
-                include:{
-                  building:true
-                }
+    },
+    include: {
+      offeredCourse: {
+        include: {
+          course: true,
+        },
+      },
+      offeredCourseSection: {
+        include: {
+          offeredCourseClassSchedule: {
+            include: {
+              room: {
+                include: {
+                  building: true,
+                },
               },
-              faculty:true
-            }
-          }
-        }
-      }
-    }
-  })
+              faculty: true,
+            },
+          },
+        },
+      },
+    },
+  });
 
+  return result;
+};
 
+const getMyAcademicInfo = async (authUserId: string):Promise<any> => {
+  console.log(authUserId);
 
-  return result
-
-
-
- 
-}
+};
 
 export const StudentsService = {
   insertDB,
@@ -245,5 +248,6 @@ export const StudentsService = {
   updateItoDb,
   deleteFromDb,
   myCourses,
-  getMyCourseSchedules
+  getMyCourseSchedules,
+  getMyAcademicInfo,
 };

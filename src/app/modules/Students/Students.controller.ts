@@ -59,9 +59,9 @@ const getSingleDataById = catchAsync(async (req: Request, res: Response) => {
 });
 const updateIntoDb = catchAsync(async (req: Request, res: Response) => {
   const id = req.params.id;
-const data = req?.body;
+  const data = req?.body;
 
-  const result = await StudentsService.updateItoDb(id,data);
+  const result = await StudentsService.updateItoDb(id, data);
 
   sendResponse<Student>(res, {
     statusCode: httpStatus.OK,
@@ -74,8 +74,7 @@ const data = req?.body;
 const deleteFromDb = catchAsync(async (req: Request, res: Response) => {
   const id = req.params.id;
 
-
-  const result = await StudentsService.deleteFromDb(id)
+  const result = await StudentsService.deleteFromDb(id);
 
   sendResponse<Student>(res, {
     statusCode: httpStatus.OK,
@@ -85,14 +84,12 @@ const deleteFromDb = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
-
 const myCourses = catchAsync(async (req: Request, res: Response) => {
+  const user = (req as any).user;
 
-  const  user = (req as any).user
+  const filter = pick(req?.query, ['courseId', 'academicSemesterId']);
 
-  const filter = pick(req?.query,['courseId','academicSemesterId'])
-
-  const result = await StudentsService.myCourses(user?.userId,filter)
+  const result = await StudentsService.myCourses(user?.userId, filter);
 
   sendResponse<StudentEnrolledCourse[]>(res, {
     statusCode: httpStatus.OK,
@@ -102,21 +99,46 @@ const myCourses = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
-const getMyCoursesSchedules = catchAsync(async (req: Request, res: Response) => {
+const getMyCoursesSchedules = catchAsync(
+  async (req: Request, res: Response) => {
+    const user = (req as any).user;
 
-  const  user = (req as any).user
+    const filter = pick(req?.query, ['courseId', 'academicSemesterId']);
 
-  const filter = pick(req?.query,['courseId','academicSemesterId'])
+    const result = await StudentsService.getMyCourseSchedules(
+      user?.userId,
+      filter
+    );
 
-  const result = await StudentsService.getMyCourseSchedules(user?.userId,filter)
+    sendResponse<any>(res, {
+      statusCode: httpStatus.OK,
+      success: true,
+      message: `Successfully fetched getMyCourseSchedules`,
+      data: result,
+    });
+  }
+);
+
+const getMyAcademicInfo = catchAsync(async (req: Request, res: Response) => {
+  const user = (req as any).user;
+
+  const result = await StudentsService.getMyAcademicInfo(user?.userId);
 
   sendResponse<any>(res, {
     statusCode: httpStatus.OK,
     success: true,
-    message: `Successfully fetched getMyCourseSchedules`,
+    message: `Successfully fetched getMyAcademicInfo Data`,
     data: result,
   });
 });
 
-
-export const StudentController = { insertDB, getAllDb, getSingleDataById,updateIntoDb,deleteFromDb ,myCourses,getMyCoursesSchedules};
+export const StudentController = {
+  insertDB,
+  getAllDb,
+  getSingleDataById,
+  updateIntoDb,
+  deleteFromDb,
+  myCourses,
+  getMyCoursesSchedules,
+  getMyAcademicInfo,
+};
