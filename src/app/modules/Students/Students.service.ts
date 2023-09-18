@@ -143,6 +143,8 @@ const myCourses = async (
     // console.log(currentSemester)
   }
 
+  // console.log("...filter",{...filter});
+
   const result = await prisma.studentEnrolledCourse.findMany({
     where: {
       student: {
@@ -155,6 +157,7 @@ const myCourses = async (
       course: true,
     },
   });
+  
   return result;
 };
 
@@ -163,9 +166,76 @@ const getMyCourseSchedules = async(authId: string,
     courseId?: string | undefined;
     academicSemesterId?: string | undefined;
   })=>{
-  console.log(filter);
+  // console.log(authId,filter);
+  if (!filter?.academicSemesterId) {
+    const currentSemester = await prisma.academicSemester.findFirst({
+      where: {
+        isCurrent: true,
+      },
+    });
 
-  return null
+    filter.academicSemesterId = currentSemester?.id;
+
+    // console.log(currentSemester)
+  }
+  console.log(authId);
+
+  const studentEnrolledCourses = await myCourses(authId,filter)
+
+  // console.log(studentEnrolledCourses);
+  //  return studentEnrolledCourses
+
+  const studentEnrolledCourseIds =studentEnrolledCourses?.map((item:StudentEnrolledCourse)=>item.courseId);
+
+  const result = await prisma.studentSemesterRegistrationCourse.findMany({
+    where:{
+      student:{
+        studentId:authId
+      },
+      semesterRegistration:{
+        academicSemester:{
+          id:filter.academicSemesterId
+        }
+      },
+      offeredCourse:{
+        course:{
+          id:{
+            // ! !important in . here studentEnrolledCourseIds is a Array[]
+            in:studentEnrolledCourseIds
+          }
+        }
+      }
+    },
+    include:{
+      offeredCourse:{
+        include:{
+          course:true
+        }
+      },
+      offeredCourseSection:{
+        include:{
+          offeredCourseClassSchedule:{
+            include:{
+              room:{
+                include:{
+                  building:true
+                }
+              },
+              faculty:true
+            }
+          }
+        }
+      }
+    }
+  })
+
+
+
+  return result
+
+
+
+ 
 }
 
 export const StudentsService = {

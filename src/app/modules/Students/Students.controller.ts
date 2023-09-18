@@ -110,7 +110,7 @@ const getMyCoursesSchedules = catchAsync(async (req: Request, res: Response) => 
 
   const result = await StudentsService.getMyCourseSchedules(user?.userId,filter)
 
-  sendResponse<StudentEnrolledCourse[]>(res, {
+  sendResponse<any>(res, {
     statusCode: httpStatus.OK,
     success: true,
     message: `Successfully fetched getMyCourseSchedules`,
