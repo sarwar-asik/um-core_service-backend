@@ -3,8 +3,13 @@ import { Server } from 'http';
 import app from './app';
 import config from './config';
 import { errorlogger, logger } from './shared/logger';
+import { RedisClient } from './shared/redis';
 
 async function mainFunc() {
+  // ! for redis ///
+  
+  await RedisClient.connect()
+
   const server: Server = app.listen(config.port, () => {
     logger.info(`Server running on port ${config.port}`.green.underline.bold);
   });
