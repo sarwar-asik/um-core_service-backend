@@ -5,7 +5,7 @@ explore the site
 
 **download redis msi**
 
-**install from local. dont forget to select env file when install**
+**install from local. don't forget to select env file when install**
 
 #### open your cmd 
 
