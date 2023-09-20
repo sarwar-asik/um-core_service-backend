@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { academicSemesterCodes, academicSemesterMonths, academicSemesterTitles } from './academicSemester.constant';
 
 const createAcademicSemester = z.object({
   body: z.object({
@@ -20,4 +21,17 @@ const createAcademicSemester = z.object({
   }),
 });
 
-export const AcademicSemesterValidation = { createAcademicSemester };
+const update = z.object({
+  body: z.object({
+      title: z.enum([...academicSemesterTitles] as [string, ...string[]]).optional(),
+      code: z.enum([...academicSemesterCodes] as [string, ...string[]]).optional(),
+      year: z.number().optional(),
+      startMonth: z.enum([...academicSemesterMonths] as [string, ...string[]]).optional(),
+      endMonth: z.enum([...academicSemesterMonths] as [string, ...string[]]).optional()
+  })
+});
+
+export const AcademicSemesterValidation = {
+  createAcademicSemester,
+  update
+}

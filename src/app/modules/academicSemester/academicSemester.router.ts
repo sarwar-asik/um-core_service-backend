@@ -20,7 +20,7 @@ router.get('/:id', AcademicSemesterController.getSingleDataById);
 
 router.patch(
   '/:id',
-  // validateRequest(AcademicSemesterValidation.update),
+  validateRequest(AcademicSemesterValidation.update),
   auth(ENUM_USER_ROLE.SUPER_ADMIN, ENUM_USER_ROLE.ADMIN),
   AcademicSemesterController.updateOneInDB
 );
