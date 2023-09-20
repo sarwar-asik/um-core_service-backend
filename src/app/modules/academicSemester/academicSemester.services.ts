@@ -4,9 +4,10 @@ import { IGenericResponse } from '../../../interfaces/common';
 import { IPaginationOptions } from '../../../interfaces/pagination';
 import prisma from '../../../shared/prisma';
 import { IAcademicSemesterFilterRequest } from './academicSemester.Interface';
-import { academicSemesterTitleCodeMapper } from './academicSemester.constant';
+import { EVENT_ACADEMIC_SEMESTER_CREATED, academicSemesterTitleCodeMapper } from './academicSemester.constant';
 import httpStatus from 'http-status';
 import ApiError from '../../../errors/ApiError';
+import { RedisClient } from '../../../shared/redis';
 
 const insertDB = async (semesterData: AcademicSemester): Promise<AcademicSemester> => {
 
@@ -19,6 +20,14 @@ const insertDB = async (semesterData: AcademicSemester): Promise<AcademicSemeste
   const result = await prisma.academicSemester.create({
     data:semesterData
   });
+
+  
+  // ! for publish in Redis ::::
+  if(result){
+    await RedisClient.publish(EVENT_ACADEMIC_SEMESTER_CREATED,JSON.stringify(result));
+
+  }
+  
 
   return result;
 };
@@ -121,5 +130,34 @@ const getSingleData = async (id: string): Promise<AcademicSemester | null> => {
   return result;
 };
 
+const updateOneInDB = async (
+  id: string,
+  payload: Partial<AcademicSemester>
+): Promise<AcademicSemester> => {
+  const result = await prisma.academicSemester.update({
+      where: {
+          id
+      },
+      data: payload
+  });
+  // if (result) {
+  //     await RedisClient.publish(EVENT_ACADEMIC_SEMESTER_UPDATED, JSON.stringify(result))
+  // }
+  return result;
+};
 
-export const AcademicSemesterServices = { insertDB, getAllDb, getSingleData };
+const deleteByIdFromDB = async (id: string): Promise<AcademicSemester> => {
+  const result = await prisma.academicSemester.delete({
+      where: {
+          id
+      }
+  });
+
+  // if (result) {
+  //     await RedisClient.publish(EVENT_ACADEMIC_SEMESTER_DELETED, JSON.stringify(result));
+  // }
+  return result
+};
+
+
+export const AcademicSemesterServices = { insertDB, getAllDb, getSingleData,updateOneInDB,deleteByIdFromDB };

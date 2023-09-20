@@ -42,6 +42,8 @@ const getAllDb = catchAsync(async(req:Request,res:Response)=>{
 
 const getSingleDataById  = catchAsync(async(req:Request,res:Response)=>{
    const id = req.params.id;
+   console.log("🚀 ~ file: academicSemester.controller.ts:45 ~ getSingleDataById ~ id:", req.params)
+   
 
     const result = await AcademicSemesterServices.getSingleData(id)
     
@@ -53,4 +55,28 @@ const getSingleDataById  = catchAsync(async(req:Request,res:Response)=>{
     })
   
 })
-export const AcademicSemesterController ={insertDB,getAllDb,getSingleDataById}
+
+const updateOneInDB = catchAsync(async (req: Request, res: Response) => {
+    const { id } = req.params;
+    const result = await AcademicSemesterServices.updateOneInDB(id, req.body);
+    sendResponse(res, {
+        statusCode: httpStatus.OK,
+        success: true,
+        message: 'Academic Semster updated successfully',
+        data: result
+    });
+});
+
+const deleteByIdFromDB = catchAsync(async (req: Request, res: Response) => {
+    const { id } = req.params;
+    const result = await AcademicSemesterServices.deleteByIdFromDB(id);
+    sendResponse(res, {
+        statusCode: httpStatus.OK,
+        success: true,
+        message: 'Academic Semster delete successfully',
+        data: result
+    });
+});
+
+
+export const AcademicSemesterController ={insertDB,getAllDb,getSingleDataById,updateOneInDB,deleteByIdFromDB}
