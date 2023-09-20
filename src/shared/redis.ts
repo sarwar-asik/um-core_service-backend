@@ -5,7 +5,7 @@
 import { createClient, SetOptions } from 'redis';
 import config from '../config';
 
-//! step-1
+//! step-1P
 const redisClient = createClient({
   url: config.redis.url,
 });
