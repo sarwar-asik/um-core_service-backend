@@ -4,10 +4,20 @@ import { IGenericResponse } from '../../../interfaces/common';
 import { IPaginationOptions } from '../../../interfaces/pagination';
 import prisma from '../../../shared/prisma';
 import { IAcademicSemesterFilterRequest } from './academicSemester.Interface';
+import { academicSemesterTitleCodeMapper } from './academicSemester.constant';
+import ApiError from '../../../errors/ApiError';
+import httpStatus from 'http-status';
 
-const insertDB = async (data: AcademicSemester): Promise<AcademicSemester> => {
+const insertDB = async (semesterData: AcademicSemester): Promise<AcademicSemester> => {
+
+  
+  if (academicSemesterTitleCodeMapper[semesterData.title] !== semesterData.code) {
+    throw new ApiError(httpStatus.BAD_REQUEST, 'Invalid Semester Code');
+  }
+
+
   const result = await prisma.academicSemester.create({
-    data,
+    data:semesterData
   });
 
   return result;
