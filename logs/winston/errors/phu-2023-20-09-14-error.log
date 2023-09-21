@@ -1,0 +1,16 @@
+Wed Sep 20 2023 14:26:36 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ [
+  {
+    "received": "Autumn",
+    "code": "invalid_enum_value",
+    "options": [
+      "Autum",
+      "Summer",
+      "Fall"
+    ],
+    "path": [
+      "body",
+      "title"
+    ],
+    "message": "Invalid enum value. Expected 'Autum' | 'Summer' | 'Fall', received 'Autumn'"
+  }
+]
